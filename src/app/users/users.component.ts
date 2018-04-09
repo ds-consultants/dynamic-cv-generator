@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user'
 import { UserService } from '../user.service';
 
+import * as html2canvas from "html2canvas";
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -18,5 +20,12 @@ export class UsersComponent implements OnInit {
   getUsers(): void {
     this.userService.getUsers()
         .subscribe(users => this.users = users);
+  }
+
+  printMe(id): void {
+    html2canvas(document.body).then(canvas => {
+      let imgData = canvas.toDataURL("image/png");
+      // TODO - convert img to pdf
+    });
   }
 }
