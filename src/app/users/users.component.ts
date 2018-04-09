@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { Observable } from 'rxjs/Observable';
+import { User } from '../user'
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-users',
@@ -8,16 +8,15 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-
-  usersObservable: Observable<any[]>;
-
-  constructor(private db: AngularFireDatabase) { }
+  users: User[];
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.usersObservable = this.getUsers('/persons');
+    this.getUsers()
   }
 
-  getUsers(listPath): Observable<any[]> {
-    return this.db.list(listPath).valueChanges();
+  getUsers(): void {
+    this.userService.getUsers()
+        .subscribe(users => this.users = users);
   }
 }

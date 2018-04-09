@@ -8,6 +8,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { environment } from '../environments/environment';
 import { UsersComponent } from './users/users.component';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { UsersComponent } from './users/users.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

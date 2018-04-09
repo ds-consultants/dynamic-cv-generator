@@ -1,5 +1,8 @@
 <ul>
-  <div *ngFor="let user of usersObservable | async">
-    <li>{{user.name}}</li>
+  <div *ngFor="let user of users">
+    <li>
+      {{user.name}}
+      {{user.experience[0].company}}
+    </li>
   </div>
 </ul>
