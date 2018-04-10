@@ -1,8 +1,9 @@
 <ul>
   <div *ngFor="let user of users; let i = index">
     <li id="user-{{i}}">
-      {{user.name}}
-      {{user.experience[0].company}}
+      <a routerLink="/user/{{user.name}}">
+        {{user.name}}
+      </a>
       <button (click)="printMe(i)">Print CV of {{user.name}}</button>
     </li>
   </div>
