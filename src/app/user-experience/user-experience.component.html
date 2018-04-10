@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-sm-4">
+    <p>
+      {{ experience.company }}
+    </p>
+    <p>
+      {{ experience.time }}
+    </p>
+  </div>
+  <div class="col-sm-8">
+    <p>{{ experience.position }}</p>
+    <div *ngFor="let project of experience.mainProjects">
+      <p>{{ project.desc }}</p>
+      <p>
+        Technologies used: {{ project.technologies.join(", ") }}
+      </p>
+    </div>
+    <div *ngIf="experience.projects">
+      <p>Render additional component for DS projects here</p>
+    </div>
+  </div>
+</div>

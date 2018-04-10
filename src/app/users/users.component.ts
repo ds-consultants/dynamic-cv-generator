@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
 import { User } from '../user'
 import { UserService } from '../user.service';
 
@@ -10,16 +12,11 @@ import * as html2canvas from "html2canvas";
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  users: User[];
+  users: Observable<User[]>;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.getUsers()
-  }
-
-  getUsers(): void {
-    this.userService.getUsers()
-        .subscribe(users => this.users = users);
+    this.users = this.userService.getUsers();
   }
 
   printMe(id): void {
