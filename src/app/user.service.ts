@@ -11,4 +11,8 @@ export class UserService {
   getUsers(): Observable<any[]> {
     return this.db.list('/persons').valueChanges();
   }
+
+  getUser(name): Observable<any[]> {
+    return this.db.list<User>('/persons', ref => ref.orderByChild('name').equalTo(name)).valueChanges();
+  }
 }
