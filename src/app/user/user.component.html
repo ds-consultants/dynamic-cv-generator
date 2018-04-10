@@ -4,12 +4,9 @@
 <p>
   {{ user?.title }}
 </p>
-<p>
-  {{ user?.experience[0].company }}
-</p>
-<p>
-  {{ user?.experience[0].time }}
-</p>
-<p>
-  {{ user?.experience[0].position }}
-</p>
+
+<div class="container">
+  <div *ngFor="let experience of user?.experience">
+    <app-user-experience [experience]="experience"></app-user-experience>
+  </div>
+</div>

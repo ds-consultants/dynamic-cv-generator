@@ -1,5 +1,6 @@
+<h2>Please select one of the users: </h2>
 <ul>
-  <div *ngFor="let user of users; let i = index">
+  <div *ngFor="let user of users | async; let i = index">
     <li id="user-{{i}}">
       <a routerLink="/user/{{user.name}}">
         {{user.name}}

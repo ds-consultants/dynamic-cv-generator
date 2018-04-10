@@ -9,10 +9,10 @@ export class UserService {
   constructor(private db: AngularFireDatabase) { }
   
   getUsers(): Observable<any[]> {
-    return this.db.list('/persons').valueChanges();
+    return this.db.list<User>('/persons').valueChanges();
   }
 
-  getUser(name): Observable<any[]> {
+  getUser(name): Observable<User[]> {
     return this.db.list<User>('/persons', ref => ref.orderByChild('name').equalTo(name)).valueChanges();
   }
 }
