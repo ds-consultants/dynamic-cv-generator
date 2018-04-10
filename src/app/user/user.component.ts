@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../user'
+import { User } from '../user';
 import { UserService } from '../user.service';
 import { UserExperienceComponent } from '../user-experience/user-experience.component';
 import { ActivatedRoute } from '@angular/router';
@@ -18,8 +18,7 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let id = this.route.snapshot.paramMap.get('id');
-    this.userService.getUsers()
+    this.userService.getUser(this.route.snapshot.paramMap.get('id'))
         .subscribe(user => { this.user = user[0]; });
   }
 }
