@@ -1,27 +1,57 @@
-<p>
-  {{ user?.name }}
-</p>
-<p>
-  {{ user?.title }}
-</p>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <i class="experience-icon"></i>
-      <h2>Experience</h2>
+<div class="row">
+<div class="col-sm-11"></div>
+<div class="col-sm-1">
+    <button (click)="printCV()" type="button" class="btn btn-success">PDF</button>
+</div>
+</div>
+<div id="cv" class="a4" >
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+          <div class="row">
+            <div class="col-sm-5">
+                <div class="user-logo"> 
+                    <img src="/assets/img/logo.png" width="120px" alt="">
+                </div>
+            </div>
+            <div class="col-sm-7">
+              <div class="row user-desc-place">
+                <div class="col-sm-12">
+                  <h3>{{user?.name}}</h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm 12">
+                  {{user?.title}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4" >
+          <div class="user-img-title-place">
+            <img src="/assets/img/front-end.svg" width="120px" *ngIf="user.title=='Senior Front-end Developer'" alt="User title">
+          </div>
+        </div>
+      </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <i class="experience-icon"></i>
+        <h2>Experience</h2>
+      </div>
     </div>
-  </div>
-  <div *ngFor="let exp of user?.experience">
-    <app-user-experience [experience]="exp"></app-user-experience>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <i class="education-icon"></i>
-      <h2>Education</h2>
+    <div *ngFor="let exp of user?.experience">
+      <app-user-experience [experience]="exp"></app-user-experience>
     </div>
-  </div>
-  <div *ngFor="let school of user?.education">
-    <app-user-education [school]="school"></app-user-education>
+    <div class="row">
+      <div class="col-sm-12">
+        <i class="education-icon"></i>
+        <h2>Education</h2>
+      </div>
+    </div>
+    <div *ngFor="let school of user?.education">
+      <app-user-education [school]="school"></app-user-education>
+    </div>
   </div>
 </div>
