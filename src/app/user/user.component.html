@@ -6,7 +6,13 @@
 </p>
 
 <div class="container">
-  <div *ngFor="let experience of user?.experience">
-    <app-user-experience [experience]="experience"></app-user-experience>
+  <div class="row">
+    <div class="col-sm-12">
+      <i class="main-icon"></i>
+      <h2>Experience</h2>
+    </div>
+  </div>
+  <div *ngFor="let exp of user?.experience">
+    <app-user-experience *ngIf="exp" [experience]="exp"></app-user-experience>
   </div>
 </div>

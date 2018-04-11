@@ -1,0 +1,7 @@
+<i *ngIf="internalProject" class="internal-project"></i>
+<p class="name">{{ project.name }}</p>
+<p class="title">{{ project.title }}</p>
+<p class="description">{{ project.desc }}</p>
+<p class="technologies">
+  Technologies used: {{ project.technologies.join(", ") }}
+</p>

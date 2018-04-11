@@ -8,15 +8,19 @@
     </p>
   </div>
   <div class="col-sm-8">
+    <i class="main-project-icon"></i>
     <p>{{ experience.position }}</p>
     <div *ngFor="let project of experience.mainProjects">
-      <p>{{ project.desc }}</p>
-      <p>
-        Technologies used: {{ project.technologies.join(", ") }}
-      </p>
+      <app-project [project]="project" [ngClass]="{'main-project': experience.company == 'Dynamic Solutions'}">
+      </app-project>
     </div>
-    <div *ngIf="experience.projects">
-      <p>Render additional component for DS projects here</p>
+    <p *ngIf="experience.projects">
+      Working on projects for:
+    </p>
+    <br>
+    <div *ngFor="let project of experience.projects">
+      <app-project [project]="project" internalProject=[true] [ngClass]="ds-project"></app-project>
+      <br>
     </div>
   </div>
 </div>
