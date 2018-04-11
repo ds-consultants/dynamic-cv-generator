@@ -6,6 +6,7 @@
         {{user.name}}
       </a>
       <button (click)="printMe(i)">Print CV of {{user.name}}</button>
+      <a [routerLink]="['/cvpreview']">Preview</a>
     </li>
   </div>
 </ul>
