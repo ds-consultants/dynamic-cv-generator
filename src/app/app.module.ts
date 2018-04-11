@@ -12,7 +12,8 @@ import { UserService } from './user.service';
 import { UserComponent } from './user/user.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { UserExperienceComponent } from './user-experience/user-experience.component';
-import { CvpreviewComponent } from './users/cvpreview.component';
+import { ProjectComponent } from './project/project.component';
+import { UserEducationComponent } from './user-education/user-education.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CvpreviewComponent } from './users/cvpreview.component';
     UsersComponent,
     UserComponent,
     UserExperienceComponent,
-    CvpreviewComponent
+    ProjectComponent,
+    UserEducationComponent
   ],
   imports: [
     BrowserModule,
