@@ -1,6 +1,15 @@
-.main-icon {
+.experience-icon {
     background-image: url(/assets/img/experience.svg);
     height: 50px;
+    left: -50px;
+    margin: 0 5px;
+    position: absolute;
+    width: 50px;
+}
+
+.education-icon {
+    background-image: url(/assets/img/education.svg);
+    height: 37px;
     left: -50px;
     margin: 0 5px;
     position: absolute;

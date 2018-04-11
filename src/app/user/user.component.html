@@ -8,11 +8,20 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <i class="main-icon"></i>
+      <i class="experience-icon"></i>
       <h2>Experience</h2>
     </div>
   </div>
   <div *ngFor="let exp of user?.experience">
-    <app-user-experience *ngIf="exp" [experience]="exp"></app-user-experience>
+    <app-user-experience [experience]="exp"></app-user-experience>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <i class="education-icon"></i>
+      <h2>Education</h2>
+    </div>
+  </div>
+  <div *ngFor="let school of user?.education">
+    <app-user-education [school]="school"></app-user-education>
   </div>
 </div>

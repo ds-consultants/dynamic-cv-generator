@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
 import { UserExperienceComponent } from '../user-experience/user-experience.component';
+import { UserEducationComponent } from '../user-education/user-education.component';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
