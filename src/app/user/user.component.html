@@ -5,7 +5,7 @@
     <button (click)="printCV()" type="button" class="btn btn-success">PDF</button>
 </div>
 </div>
-<div id="cv" class="a4" >
+<div id="cv-page-1" class="a4" >
   <div class="container">
     <div class="row">
         <div class="col-sm-8">
@@ -52,6 +52,20 @@
     </div>
     <div *ngFor="let school of user?.education">
       <app-user-education [school]="school"></app-user-education>
+    </div>
+  </div>
+</div>
+<br>
+<div id="cv-page-2" class="a4">    
+  <div class="container">
+    <div class="row page-top">
+        <div class="col-sm-12">
+          <i class="expectations-icon"></i>
+          <h2>Profesional Expectations</h2>
+        </div>
+    </div>
+    <div>
+      <app-prof-expectations [description]="user?.professionalExpectations"></app-prof-expectations>
     </div>
   </div>
 </div>
