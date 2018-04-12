@@ -15,6 +15,7 @@ import { UserExperienceComponent } from './user-experience/user-experience.compo
 import { ProjectComponent } from './project/project.component';
 import { UserEducationComponent } from './user-education/user-education.component';
 import { ProfExpectationsComponent } from './prof-expectations/prof-expectations.component';
+import { PersonalNoteComponent } from './personal-note/personal-note.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ProfExpectationsComponent } from './prof-expectations/prof-expectations
     UserExperienceComponent,
     ProjectComponent,
     UserEducationComponent,
-    ProfExpectationsComponent
+    ProfExpectationsComponent,
+    PersonalNoteComponent
   ],
   imports: [
     BrowserModule,

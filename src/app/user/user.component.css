@@ -24,7 +24,15 @@
     float: left;
     margin-right: 10px;
 }
-
+.personal-note-icon {
+    background-image: url(/assets/img/profile.svg);
+    background-size: contain;
+    height: 37px;
+    width: 37px; 
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
 .a4 {
     width: 210mm;
     height: 297mm;
