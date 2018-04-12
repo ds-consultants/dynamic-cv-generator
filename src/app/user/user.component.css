@@ -17,7 +17,7 @@
 }
 .expectations-icon {
     background-image: url(/assets/img/target.svg);
-    background-size: 37px 37px;
+    background-size: contain;
     height: 37px;
     width: 37px; 
     display: block;
@@ -29,6 +29,7 @@
     width: 210mm;
     height: 297mm;
     background: lightgray;
+    overflow-x: scroll;
 }
 
 .user-logo {
