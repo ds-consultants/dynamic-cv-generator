@@ -30,6 +30,7 @@
     height: 297mm;
     background: lightgray;
     overflow-x: scroll;
+    position: relative;
 }
 
 .user-logo {
@@ -47,4 +48,20 @@
 
 .page-top {
     padding-top: 25px;
+}
+
+.top-right-footer {
+    padding-top: 25px;
+    padding-left: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.circle {
+    border-top-left-radius: 70px;
+    /* border-top-right-radius: 40%; */
+    width: 200px;
+    height: 100px;
+    background: yellow;
 }

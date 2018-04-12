@@ -1,40 +1,50 @@
-
 <div class="row">
-<div class="col-sm-11"></div>
-<div class="col-sm-1">
-    <button (click)="printCV()" type="button" class="btn btn-success">PDF</button>
+  <div class="col-sm-12">
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="email">Email address:</label>
+        <input type="text" class="form-control" id="email" [(ngModel)]="email">
+      </div>
+      <div class="form-group">
+        <label for="website">Website: </label>
+        <input type="text" class="form-control" id="website"  [(ngModel)]="website" >
+      </div>
+      <button (click)="printCV()" type="button" class="btn btn-success">PDF</button>
+    </form>
+  </div>
+  <div class="col-sm-1">
+  </div>
 </div>
-</div>
-<div id="cv-page-1" class="a4" >
+<div id="cv-page-1" class="a4">
   <div class="container">
     <div class="row">
-        <div class="col-sm-8">
-          <div class="row">
-            <div class="col-sm-5">
-                <div class="user-logo"> 
-                    <img src="/assets/img/logo.png" width="120px" alt="">
-                </div>
-            </div>
-            <div class="col-sm-7">
-              <div class="row user-desc-place">
-                <div class="col-sm-12">
-                  <h3>{{user?.name}}</h3>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm 12">
-                  {{user?.title}}
-                </div>
-              </div>
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="col-sm-5">
+            <div class="user-logo">
+              <img src="/assets/img/logo.png" width="120px" alt="">
             </div>
           </div>
-        </div>
-        <div class="col-sm-4" >
-          <div class="user-img-title-place">
-            <img src="/assets/img/front-end.svg" width="120px" *ngIf="user.title=='Senior Front-end Developer'" alt="User title">
+          <div class="col-sm-7">
+            <div class="row user-desc-place">
+              <div class="col-sm-12">
+                <h3>{{user?.name}}</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm 12">
+                {{user?.title}}
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <div class="col-sm-4">
+        <div class="user-img-title-place">
+          <img src="/assets/img/front-end.svg" width="120px" *ngIf="user?.title=='Senior Front-end Developer'" alt="User title">
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-sm-12">
         <i class="experience-icon"></i>
@@ -56,13 +66,17 @@
   </div>
 </div>
 <br>
-<div id="cv-page-2" class="a4">    
+<div id="cv-page-2" class="a4">
+  <div class="top-right-footer circle">
+    <p>{{email}}</p>
+    <p>{{website}}</p>
+  </div>
   <div class="container">
     <div class="row page-top">
-        <div class="col-sm-12">
-          <i class="expectations-icon"></i>
-          <h2>Profesional Expectations</h2>
-        </div>
+      <div class="col-sm-12">
+        <i class="expectations-icon"></i>
+        <h2>Profesional Expectations</h2>
+      </div>
     </div>
     <div>
       <app-prof-expectations [description]="user?.professionalExpectations"></app-prof-expectations>

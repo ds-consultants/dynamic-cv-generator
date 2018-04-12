@@ -14,6 +14,8 @@ import * as html2canvas from 'html2canvas';
 })
 export class UserComponent implements OnInit {
   user: User;
+  website = 'www.ds-consultants.eu';
+  email = 'info@ds-consultants.eu';
 
   constructor(
     private userService: UserService,
@@ -26,6 +28,7 @@ export class UserComponent implements OnInit {
   }
 
   printCV() {
+    alert(this.website);
     html2canvas(document.getElementById('cv-page-1')).then((canvasPage1) => {
       html2canvas(document.getElementById('cv-page-2')).then((canvasPage2) => {
         const imgDataPage1 = canvasPage1.toDataURL('image/png');
