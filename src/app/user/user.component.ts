@@ -26,11 +26,17 @@ export class UserComponent implements OnInit {
   }
 
   printCV() {
-    html2canvas(document.getElementById('cv')).then((canvas) => {
-        const imgData = canvas.toDataURL('image/png');
+    html2canvas(document.getElementById('cv-page-1')).then((canvasPage1) => {
+      html2canvas(document.getElementById('cv-page-2')).then((canvasPage2) => {
+        const imgDataPage1 = canvasPage1.toDataURL('image/png');
+        const imgDataPage2 = canvasPage2.toDataURL('image/png');
         const pdf = new jsPDF();
-        pdf.addImage(imgData, 'JPEG', 0, 0);
+        pdf.addImage(imgDataPage1, 'JPEG', 0, 0);
+        pdf.addPage();
+        pdf.addImage(imgDataPage2, 'JPEG', 0, 0);
         pdf.save('download.pdf');
     });
+  });
   }
 }
+

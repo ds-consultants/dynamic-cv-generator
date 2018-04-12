@@ -14,6 +14,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { UserExperienceComponent } from './user-experience/user-experience.component';
 import { ProjectComponent } from './project/project.component';
 import { UserEducationComponent } from './user-education/user-education.component';
+import { ProfExpectationsComponent } from './prof-expectations/prof-expectations.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserEducationComponent } from './user-education/user-education.componen
     UserComponent,
     UserExperienceComponent,
     ProjectComponent,
-    UserEducationComponent
+    UserEducationComponent,
+    ProfExpectationsComponent
   ],
   imports: [
     BrowserModule,

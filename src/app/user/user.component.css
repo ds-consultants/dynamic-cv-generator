@@ -15,6 +15,15 @@
     position: absolute;
     width: 50px;
 }
+.expectations-icon {
+    background-image: url(/assets/img/target.svg);
+    background-size: 37px 37px;
+    height: 37px;
+    width: 37px; 
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
 
 .a4 {
     width: 210mm;
@@ -33,4 +42,8 @@
 
 .user-img-title-place {
     padding-top: 20px;
+}
+
+.page-top {
+    padding-top: 25px;
 }
