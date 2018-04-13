@@ -33,6 +33,21 @@
     position: relative;
 }
 
+.a4-width {
+    width: 210mm;
+}
+
+.form-input {
+    margin-left: 10px; 
+    width:250px;
+    margin-bottom: 5px;
+}
+
+.form-button {
+    margin-left: 10px; 
+    margin-bottom: 5px;
+}
+
 .user-logo {
     padding-left: 70px;
     padding-top: 20px;
@@ -56,12 +71,18 @@
     position: absolute;
     bottom: 0;
     right: 0;
-}
-
-.circle {
     border-top-left-radius: 70px;
-    /* border-top-right-radius: 40%; */
     width: 200px;
     height: 100px;
-    background: yellow;
+    background: grey;
 }
+
+.top-right-footer-content {
+    text-align: center;
+    font-size: 14px;
+    color: #ffff
+}
+.prompt {
+    font-size: 12px;
+}
+

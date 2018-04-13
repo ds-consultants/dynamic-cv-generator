@@ -28,7 +28,6 @@ export class UserComponent implements OnInit {
   }
 
   printCV() {
-    alert(this.website);
     html2canvas(document.getElementById('cv-page-1')).then((canvasPage1) => {
       html2canvas(document.getElementById('cv-page-2')).then((canvasPage2) => {
         const imgDataPage1 = canvasPage1.toDataURL('image/png');
