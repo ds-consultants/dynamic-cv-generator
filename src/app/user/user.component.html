@@ -31,7 +31,7 @@
         </div>
         <div class="col-sm-4" >
           <div class="user-img-title-place">
-            <img src="/assets/img/front-end.svg" width="120px" *ngIf="user.title=='Senior Front-end Developer'" alt="User title">
+            <img src="/assets/img/front-end.svg" width="120px" *ngIf="user?.title=='Senior Front-end Developer'" alt="User title">
           </div>
         </div>
       </div>
@@ -66,6 +66,15 @@
     </div>
     <div>
       <app-prof-expectations [description]="user?.professionalExpectations"></app-prof-expectations>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+          <i class="personal-note-icon"></i>
+          <h2>Personal Note</h2>
+        </div>
+    </div>
+    <div>
+      <app-personal-note [description]="user?.personalNote"></app-personal-note>
     </div>
   </div>
 </div>
