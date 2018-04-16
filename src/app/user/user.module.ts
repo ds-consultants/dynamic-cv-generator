@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 import { UserResolver } from './user-resolver.module';
+import { PdfCompressorService } from '../pdf-compressor.service';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { UserResolver } from './user-resolver.module';
     UserPersonalNoteComponent
   ],
   providers: [
-    UserResolver
+    UserResolver,
+    PdfCompressorService
   ]
 })
 export class UserModule { }

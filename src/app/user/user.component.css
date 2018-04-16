@@ -35,29 +35,32 @@
 }
 
 .a4 {
-    position: relative;
-    margin: 100px auto;
-    padding: 40px 0;
-    width: 210mm;
     height: 297mm;
+    margin: 100px auto;
+    padding-right: 8mm;
+    position: relative;
+    width: 210mm;
+    font-size: 14px;
 }
 
-.a4::before,
-.a4::after {
+.a4::after,
+.a4::before {
     content: "";
-    width: 215mm;
     height: 297mm;
-    position: absolute;
     left: -2px;
+    position: absolute;
     top: -5px;
+    width: 210mm;
     z-index: -1;
     -moz-transform: rotate(-2deg);
+    -ms-transform: rotate(-2deg);
     -webkit-transform: rotate(-2deg);
     transform: rotate(-2deg);
 }
 .a4::after {
     left: 0;
     -moz-transform: rotate(-1deg);
+    -ms-transform: rotate(-2deg);
     -webkit-transform: rotate(-1deg);
     transform: rotate(-1deg);
 }

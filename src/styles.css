@@ -23,7 +23,7 @@ p {
 }
 
 .custom-left-column {
-    margin-left: 75px;
+    margin: 0 0 0 75px;
 }
 
 .education-row {
