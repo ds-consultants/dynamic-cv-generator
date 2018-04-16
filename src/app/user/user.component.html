@@ -8,12 +8,12 @@
             <input type="text" class="form-control form-input" id="email" [(ngModel)]="email" name="email">
           </div>
           <div class="form-group">
-            <label for="website" style="margin-left:10px">*Website: </label>
+            <label for="website" class="label-margin">*Website: </label>
             <input type="text" class="form-control form-input" id="website"  [(ngModel)]="website" name="website">
           </div>
           <button (click)="printCV()" type="button" class="btn btn-success form-button">PDF</button>
         </form>
-       <p class="prompt"> * Completing the above fields, will generate additional footer</p>
+       <p class="prompt"> * Completing the above fields, will generate additional footer.</p>
       </div>
     </div>
   </div>
@@ -25,7 +25,7 @@
         <div class="row">
           <div class="col-sm-5">
             <div class="user-logo">
-              <img src="/assets/img/logo.png" width="120px" alt="">
+              <img src="/assets/img/logo.png" class="image-width" alt="logo">
             </div>
           </div>
           <div class="col-sm-7">
@@ -44,7 +44,7 @@
       </div>
       <div class="col-sm-4">
         <div class="user-img-title-place">
-          <img src="/assets/img/front-end.svg" width="120px" *ngIf="user?.title=='Senior Front-end Developer'" alt="User title">
+          <img src="/assets/img/front-end.svg" class="image-width" *ngIf="user?.title=='Senior Front-end Developer'" alt="User title">
         </div>
       </div>
     </div>
@@ -70,10 +70,6 @@
 </div>
 <br>
 <div id="cv-page-2" class="a4">
-  <div class="top-right-footer" *ngIf="!(website=='' && email =='')">
-    <p class="top-right-footer-content">{{email}}</p>
-    <p class="top-right-footer-content">{{website}}</p>
-  </div>
   <div class="container">
     <div class="row page-top">
       <div class="col-sm-12">
@@ -85,4 +81,8 @@
       <app-prof-expectations [description]="user?.professionalExpectations"></app-prof-expectations>
     </div>
   </div>
+  <div class="top-right-footer" *ngIf="!(website=='' && email =='')">
+      <p class="top-right-footer-content">{{email}}</p>
+      <p class="top-right-footer-content">{{website}}</p>
+    </div>
 </div>

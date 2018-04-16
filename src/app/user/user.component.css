@@ -82,7 +82,15 @@
     font-size: 14px;
     color: #ffff
 }
+
 .prompt {
     font-size: 12px;
 }
 
+.label-margin {
+    margin-left:10px;
+}
+
+.image-width {
+    width: 120px;
+}
