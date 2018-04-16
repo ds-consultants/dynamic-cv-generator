@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './user.component';
+import { UserResolver } from './user-resolver.module';
 
 const routes: Routes = [
   {
     path: ':id',
-    component: UserComponent
-/*    resolve: {
-      profile: ProfileResolver
+    component: UserComponent,
+    resolve: {
+      user: UserResolver
     },
-    */
   }
 ];
 

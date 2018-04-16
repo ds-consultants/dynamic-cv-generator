@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
-import { UserService } from '../user.service';
-import { ActivatedRoute } from '@angular/router';
-import * as jsPDF from 'jspdf';
-import * as html2canvas from 'html2canvas';
+
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -15,20 +13,16 @@ export class UserComponent implements OnInit {
   website = 'www.ds-consultants.eu';
   email = 'info@ds-consultants.eu';
 
-  constructor(
-    private userService: UserService,
-    private route: ActivatedRoute
-  ) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.userService.getUser(this.route.snapshot.paramMap.get('id'))
-      .subscribe(user => { this.user = user[0]; });
-  }
 
-  printCV() {
-    html2canvas(document.getElementById('cv')).then((canvas) => {
-      console.log('Pring me');
-    });
+    // Retreive the prefetched user
+    this.route.data.subscribe(
+      (data: { user: User }) => {
+        this.user = data.user;
+      }
+    );
   }
 }
 

@@ -7,6 +7,7 @@ import { UserEducationComponent } from './user-education.component';
 
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
+import { UserResolver } from './user-resolver.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,9 @@ import { UserComponent } from './user.component';
     ProjectComponent,
     UserExperienceComponent,
     UserEducationComponent
+  ],
+  providers: [
+    UserResolver
   ]
 })
 export class UserModule { }
