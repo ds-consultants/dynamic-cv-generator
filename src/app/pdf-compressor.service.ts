@@ -1,15 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Injectable } from '@angular/core';
 
-import * as jsPDF from 'jspdf';
+@Injectable()
+export class PdfCompressorService {
 
-@NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: []
-})
-export class HtmlToPdfCompressorModule {
+  constructor() { }
+
   canvasToImage(canvas) {
     const img = new Image();
     const dataURL = canvas.toDataURL('image/png');
@@ -32,9 +27,8 @@ export class HtmlToPdfCompressorModule {
     return newCanvas;
   }
 
-  compress(canvas): void {
-    const pdf = new jsPDF('p', 'px'),
-      pdfInternals = pdf.internal,
+  compress(canvas, pdf): void {
+    const pdfInternals = pdf.internal,
       pdfPageSize = pdfInternals.pageSize,
       pdfScaleFactor = pdfInternals.scaleFactor,
       pdfPageWidth = pdfPageSize.width,
@@ -46,7 +40,7 @@ export class HtmlToPdfCompressorModule {
 
     while (totalPdfHeight < htmlPageHeight && safetyNet < 15) {
       const newCanvas = this.canvasShiftImage(canvas, totalPdfHeight);
-      pdf.addImage(newCanvas, 'png', 20, 0, pdfPageWidth, 0, null, 'NONE');
+      pdf.addImage(newCanvas, 'png', 5, 0, pdfPageWidth, 0, null, 'NONE');
 
       totalPdfHeight += (pdfPageHeight * pdfScaleFactor * htmlScaleFactor);
 
