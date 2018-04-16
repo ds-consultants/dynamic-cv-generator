@@ -6,6 +6,8 @@ import { UserEducationComponent } from '../user-education/user-education.compone
 import { ActivatedRoute } from '@angular/router';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
+import { forEach } from '@firebase/util';
+import { cleanSession } from 'selenium-webdriver/safari';
 
 @Component({
   selector: 'app-user',
@@ -16,15 +18,34 @@ export class UserComponent implements OnInit {
   user: User;
   website = 'www.ds-consultants.eu';
   email = 'info@ds-consultants.eu';
+  _languages = [];
+
+  get languages(): Array<string> {
+      this._languages = [];
+      this._languages.push(...this.user.skillset.languages.main) ;
+      this._languages.push(...this.user.skillset.languages.second);
+      return this._languages;
+  }
+
+  getColumnContent(from: Array<string>, numberOfColumn: number): Array<string> {
+    const rowInCol = Math.ceil(from.length / 3);
+    const start = (rowInCol * numberOfColumn) - rowInCol;
+    const toReturn = [];
+    for (let i = start; i < rowInCol * numberOfColumn; i++) {
+      toReturn.push(from[i]);
+    }
+    return toReturn;
+  }
 
   constructor(
     private userService: UserService,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.userService.getUser(this.route.snapshot.paramMap.get('id'))
-        .subscribe(user => { this.user = user[0]; });
+        .subscribe(user => { this.user = user[0];
+        });
   }
 
   printCV() {

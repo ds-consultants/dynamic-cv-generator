@@ -80,6 +80,38 @@
     <div>
       <app-prof-expectations [description]="user?.professionalExpectations"></app-prof-expectations>
     </div>
+    <div class="row justify-content-center page-top">
+        <div class="col-sm-4-auto">
+            <div><i class="skills-icon"></i></div>
+        </div>
+    </div>
+    <div class="row justify-content-center page-top">
+        <div class="col-sm-4-auto">
+          <h2>Skillset</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center page-top">
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-3">
+              Languages
+            </div>
+            <div class="col-sm-9">
+              <div class="row" *ngIf="user">
+                <div class="col-sm-4">
+                  <p *ngFor="let content of getColumnContent(languages,1)">{{content}}</p>
+                </div>
+                <div class="col-sm-4">
+                    <p *ngFor="let content of getColumnContent(languages,2)">{{content}}</p>
+                </div>
+                <div class="col-sm-4">
+                    <p *ngFor="let content of getColumnContent(languages,3)">{{content}}</p>
+                </div>
+              </div>            
+            </div>
+          </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-12">
           <i class="personal-note-icon"></i>
@@ -89,7 +121,7 @@
     <div>
       <app-personal-note [description]="user?.personalNote"></app-personal-note>
     </div>
-  </div>
+
   <div class="top-right-footer" *ngIf="!(website=='' && email =='')">
       <p class="top-right-footer-content">{{email}}</p>
       <p class="top-right-footer-content">{{website}}</p>

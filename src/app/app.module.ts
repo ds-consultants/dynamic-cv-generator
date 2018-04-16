@@ -28,7 +28,7 @@ import { PersonalNoteComponent } from './personal-note/personal-note.component';
     ProjectComponent,
     UserEducationComponent,
     ProfExpectationsComponent,
-    PersonalNoteComponent
+    PersonalNoteComponent,
   ],
   imports: [
     BrowserModule,

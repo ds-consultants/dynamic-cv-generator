@@ -5,4 +5,7 @@ export class User {
     education: Array<number>;
     professionalExpectations: string;
     personalNote: string;
+    skillset: { languages: {main: Array<string>, second: Array<string>},
+                others: {main: Array<string>, second: Array<string> }
+            };
 }

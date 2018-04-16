@@ -15,6 +15,7 @@
     position: absolute;
     width: 50px;
 }
+
 .expectations-icon {
     background-image: url(/assets/img/target.svg);
     background-size: contain;
@@ -24,6 +25,7 @@
     float: left;
     margin-right: 10px;
 }
+
 .personal-note-icon {
     background-image: url(/assets/img/profile.svg);
     background-size: contain;
@@ -33,6 +35,17 @@
     float: left;
     margin-right: 10px;
 }
+
+.skills-icon {
+    background-image: url(/assets/img/skillset.svg);
+    background-size: contain;
+    height: 37px;
+    width: 37px; 
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
 .a4 {
     width: 210mm;
     height: 297mm;
@@ -102,3 +115,11 @@
 .image-width {
     width: 120px;
 }
+
+ul {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+    list-style-type: none;
+}
+
