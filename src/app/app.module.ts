@@ -15,7 +15,9 @@ import { UserExperienceComponent } from './user-experience/user-experience.compo
 import { ProjectComponent } from './project/project.component';
 import { UserEducationComponent } from './user-education/user-education.component';
 import { ProfExpectationsComponent } from './prof-expectations/prof-expectations.component';
+import { FormsModule } from '@angular/forms';
 import { PersonalNoteComponent } from './personal-note/personal-note.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { PersonalNoteComponent } from './personal-note/personal-note.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

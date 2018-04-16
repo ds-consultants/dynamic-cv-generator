@@ -38,6 +38,22 @@
     height: 297mm;
     background: lightgray;
     overflow-x: scroll;
+    position: relative;
+}
+
+.a4-width {
+    width: 210mm;
+}
+
+.form-input {
+    margin-left: 10px; 
+    width:250px;
+    margin-bottom: 5px;
+}
+
+.form-button {
+    margin-left: 10px; 
+    margin-bottom: 5px;
 }
 
 .user-logo {
@@ -55,4 +71,34 @@
 
 .page-top {
     padding-top: 25px;
+}
+
+.top-right-footer {
+    padding-top: 25px;
+    padding-left: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-top-left-radius: 70px;
+    width: 200px;
+    height: 100px;
+    background: grey;
+}
+
+.top-right-footer-content {
+    text-align: center;
+    font-size: 14px;
+    color: #ffff
+}
+
+.prompt {
+    font-size: 12px;
+}
+
+.label-margin {
+    margin-left:10px;
+}
+
+.image-width {
+    width: 120px;
 }

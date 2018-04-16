@@ -14,6 +14,8 @@ import * as html2canvas from 'html2canvas';
 })
 export class UserComponent implements OnInit {
   user: User;
+  website = 'www.ds-consultants.eu';
+  email = 'info@ds-consultants.eu';
 
   constructor(
     private userService: UserService,
