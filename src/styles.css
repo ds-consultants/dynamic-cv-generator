@@ -21,3 +21,11 @@ p {
     top: 2px;
     width: 20px;
 }
+
+.custom-left-column {
+    margin-left: 75px;
+}
+
+.education-row {
+    margin-bottom: 10px;
+}

@@ -2,10 +2,9 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-personal-note',
-  templateUrl: './personal-note.component.html',
-  styleUrls: ['./personal-note.component.css']
+  templateUrl: './user-personal-note.component.html'
 })
-export class PersonalNoteComponent {
+export class UserPersonalNoteComponent {
 
   @Input()  description: string;
 
