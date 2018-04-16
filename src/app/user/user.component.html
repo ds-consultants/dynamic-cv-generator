@@ -80,6 +80,15 @@
     <div>
       <app-prof-expectations [description]="user?.professionalExpectations"></app-prof-expectations>
     </div>
+    <div class="row">
+        <div class="col-sm-12">
+          <i class="personal-note-icon"></i>
+          <h2>Personal Note</h2>
+        </div>
+    </div>
+    <div>
+      <app-personal-note [description]="user?.personalNote"></app-personal-note>
+    </div>
   </div>
   <div class="top-right-footer" *ngIf="!(website=='' && email =='')">
       <p class="top-right-footer-content">{{email}}</p>

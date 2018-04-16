@@ -16,6 +16,8 @@ import { ProjectComponent } from './project/project.component';
 import { UserEducationComponent } from './user-education/user-education.component';
 import { ProfExpectationsComponent } from './prof-expectations/prof-expectations.component';
 import { FormsModule } from '@angular/forms';
+import { PersonalNoteComponent } from './personal-note/personal-note.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     UserExperienceComponent,
     ProjectComponent,
     UserEducationComponent,
-    ProfExpectationsComponent
+    ProfExpectationsComponent,
+    PersonalNoteComponent
   ],
   imports: [
     BrowserModule,
