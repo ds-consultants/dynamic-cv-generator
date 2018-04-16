@@ -19,23 +19,37 @@ export class UserComponent implements OnInit {
   website = 'www.ds-consultants.eu';
   email = 'info@ds-consultants.eu';
   _languages = [];
+  _others = [];
 
-  get languages(): Array<string> {
+  get languages(): Array<{name: string, main: boolean}> {
       this._languages = [];
-      this._languages.push(...this.user.skillset.languages.main) ;
-      this._languages.push(...this.user.skillset.languages.second);
+      if (this.user) {
+        for (let index = 0; index < this.user.skillset.languages.main.length; index++) {
+          this._languages.push({name: this.user.skillset.languages.main[index], main: true});
+        }
+        for (let index = 0; index < this.user.skillset.languages.second.length; index++) {
+          this._languages.push({name: this.user.skillset.languages.second[index], main: false});
+        }
+        // this._languages.push(...this.user.skillset.languages.main) ;
+        // this._languages.push(...this.user.skillset.languages.second);
+      }
       return this._languages;
   }
 
-  getColumnContent(from: Array<string>, numberOfColumn: number): Array<string> {
-    const rowInCol = Math.ceil(from.length / 3);
-    const start = (rowInCol * numberOfColumn) - rowInCol;
-    const toReturn = [];
-    for (let i = start; i < rowInCol * numberOfColumn; i++) {
-      toReturn.push(from[i]);
+  get others(): Array<{name: string, main: boolean}> {
+    this._others = [];
+    if (this.user) {
+      for (let index = 0; index < this.user.skillset.others.main.length; index++) {
+        this._others.push({name: this.user.skillset.others.main[index], main: true});
+      }
+      for (let index = 0; index < this.user.skillset.others.second.length; index++) {
+        this._others.push({name: this.user.skillset.others.second[index], main: false});
+      }
+      // this._others.push(...this.user.skillset.others.main) ;
+      // this._others.push(...this.user.skillset.others.second);
     }
-    return toReturn;
-  }
+    return this._others;
+}
 
   constructor(
     private userService: UserService,

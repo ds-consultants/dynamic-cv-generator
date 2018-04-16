@@ -90,28 +90,9 @@
           <h2>Skillset</h2>
         </div>
     </div>
-    <div class="row justify-content-center page-top">
-        <div class="col-sm-12">
-          <div class="row">
-            <div class="col-sm-3">
-              Languages
-            </div>
-            <div class="col-sm-9">
-              <div class="row" *ngIf="user">
-                <div class="col-sm-4">
-                  <p *ngFor="let content of getColumnContent(languages,1)">{{content}}</p>
-                </div>
-                <div class="col-sm-4">
-                    <p *ngFor="let content of getColumnContent(languages,2)">{{content}}</p>
-                </div>
-                <div class="col-sm-4">
-                    <p *ngFor="let content of getColumnContent(languages,3)">{{content}}</p>
-                </div>
-              </div>            
-            </div>
-          </div>
-        </div>
-    </div>
+    <app-skillset  name="Languages" [skills]="languages"></app-skillset>
+    <br>
+    <app-skillset  name="Others" [skills]="others"></app-skillset>
     <div class="row">
         <div class="col-sm-12">
           <i class="personal-note-icon"></i>

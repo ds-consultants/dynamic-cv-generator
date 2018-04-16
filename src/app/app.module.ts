@@ -17,6 +17,7 @@ import { UserEducationComponent } from './user-education/user-education.componen
 import { ProfExpectationsComponent } from './prof-expectations/prof-expectations.component';
 import { FormsModule } from '@angular/forms';
 import { PersonalNoteComponent } from './personal-note/personal-note.component';
+import { SkillsetComponent } from './skillset/skillset.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { PersonalNoteComponent } from './personal-note/personal-note.component';
     UserEducationComponent,
     ProfExpectationsComponent,
     PersonalNoteComponent,
+    SkillsetComponent,
   ],
   imports: [
     BrowserModule,
