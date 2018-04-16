@@ -4,7 +4,9 @@ import { CommonModule } from '@angular/common';
 import { UserExperienceComponent } from './user-experience.component';
 import { ProjectComponent } from '../project/project.component';
 import { UserEducationComponent } from './user-education.component';
+import { UserProfExpectationsComponent } from './user-prof-expectations.component';
 
+import { FormsModule } from '@angular/forms';
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 import { UserResolver } from './user-resolver.module';
@@ -12,13 +14,15 @@ import { UserResolver } from './user-resolver.module';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     UserRoutingModule
   ],
   declarations: [
     UserComponent,
     ProjectComponent,
     UserExperienceComponent,
-    UserEducationComponent
+    UserEducationComponent,
+    UserProfExpectationsComponent
   ],
   providers: [
     UserResolver
