@@ -5,6 +5,7 @@ import { UserExperienceComponent } from './user-experience.component';
 import { ProjectComponent } from '../project/project.component';
 import { UserEducationComponent } from './user-education.component';
 import { UserProfExpectationsComponent } from './user-prof-expectations.component';
+import { UserPersonalNoteComponent } from './user-personal-note.component';
 
 import { FormsModule } from '@angular/forms';
 import { UserRoutingModule } from './user-routing.module';
@@ -22,7 +23,8 @@ import { UserResolver } from './user-resolver.module';
     ProjectComponent,
     UserExperienceComponent,
     UserEducationComponent,
-    UserProfExpectationsComponent
+    UserProfExpectationsComponent,
+    UserPersonalNoteComponent
   ],
   providers: [
     UserResolver

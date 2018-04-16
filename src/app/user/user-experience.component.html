@@ -1,13 +1,13 @@
 <div class="row">
-  <div class="col-sm-4">
-    <p>
+  <div class="col-sm-5">
+    <p class="custom-left-column">
       {{ experience.company }}
     </p>
-    <p>
+    <p class="custom-left-column">
       {{ experience.time }}
     </p>
   </div>
-  <div class="col-sm-8">
+  <div class="col-sm-7">
     <i class="main-project-icon"></i>
     <p>{{ experience.position }}</p>
     <div *ngFor="let project of experience.mainProjects">

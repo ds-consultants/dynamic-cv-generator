@@ -2,8 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-user-experience',
-  templateUrl: './user-experience.component.html',
-  styleUrls: ['./user-experience.component.css']
+  templateUrl: './user-experience.component.html'
 })
 export class UserExperienceComponent {
 
