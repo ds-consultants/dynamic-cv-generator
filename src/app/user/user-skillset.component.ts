@@ -1,11 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-skillset',
-  templateUrl: './skillset.component.html',
-  styleUrls: ['./skillset.component.css']
+  selector: 'app-user-skillset',
+  templateUrl: './user-skillset.component.html'
 })
-export class SkillsetComponent implements OnInit {
+export class UserSkillsetComponent implements OnInit {
 
   @Input() name: string;
   @Input() skills: Array<{name: string, main: boolean}>;
