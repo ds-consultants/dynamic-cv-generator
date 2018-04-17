@@ -21,22 +21,36 @@ export class UserComponent implements OnInit {
   _languages = [];
   _others = [];
 
-  get languages(): Array<{name: string, main: boolean}> {
-      this._languages = [];
-      if (this.user) {
-        for (let index = 0; index < this.user.skillset.languages.main.length; index++) {
-          this._languages.push({name: this.user.skillset.languages.main[index], main: true});
-        }
-        for (let index = 0; index < this.user.skillset.languages.second.length; index++) {
-          this._languages.push({name: this.user.skillset.languages.second[index], main: false});
-        }
-        // this._languages.push(...this.user.skillset.languages.main) ;
-        // this._languages.push(...this.user.skillset.languages.second);
-      }
-      return this._languages;
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.userService.getUser(this.route.snapshot.paramMap.get('id'))
+        .subscribe(user => {
+          this.user = user[0];
+          this.languages();
+          this.others();
+        });
   }
 
-  get others(): Array<{name: string, main: boolean}> {
+  languages(): Array<{name: string, main: boolean}> {
+    this._languages = [];
+    if (this.user) {
+      for (let index = 0; index < this.user.skillset.languages.main.length; index++) {
+        this._languages.push({name: this.user.skillset.languages.main[index], main: true});
+      }
+      for (let index = 0; index < this.user.skillset.languages.second.length; index++) {
+        this._languages.push({name: this.user.skillset.languages.second[index], main: false});
+      }
+      // this._languages.push(...this.user.skillset.languages.main) ;
+      // this._languages.push(...this.user.skillset.languages.second);
+    }
+    return this._languages;
+  }
+
+  others(): Array<{name: string, main: boolean}> {
     this._others = [];
     if (this.user) {
       for (let index = 0; index < this.user.skillset.others.main.length; index++) {
@@ -49,17 +63,6 @@ export class UserComponent implements OnInit {
       // this._others.push(...this.user.skillset.others.second);
     }
     return this._others;
-}
-
-  constructor(
-    private userService: UserService,
-    private route: ActivatedRoute
-  ) {}
-
-  ngOnInit() {
-    this.userService.getUser(this.route.snapshot.paramMap.get('id'))
-        .subscribe(user => { this.user = user[0];
-        });
   }
 
   printCV() {
