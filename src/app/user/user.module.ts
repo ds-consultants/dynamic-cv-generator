@@ -12,7 +12,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 import { UserResolver } from './user-resolver.module';
 import { PdfCompressorService } from '../pdf-compressor.service';
-import { SkillsetComponent } from '../skillset/skillset.component';
+import { UserSkillsetComponent } from './user-skillset.component';
 import { skipWhile } from 'rxjs/operator/skipWhile';
 
 @NgModule({
@@ -28,7 +28,7 @@ import { skipWhile } from 'rxjs/operator/skipWhile';
     UserEducationComponent,
     UserProfExpectationsComponent,
     UserPersonalNoteComponent,
-    SkillsetComponent
+    UserSkillsetComponent
   ],
   providers: [
     UserResolver,
