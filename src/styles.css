@@ -45,3 +45,11 @@ p {
     width: 20px;
     float: left;
 }
+
+.custom-left-column {
+    margin: 0 0 0 75px;
+}
+
+.education-row {
+    margin-bottom: 10px;
+}
