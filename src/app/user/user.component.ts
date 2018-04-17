@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
-import { UserService } from '../user.service';
-import { UserExperienceComponent } from '../user-experience/user-experience.component';
-import { UserEducationComponent } from '../user-education/user-education.component';
-import { ActivatedRoute } from '@angular/router';
-import * as jsPDF from 'jspdf';
+
+import { ActivatedRoute, Router } from '@angular/router';
+import { PdfCompressorService } from '../pdf-compressor.service';
+
 import * as html2canvas from 'html2canvas';
-import { forEach } from '@firebase/util';
-import { cleanSession } from 'selenium-webdriver/safari';
+import * as jsPDF from 'jspdf';
+
 
 @Component({
   selector: 'app-user',
@@ -52,28 +51,28 @@ export class UserComponent implements OnInit {
 }
 
   constructor(
-    private userService: UserService,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private compressor: PdfCompressorService
+  ) { }
 
   ngOnInit() {
-    this.userService.getUser(this.route.snapshot.paramMap.get('id'))
-        .subscribe(user => { this.user = user[0];
-        });
+
+    // Retreive the prefetched user
+    this.route.data.subscribe(
+      (data: { user: User }) => {
+        this.user = data.user;
+      }
+    );
   }
 
   printCV() {
     html2canvas(document.getElementById('cv-page-1')).then((canvasPage1) => {
       html2canvas(document.getElementById('cv-page-2')).then((canvasPage2) => {
-        const imgDataPage1 = canvasPage1.toDataURL('image/png');
-        const imgDataPage2 = canvasPage2.toDataURL('image/png');
-        const pdf = new jsPDF();
-        pdf.addImage(imgDataPage1, 'JPEG', 0, 0);
-        pdf.addPage();
-        pdf.addImage(imgDataPage2, 'JPEG', 0, 0);
+        const pdf = new jsPDF('p', 'px');
+        this.compressor.compress(canvasPage1, pdf);
+        this.compressor.compress(canvasPage2, pdf);
         pdf.save('download.pdf');
+      });
     });
-  });
   }
 }
-

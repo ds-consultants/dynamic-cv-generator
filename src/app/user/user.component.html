@@ -1,50 +1,52 @@
 <div class="a4-width">
-  <div class="row" >
+  <div class="row">
     <div class="col-sm-12">
-      <div class="float-right" > 
-        <form class="form-inline">
-          <div class="form-group">
-            <label for="email">*Email address:</label>
-            <input type="text" class="form-control form-input" id="email" [(ngModel)]="email" name="email">
-          </div>
-          <div class="form-group">
-            <label for="website" class="label-margin">*Website: </label>
-            <input type="text" class="form-control form-input" id="website"  [(ngModel)]="website" name="website">
-          </div>
-          <button (click)="printCV()" type="button" class="btn btn-success form-button">PDF</button>
-        </form>
-       <p class="prompt"> * Completing the above fields, will generate additional footer.</p>
-      </div>
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="email">*Email address:</label>
+          <input type="text" class="form-control form-input" id="email" [(ngModel)]="email" name="email">
+        </div>
+        <div class="form-group">
+          <label for="website" class="label-margin">*Website: </label>
+          <input type="text" class="form-control form-input" id="website" [(ngModel)]="website" name="website">
+        </div>
+        <button (click)="printCV()" type="button" class="btn btn-success form-button">PDF</button>
+      </form>
+      <p class="prompt"> * Completing the above fields, will generate additional footer.</p>
     </div>
   </div>
 </div>
 <div id="cv-page-1" class="a4">
   <div class="container">
     <div class="row">
-      <div class="col-sm-8">
+      <div class="col-sm-12">
         <div class="row">
-          <div class="col-sm-5">
-            <div class="user-logo">
-              <img src="/assets/img/logo.png" class="image-width" alt="logo">
-            </div>
-          </div>
-          <div class="col-sm-7">
-            <div class="row user-desc-place">
-              <div class="col-sm-12">
-                <h3>{{user?.name}}</h3>
-              </div>
-            </div>
+          <div class="col-sm-8">
             <div class="row">
-              <div class="col-sm 12">
-                {{user?.title}}
+              <div class="col-sm-5">
+                <div class="user-logo">
+                  <img src="/assets/img/logo.png" class="image-width" alt="logo">
+                </div>
+              </div>
+              <div class="col-sm-7">
+                <div class="row user-desc-place">
+                  <div class="col-sm-12">
+                    <h3>{{user.name}}</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    {{user.title}}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="user-img-title-place">
-          <img src="/assets/img/front-end.svg" class="image-width" *ngIf="user?.title=='Senior Front-end Developer'" alt="User title">
+          <div class="col-sm-4">
+            <div class="user-img-title-place">
+              <img src="/assets/img/front-end.svg" class="image-width" *ngIf="user.title=='Senior Front-end Developer'" alt="User title">
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -54,7 +56,7 @@
         <h2>Experience</h2>
       </div>
     </div>
-    <div *ngFor="let exp of user?.experience">
+    <div *ngFor="let exp of user.experience">
       <app-user-experience [experience]="exp"></app-user-experience>
     </div>
     <div class="row">
@@ -63,7 +65,7 @@
         <h2>Education</h2>
       </div>
     </div>
-    <div *ngFor="let school of user?.education">
+    <div *ngFor="let school of user.education">
       <app-user-education [school]="school"></app-user-education>
     </div>
   </div>
@@ -78,7 +80,7 @@
       </div>
     </div>
     <div>
-      <app-prof-expectations [description]="user?.professionalExpectations"></app-prof-expectations>
+      <app-prof-expectations [description]="user.professionalExpectations"></app-prof-expectations>
     </div>
     <div class="row justify-content-center page-top">
         <div class="col-sm-4-auto">
@@ -94,17 +96,17 @@
     <br>
     <app-skillset  name="Others" [skills]="others"></app-skillset>
     <div class="row">
-        <div class="col-sm-12">
-          <i class="personal-note-icon"></i>
-          <h2>Personal Note</h2>
-        </div>
+      <div class="col-sm-12">
+        <i class="personal-note-icon"></i>
+        <h2>Personal Note</h2>
+      </div>
     </div>
     <div>
-      <app-personal-note [description]="user?.personalNote"></app-personal-note>
+      <app-personal-note [description]="user.personalNote"></app-personal-note>
     </div>
 
   <div class="top-right-footer" *ngIf="!(website=='' && email =='')">
-      <p class="top-right-footer-content">{{email}}</p>
-      <p class="top-right-footer-content">{{website}}</p>
-    </div>
+    <p class="top-right-footer-content">{{email}}</p>
+    <p class="top-right-footer-content">{{website}}</p>
+  </div>
 </div>
