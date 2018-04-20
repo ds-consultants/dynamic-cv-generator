@@ -2,7 +2,7 @@ import { Injectable, } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { UserService } from '../user.service';
+import { AuthService } from '../core/auth/auth.service';
 import { catchError } from 'rxjs/operators/catchError';
 import { UserComponent } from './user.component';
 
@@ -10,7 +10,7 @@ import { UserComponent } from './user.component';
 export class UserResolver implements Resolve<UserComponent> {
     constructor(
         private router: Router,
-        private userService: UserService
+        private userService: AuthService
     ) { }
 
     resolve(
@@ -18,8 +18,8 @@ export class UserResolver implements Resolve<UserComponent> {
         state: RouterStateSnapshot
     ): Observable<any> {
         return Observable.create(observer => {
-            this.userService.getUser(route.params['id']).subscribe(user => {
-                observer.next(user[0]);
+            this.userService.user.subscribe(user => {
+                observer.next(user);
                 observer.complete();
             });
         });
