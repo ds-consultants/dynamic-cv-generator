@@ -19,9 +19,9 @@
     background-size: contain;
     display: block;
     float: left;
-    height: 37px;
-    margin-right: 10px;
-    width: 37px; 
+    height: 45px;
+    width: 45px; 
+    margin: 0 15px 0 5px;
 }
 
 .personal-note-icon {
@@ -29,9 +29,19 @@
     background-size: contain;
     display: block;
     float: left;
+    height: 45px;
+    width: 45px; 
+    margin: 0 15px 0 5px;
+}
+
+.skills-icon {
+    background-image: url(/assets/img/skillset.svg);
+    background-size: contain;
     height: 37px;
-    margin-right: 10px;
     width: 37px; 
+    display: block;
+    float: left;
+    margin-right: 10px;
 }
 
 .a4 {
@@ -109,16 +119,18 @@
     padding-top: 25px;
 }
 
-.top-right-footer {
+.bottom-right-footer {
     background: grey;
     border-top-left-radius: 70px;
     bottom: 0;
-    height: 100px;
+    height: 80px;
+    width: 220px;
+    padding-top: 20px;
     position: absolute;
     right: 0;
 }
 
-.top-right-footer-content {
+.bottom-right-footer-content {
     font-size: 14px;
     text-align: center;
 }

@@ -82,6 +82,19 @@
     <div>
       <app-prof-expectations [description]="user.professionalExpectations"></app-prof-expectations>
     </div>
+    <div class="row justify-content-center page-top">
+        <div class="col-sm-4-auto">
+            <div><i class="skills-icon"></i></div>
+        </div>
+    </div>
+    <div class="row justify-content-center page-top">
+        <div class="col-sm-4-auto">
+          <h2>Skillset</h2>
+        </div>
+    </div>
+    <app-user-skillset  name="Languages" [skills]="_languages"></app-user-skillset>
+    <br>
+    <app-user-skillset  name="Others" [skills]="_others"></app-user-skillset>
     <div class="row">
       <div class="col-sm-12">
         <i class="personal-note-icon"></i>
@@ -91,9 +104,9 @@
     <div>
       <app-personal-note [description]="user.personalNote"></app-personal-note>
     </div>
-  </div>
-  <div class="top-right-footer" *ngIf="!(website=='' && email =='')">
-    <p class="top-right-footer-content">{{email}}</p>
-    <p class="top-right-footer-content">{{website}}</p>
+
+  <div class="bottom-right-footer" *ngIf="!(website=='' && email =='')">
+    <p class="bottom-right-footer-content">{{email}}</p>
+    <p class="bottom-right-footer-content">{{website}}</p>
   </div>
 </div>
