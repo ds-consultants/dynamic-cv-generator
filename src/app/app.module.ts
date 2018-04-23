@@ -19,24 +19,24 @@ import { UserSignUpComponent } from './user-sign-up/user-sign-up.component';
 import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UsersComponent,
-    UserLoginComponent,
-    UserSignUpComponent,
-    HeaderComponent
-  ],
-  imports: [
-    BrowserModule,
-    CoreModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
-    AngularFirestoreModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  providers: [AuthGuard],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        UsersComponent,
+        UserLoginComponent,
+        UserSignUpComponent,
+        HeaderComponent
+    ],
+    imports: [
+        BrowserModule,
+        CoreModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireDatabaseModule,
+        AngularFirestoreModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule
+    ],
+    providers: [AuthGuard],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

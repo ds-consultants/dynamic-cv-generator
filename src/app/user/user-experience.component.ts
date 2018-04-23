@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-user-experience',
-  templateUrl: './user-experience.component.html'
+    selector: 'app-user-experience',
+    templateUrl: './user-experience.component.html'
 })
 export class UserExperienceComponent {
 
-  @Input() experience: Array<number>;
+    @Input() experience: Array<number>;
 
-  constructor() { }
+    constructor() { }
 
 }

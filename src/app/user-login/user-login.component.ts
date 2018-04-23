@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { AuthService } from '../core/auth/auth.service';
 import { FormValidatorService } from '../core/form-validator.service';
 
+
+type UserFields = 'email' | 'password';
+type FormErrors = {[u in UserFields]: string };
+
 @Component({
     selector: 'app-user-login',
     templateUrl: './user-login.component.html',
@@ -11,6 +15,10 @@ import { FormValidatorService } from '../core/form-validator.service';
 
 export class UserLoginComponent implements OnInit {
     passReset = false; // set to true when password reset is triggered
+    formFields: FormErrors = {
+        'email': '',
+        'password': ''
+    };
 
     constructor(
         public auth: AuthService,
@@ -25,7 +33,8 @@ export class UserLoginComponent implements OnInit {
     }
 
     ngOnInit() {
-       this.validator.buildForm();
+        this.validator.buildForm(this.formFields);
+        console.log(this.validator.formErrors);
     }
 
     login() {

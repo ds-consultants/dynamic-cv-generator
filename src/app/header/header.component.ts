@@ -4,25 +4,25 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from '../core/auth/auth.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(
-    public auth: AuthService,
-    private afAuth: AngularFireAuth,
-    private router: Router
-  ) { }
+    constructor(
+        public auth: AuthService,
+        private afAuth: AngularFireAuth,
+        private router: Router
+    ) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  signOut() {
-    this.afAuth.auth.signOut().then(() => {
-      this.router.navigate(['/']);
-    });
-  }
+    signOut() {
+        this.afAuth.auth.signOut().then(() => {
+            this.router.navigate(['/']);
+        });
+    }
 
 }

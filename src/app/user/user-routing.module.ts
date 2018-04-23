@@ -5,18 +5,18 @@ import { UserResolver } from './user-resolver.module';
 import { AuthGuard } from '../core/auth/auth.guard';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: UserComponent,
-    resolve: {
-      user: UserResolver
-    },
-    canActivate: [AuthGuard]
-  }
+    {
+        path: '',
+        component: UserComponent,
+        resolve: {
+            user: UserResolver
+        },
+        canActivate: [AuthGuard]
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class UserRoutingModule {}
+export class UserRoutingModule { }

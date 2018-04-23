@@ -16,23 +16,23 @@ import { UserSkillsetComponent } from './user-skillset.component';
 import { skipWhile } from 'rxjs/operator/skipWhile';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    UserRoutingModule
-  ],
-  declarations: [
-    UserComponent,
-    ProjectComponent,
-    UserExperienceComponent,
-    UserEducationComponent,
-    UserProfExpectationsComponent,
-    UserPersonalNoteComponent,
-    UserSkillsetComponent
-  ],
-  providers: [
-    UserResolver,
-    PdfCompressorService
-  ]
+
+    imports: [
+        CommonModule,
+        FormsModule,
+        UserRoutingModule
+    ],
+    declarations: [
+        UserComponent,
+        ProjectComponent,
+        UserExperienceComponent,
+        UserEducationComponent,
+        UserProfExpectationsComponent,
+        UserPersonalNoteComponent
+    ],
+    providers: [
+        UserResolver,
+        PdfCompressorService
+    ]
 })
 export class UserModule { }

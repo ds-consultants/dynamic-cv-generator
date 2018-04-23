@@ -8,10 +8,10 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { FormValidatorService } from './form-validator.service';
 
 @NgModule({
-  imports: [
-    AngularFireAuthModule,
-    AngularFirestoreModule,
-  ],
-  providers: [AuthService, NotifyService, FormValidatorService],
+    imports: [
+        AngularFireAuthModule,
+        AngularFirestoreModule,
+    ],
+    providers: [AuthService, NotifyService, FormValidatorService],
 })
 export class CoreModule { }
