@@ -8,16 +8,13 @@ import { AuthService } from '../core/auth/auth.service';
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
     constructor(
         public auth: AuthService,
         private afAuth: AngularFireAuth,
         private router: Router
     ) { }
-
-    ngOnInit() {
-    }
 
     signOut() {
         this.afAuth.auth.signOut().then(() => {

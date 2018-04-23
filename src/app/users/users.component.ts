@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { User } from '../user';
@@ -8,9 +8,7 @@ import { User } from '../user';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent {
   users: Observable<User[]>;
   constructor() { }
-
-  ngOnInit() {  }
 }
