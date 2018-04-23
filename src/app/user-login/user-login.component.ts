@@ -34,11 +34,11 @@ export class UserLoginComponent implements OnInit {
 
     ngOnInit() {
         this.validator.buildForm(this.formFields);
-        console.log(this.validator.formErrors);
     }
 
     login() {
-        this.auth.emailLogin(this.validator.userForm.value['email'], this.validator.userForm.value['password']);
+        this.auth.emailLogin(this.validator.userForm.value['email'], this.validator.userForm.value['password'])
+        .then(() => this.afterSignIn());
     }
 
     resetPassword() {
