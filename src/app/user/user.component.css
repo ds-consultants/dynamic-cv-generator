@@ -45,12 +45,12 @@
 }
 
 .a4 {
+    font-size: 14px;
     height: 297mm;
     margin: 100px auto;
     padding-right: 8mm;
     position: relative;
     width: 210mm;
-    font-size: 14px;
 }
 
 .a4::after,
@@ -60,12 +60,12 @@
     left: -2px;
     position: absolute;
     top: -5px;
-    width: 210mm;
-    z-index: -1;
     -moz-transform: rotate(-2deg);
     -ms-transform: rotate(-2deg);
     -webkit-transform: rotate(-2deg);
     transform: rotate(-2deg);
+    width: 210mm;
+    z-index: -1;
 }
 .a4::after {
     left: 0;

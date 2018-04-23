@@ -9,73 +9,72 @@ import * as jsPDF from 'jspdf';
 
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+    selector: 'app-user',
+    templateUrl: './user.component.html',
+    styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  user: User;
-  website = 'www.ds-consultants.eu';
-  email = 'info@ds-consultants.eu';
-  _languages = [];
-  _others = [];
+    user: User;
+    website = 'www.ds-consultants.eu';
+    email = 'info@ds-consultants.eu';
+    _languages = [];
+    _others = [];
 
-  constructor(
-   // private userService: UserService,
-    private route: ActivatedRoute,
-    private compressor: PdfCompressorService
-  ) {}
+    constructor(
+        // private userService: UserService,
+        private route: ActivatedRoute,
+        private compressor: PdfCompressorService
+    ) { }
 
-  languages(): Array<{name: string, main: boolean}> {
-    this._languages = [];
-    if (this.user) {
-      for (let index = 0; index < this.user.skillset.languages.main.length; index++) {
-        this._languages.push({name: this.user.skillset.languages.main[index], main: true});
-      }
-      for (let index = 0; index < this.user.skillset.languages.second.length; index++) {
-        this._languages.push({name: this.user.skillset.languages.second[index], main: false});
-      }
-      // this._languages.push(...this.user.skillset.languages.main) ;
-      // this._languages.push(...this.user.skillset.languages.second);
+    languages(): Array<{ name: string, main: boolean }> {
+        this._languages = [];
+        if (this.user) {
+            for (let index = 0; index < this.user.skillset.languages.main.length; index++) {
+                this._languages.push({ name: this.user.skillset.languages.main[index], main: true });
+            }
+            for (let index = 0; index < this.user.skillset.languages.second.length; index++) {
+                this._languages.push({ name: this.user.skillset.languages.second[index], main: false });
+            }
+            // this._languages.push(...this.user.skillset.languages.main) ;
+            // this._languages.push(...this.user.skillset.languages.second);
+        }
+        return this._languages;
     }
-    return this._languages;
-  }
 
-  others(): Array<{name: string, main: boolean}> {
-    this._others = [];
-    if (this.user) {
-      for (let index = 0; index < this.user.skillset.others.main.length; index++) {
-        this._others.push({name: this.user.skillset.others.main[index], main: true});
-      }
-      for (let index = 0; index < this.user.skillset.others.second.length; index++) {
-        this._others.push({name: this.user.skillset.others.second[index], main: false});
-      }
-      // this._others.push(...this.user.skillset.others.main) ;
-      // this._others.push(...this.user.skillset.others.second);
+    others(): Array<{ name: string, main: boolean }> {
+        this._others = [];
+        if (this.user) {
+            for (let index = 0; index < this.user.skillset.others.main.length; index++) {
+                this._others.push({ name: this.user.skillset.others.main[index], main: true });
+            }
+            for (let index = 0; index < this.user.skillset.others.second.length; index++) {
+                this._others.push({ name: this.user.skillset.others.second[index], main: false });
+            }
+            // this._others.push(...this.user.skillset.others.main) ;
+            // this._others.push(...this.user.skillset.others.second);
+        }
+        return this._others;
     }
-    return this._others;
-}
+    ngOnInit() {
 
-  ngOnInit() {
+        // Retreive the prefetched user
+        this.route.data.subscribe(
+            (data: { user: User }) => {
+                this.user = data.user;
+                this.languages();
+                this.others();
+            }
+        );
+    }
 
-    // Retreive the prefetched user
-    this.route.data.subscribe(
-      (data: { user: User }) => {
-        this.user = data.user;
-        this.languages();
-        this.others();
-      }
-    );
-  }
-
-  printCV() {
-    html2canvas(document.getElementById('cv-page-1')).then((canvasPage1) => {
-      html2canvas(document.getElementById('cv-page-2')).then((canvasPage2) => {
-        const pdf = new jsPDF('p', 'px');
-        this.compressor.compress(canvasPage1, pdf);
-        this.compressor.compress(canvasPage2, pdf);
-        pdf.save('download.pdf');
-      });
-    });
-  }
+    printCV() {
+        html2canvas(document.getElementById('cv-page-1')).then((canvasPage1) => {
+            html2canvas(document.getElementById('cv-page-2')).then((canvasPage2) => {
+                const pdf = new jsPDF('p', 'px');
+                this.compressor.compress(canvasPage1, pdf);
+                this.compressor.compress(canvasPage2, pdf);
+                pdf.save('download.pdf');
+            });
+        });
+    }
 }

@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand navbar-right white-nav" routerLink="/dashboard">Dynamic CV</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerNavbar" aria-controls="headerNavbar"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="headerNavbar">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Settings</a>
+      </li>
+    </ul>
+    <div class="form-inline my-2 my-lg-0 white-nav" *ngIf="auth.user | async">
+      <span class="user-greeter">
+        Hello {{auth.user.name}} |
+      </span>
+      <span class="user-greeter">
+        <a class="nav-link white-nav" href="" (click)="signOut()">Sign out</a>
+      </span>
+    </div>
+  </div>
+</nav>
