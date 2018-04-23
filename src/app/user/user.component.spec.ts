@@ -14,13 +14,10 @@ import { UserResolver } from './user-resolver.module';
 import { PdfCompressorService } from '../pdf-compressor.service';
 import { Observable } from 'rxjs/Observable';
 import { By } from '@angular/platform-browser';
-// import { PdfCompressorService } from '../pdf-compressor.service';
 
 describe('UserTestComponent', () => {
 
   let app: UserComponent;
-  // let route: ActivatedRoute;
-  // let pdf: PdfCompressorService;
   let fixture: ComponentFixture<UserComponent>;
 
   const fakeUser = {
@@ -31,7 +28,7 @@ describe('UserTestComponent', () => {
                 others: {main:  [], second: []}}
 
   };
-  // this async is becouse component have separate file with css and template
+
   const fakeUserObserver = Observable.create(observer => {
     observer.next({ user: fakeUser});
     observer.complete();
@@ -64,26 +61,17 @@ describe('UserTestComponent', () => {
       ]
     })
       .compileComponents();
-
-    // route = new ActivatedRoute();
-    // pdf = new PdfCompressorService();
-    // app = new UserComponent(route, pdf);
-    // fix.detectChanges();
   }));
 
   beforeEach(async(() => {
     fixture = TestBed.createComponent(UserComponent);
     app = fixture.componentInstance;
+    fixture.detectChanges();
   }));
 
   it('should render userName', () => {
-    fixture.detectChanges();
-    // return first element that match
     const de = fixture.debugElement.query(By.css('.userName'));
     const el: HTMLElement = de.nativeElement;
     expect(el.innerText).toBe('Marcin');
-    // console.log(app);
-    // console.log(fixture.debugElement);
-    // expect(app).toBeTruthy();
   });
 });
