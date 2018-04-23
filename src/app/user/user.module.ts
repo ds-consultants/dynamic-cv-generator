@@ -13,26 +13,26 @@ import { UserComponent } from './user.component';
 import { UserResolver } from './user-resolver.module';
 import { PdfCompressorService } from '../pdf-compressor.service';
 import { UserSkillsetComponent } from './user-skillset.component';
-import { skipWhile } from 'rxjs/operator/skipWhile';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    UserRoutingModule
-  ],
-  declarations: [
-    UserComponent,
-    ProjectComponent,
-    UserExperienceComponent,
-    UserEducationComponent,
-    UserProfExpectationsComponent,
-    UserPersonalNoteComponent,
-    UserSkillsetComponent
-  ],
-  providers: [
-    UserResolver,
-    PdfCompressorService
-  ]
+
+    imports: [
+        CommonModule,
+        FormsModule,
+        UserRoutingModule
+    ],
+    declarations: [
+        UserComponent,
+        ProjectComponent,
+        UserExperienceComponent,
+        UserEducationComponent,
+        UserProfExpectationsComponent,
+        UserPersonalNoteComponent,
+        UserSkillsetComponent
+    ],
+    providers: [
+        UserResolver,
+        PdfCompressorService
+    ]
 })
 export class UserModule { }
