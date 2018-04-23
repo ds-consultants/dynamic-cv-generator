@@ -26,7 +26,10 @@ describe('UserTestComponent', () => {
   const fakeUser = {
     name: 'Marcin',
     title: 'Fake title',
-    professionalExpectations: 'Cokolwiek'
+    professionalExpectations: 'Cokolwiek',
+    skillset: { languages: {main:  [], second: []},
+                others: {main:  [], second: []}}
+
   };
   // this async is becouse component have separate file with css and template
   const fakeUserObserver = Observable.create(observer => {
