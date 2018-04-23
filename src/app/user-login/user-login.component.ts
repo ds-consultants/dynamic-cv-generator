@@ -32,13 +32,19 @@ export class UserLoginComponent implements OnInit {
         this.router.navigate(['/']);
     }
 
+    private handleError(error: Error) {
+        this.auth.notify.update(error.message);
+    }
+
     ngOnInit() {
         this.validator.buildForm(this.formFields);
     }
 
     login() {
+        this.auth.notify.clear();
         this.auth.emailLogin(this.validator.userForm.value['email'], this.validator.userForm.value['password'])
-        .then(() => this.afterSignIn());
+            .then(() => this.afterSignIn())
+            .catch((error) => this.handleError(error));
     }
 
     resetPassword() {

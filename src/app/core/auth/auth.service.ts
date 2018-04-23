@@ -44,8 +44,7 @@ export class AuthService {
         return this.afAuth.auth.signInWithEmailAndPassword(email, password)
             .then((user) => {
                 return this.updateUserData(user); // if using firestore
-            })
-            .catch((error) => this.handleError(error));
+            });
     }
 
     // Sends email allowing user to reset password
@@ -53,13 +52,13 @@ export class AuthService {
         const fbAuth = firebase.auth();
 
         return fbAuth.sendPasswordResetEmail(email)
-            .then(() => this.notify.update('Password update email sent', 'info'))
+            .then(() => this.notify.update('Password update email sent'))
             .catch((error) => this.handleError(error));
     }
 
     // If error, console log and notify user
     private handleError(error: Error) {
-        this.notify.update(error.message, 'error');
+        this.notify.update(error.message);
     }
 
     // Sets user data to firestore after succesful login

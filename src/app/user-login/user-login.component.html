@@ -18,6 +18,9 @@
         <div *ngIf="validator.formErrors.password" class="invalid-form-value">
           {{ validator.formErrors.password }}
         </div>
+        <div *ngIf="auth.notify.msg | async as msg" class="invalid-form-value">
+          {{ msg }}
+        </div>
       </div>
       <div class="form-group">
         <button type="submit" class="button" [disabled]="!validator.userForm.valid">Submit</button>
