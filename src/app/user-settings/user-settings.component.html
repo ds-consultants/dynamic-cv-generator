@@ -1,0 +1,28 @@
+<div class="row">
+  <form [formGroup]="experienceForm" (ngSubmit)="onSubmit()">
+    <div class="col-xs-12" formArrayName="experiences">
+      <div class="row" *ngFor="let experienceCtrl of experienceForm.get('experiences').controls; let i = index" [formGroupName]="i"
+        style="margin-top: 10px;">
+        <div class="col-xs-8">
+          <input type="text" class="form-control" formControlName="company">
+        </div>
+        <div class="col-xs-8">
+          <input type="text" class="form-control" formControlName="from">
+        </div>
+        <div class="col-xs-2">
+          <input type="text" class="form-control" formControlName="description">
+        </div>
+        <div class="col-xs-2">
+          <button type="button" class="btn btn-danger" (click)="onDeleteExperience(i)">X</button>
+        </div>
+        <hr>
+
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="button" class="btn btn-success" (click)="onAddExperience()">Add</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
