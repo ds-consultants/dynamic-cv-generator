@@ -17,6 +17,7 @@ import { AuthGuard } from './core/auth/auth.guard';
 import { CoreModule } from './core/core.module';
 import { UserSignUpComponent } from './user-sign-up/user-sign-up.component';
 import { HeaderComponent } from './header/header.component';
+import { UserSettingsComponent } from './user-settings/user-settings.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { HeaderComponent } from './header/header.component';
         UsersComponent,
         UserLoginComponent,
         UserSignUpComponent,
-        HeaderComponent
+        HeaderComponent,
+        UserSettingsComponent
     ],
     imports: [
         BrowserModule,
