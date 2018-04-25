@@ -68,13 +68,5 @@ export class UserComponent implements OnInit {
     }
 
     printCV() {
-        html2canvas(document.getElementById('cv-page-1')).then((canvasPage1) => {
-            html2canvas(document.getElementById('cv-page-2')).then((canvasPage2) => {
-                const pdf = new jsPDF('p', 'px');
-                this.compressor.compress(canvasPage1, pdf);
-                this.compressor.compress(canvasPage2, pdf);
-                pdf.save('download.pdf');
-            });
-        });
     }
 }

@@ -21,14 +21,14 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="row">
-          <div class="col-sm-8">
+          <div class="col-sm-9">
             <div class="row">
-              <div class="col-sm-5">
+              <div class="col-sm-4">
                 <div class="user-logo">
-                  <img src="/assets/img/logo.png" class="image-width" alt="logo">
+                  <img src="/assets/img/logo.png" class="logo" alt="logo">
                 </div>
               </div>
-              <div class="col-sm-7">
+              <div class="col-sm-8 shift-to-left">
                 <div class="row user-desc-place">
                   <div class="col-sm-12">
                     <h3 class="userName">{{user.name}}</h3>
@@ -36,13 +36,15 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    {{user.title}}
+                    <p>
+                      {{user.title | uppercase}}
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <div class="user-img-title-place">
               <img src="/assets/img/front-end.svg" class="image-width" *ngIf="user.title=='Senior Front-end Developer'" alt="User title">
             </div>
@@ -83,18 +85,20 @@
       <app-prof-expectations [description]="user.professionalExpectations"></app-prof-expectations>
     </div>
     <div class="row justify-content-center page-top">
-        <div class="col-sm-4-auto">
-            <div><i class="skills-icon"></i></div>
+      <div class="col-sm-4-auto">
+        <div>
+          <i class="skills-icon"></i>
         </div>
+      </div>
     </div>
     <div class="row justify-content-center page-top">
-        <div class="col-sm-4-auto">
-          <h2>Skillset</h2>
-        </div>
+      <div class="col-sm-4-auto">
+        <h2>Skillset</h2>
+      </div>
     </div>
-    <app-user-skillset  name="Languages" [skills]="_languages"></app-user-skillset>
+    <app-user-skillset name="Languages" [skills]="_languages"></app-user-skillset>
     <br>
-    <app-user-skillset  name="Others" [skills]="_others"></app-user-skillset>
+    <app-user-skillset name="Others" [skills]="_others"></app-user-skillset>
     <div class="row">
       <div class="col-sm-12">
         <i class="personal-note-icon"></i>
@@ -105,8 +109,11 @@
       <app-personal-note [description]="user.personalNote"></app-personal-note>
     </div>
 
-  <div class="bottom-right-footer" *ngIf="!(website=='' && email =='')">
-    <p class="bottom-right-footer-content">{{email}}</p>
-    <p class="bottom-right-footer-content">{{website}}</p>
+    <div class="bottom-right-footer" *ngIf="!(website=='' && email =='')">
+      <p class="bottom-right-footer-content">
+        {{email}}
+        <br/>
+        {{website}}
+      </p>
+    </div>
   </div>
-</div>

@@ -20,8 +20,8 @@
     display: block;
     float: left;
     height: 45px;
-    width: 45px; 
     margin: 0 15px 0 5px;
+    width: 45px;
 }
 
 .personal-note-icon {
@@ -30,18 +30,18 @@
     display: block;
     float: left;
     height: 45px;
-    width: 45px; 
     margin: 0 15px 0 5px;
+    width: 45px;
 }
 
 .skills-icon {
     background-image: url(/assets/img/skillset.svg);
     background-size: contain;
-    height: 37px;
-    width: 37px; 
     display: block;
     float: left;
+    height: 37px;
     margin-right: 10px;
+    width: 37px;
 }
 
 .a4 {
@@ -53,8 +53,7 @@
     width: 210mm;
 }
 
-.a4::after,
-.a4::before {
+.a4::after, .a4::before {
     content: "";
     height: 297mm;
     left: -2px;
@@ -67,6 +66,7 @@
     width: 210mm;
     z-index: -1;
 }
+
 .a4::after {
     left: 0;
     -moz-transform: rotate(-1deg);
@@ -74,13 +74,16 @@
     -webkit-transform: rotate(-1deg);
     transform: rotate(-1deg);
 }
-.a4,
-.a4::before,
-.a4::after {
+
+.a4, .a4::before, .a4::after {
     background: #fff;
-    -moz-box-shadow: 0 0 3px rgba(0,0,0,0.2);
-    -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.2);
-    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.a4 .container {
+    padding-top: 40px;
 }
 
 .a4-width {
@@ -89,26 +92,32 @@
 
 .form-input {
     margin-bottom: 5px;
-    margin-left: 10px; 
-    width:250px;
+    margin-left: 10px;
+    width: 250px;
 }
 
 .form-button {
     margin-bottom: 5px;
-    margin-left: 10px; 
+    margin-left: 10px;
 }
 
 .user-logo {
-    padding-left: 70px;
-    padding-top: 20px;
+    padding-left: 60px;
+    padding-top: 30px;
+    text-align: center;
 }
 
 .user-logo img {
-    width: 120px;
+    width: 70px;
 }
 
 .user-desc-place {
-    padding-top: 50px
+    padding-top: 20px
+}
+
+.shift-to-left {
+    left: -20px;
+    position: relative;
 }
 
 .user-img-title-place {
@@ -120,19 +129,22 @@
 }
 
 .bottom-right-footer {
-    background: grey;
-    border-top-left-radius: 70px;
+    background-image: url(/assets/img/blue-part-circle.svg);
     bottom: 0;
-    height: 80px;
-    width: 220px;
-    padding-top: 20px;
+    display: table;
+    height: 162px;
+    padding-top: 55px;
     position: absolute;
     right: 0;
+    width: 200px;
 }
 
 .bottom-right-footer-content {
-    font-size: 14px;
+    color: #fff;
+    display: table-cell;
+    font-size: 10px;
     text-align: center;
+    vertical-align: middle;
 }
 
 .prompt {
@@ -140,9 +152,24 @@
 }
 
 .label-margin {
-    margin-left:10px;
+    margin-left: 10px;
 }
 
 .image-width {
+    float: right;
+    padding-right: 10px;
     width: 120px;
+}
+
+h2 {
+    color: #5791b9;
+    font-size: 28px;
+    line-height: 46px;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-family: 'Lato';
+    font-size: 40px;
+    font-style: italic;
 }
