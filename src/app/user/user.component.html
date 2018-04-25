@@ -58,9 +58,7 @@
         <h2>Experience</h2>
       </div>
     </div>
-    <div *ngFor="let exp of user.experience">
-      <app-user-experience [experience]="exp"></app-user-experience>
-    </div>
+    <ng-template cvPageOne></ng-template>
     <div class="row">
       <div class="col-sm-12">
         <i class="education-icon"></i>
@@ -112,8 +110,7 @@
     <div class="bottom-right-footer" *ngIf="!(website=='' && email =='')">
       <p class="bottom-right-footer-content">
         {{email}}
-        <br/>
-        {{website}}
+        <br/> {{website}}
       </p>
     </div>
   </div>
