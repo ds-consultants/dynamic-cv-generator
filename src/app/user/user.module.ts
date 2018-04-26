@@ -19,6 +19,8 @@ import { UserSettingsComponent } from '../user-settings/user-settings.component'
 import { CVPageOneDirective } from '../cv-page-one.directive';
 import { CVPageTwoDirective } from '../cv-page-two.directive';
 import { CVPageThreeDirective } from '../cv-page-three.directive';
+import { UserHeaderComponent } from './user-header.component';
+import { UserEducationHeaderComponent } from './user-education-header.component';
 
 >>>>>>> User Experiance now as dynymic components
 @NgModule({
@@ -41,13 +43,24 @@ import { CVPageThreeDirective } from '../cv-page-three.directive';
 =======
         CVPageOneDirective,
         CVPageTwoDirective,
+<<<<<<< HEAD
         CVPageThreeDirective
 >>>>>>> User Experiance now as dynymic components
+=======
+        CVPageThreeDirective,
+        UserHeaderComponent,
+        UserEducationHeaderComponent
+>>>>>>> Dynamic CV page generation up to education
     ],
     providers: [
         UserResolver,
         PdfCompressorService
     ],
-    entryComponents: [ UserExperienceComponent ]
+    entryComponents: [
+        UserExperienceComponent,
+        UserHeaderComponent,
+        UserEducationComponent,
+        UserEducationHeaderComponent
+    ]
 })
 export class UserModule { }
