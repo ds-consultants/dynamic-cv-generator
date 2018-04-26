@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { User } from '../user';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../core/auth/auth.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-settings',
@@ -10,7 +10,6 @@ import { AuthService } from '../core/auth/auth.service';
   styleUrls: ['./user-settings.component.css']
 })
 export class UserSettingsComponent implements OnInit {
-  experienceForm: FormGroup;
   experiences = {};
   user: User;
   titleOptions = [
@@ -23,7 +22,12 @@ export class UserSettingsComponent implements OnInit {
     'AEM Developer',
     'QA Consultant'
   ];
-  constructor(private route: ActivatedRoute, private auth: AuthService ) { }
+
+  constructor (
+    private route: ActivatedRoute,
+    private auth: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.route.data.subscribe(
@@ -34,9 +38,8 @@ export class UserSettingsComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    console.log(f.value);
     this.auth.updateUserData(this.user).then((result) => {
-      console.log(result);
+      this.router.navigate(['/user/dashboard']);
     }).catch((error) => {
       console.log(error);
     });

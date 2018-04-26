@@ -8,9 +8,17 @@
       <div class="form-group">
         <label for="title">Title</label>
         <select [(ngModel)]="user.title" class="form-control" id="title" name="title">
-            <option *ngFor="let title of titleOptions" [ngValue]="title" >{{title}}</option>
+          <option *ngFor="let title of titleOptions" [ngValue]="title">{{title}}</option>
         </select>
       </div>
+      <label for="professionalExpectations">Professional Expectations</label>
+      <textarea class="form-control" [(ngModel)]="user.professionalExpectations" name="professionalExpectations" id="professionalExpectations"
+        cols="30" rows="3">
+      </textarea>
+      <label for="personalNote">Personal Note</label>
+      <textarea class="form-control" [(ngModel)]="user.personalNote" name="personalNote" id="personalNote" cols="30" rows="3">
+      </textarea>
+      <hr>
       <button type="submit" class="btn btn-primary">Save</button>
     </form>
   </div>
