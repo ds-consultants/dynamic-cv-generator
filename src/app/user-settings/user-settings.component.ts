@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormArray, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
+import { User } from '../user';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../core/auth/auth.service';
 
 @Component({
   selector: 'app-user-settings',
@@ -8,37 +11,34 @@ import { FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class UserSettingsComponent implements OnInit {
   experienceForm: FormGroup;
-  constructor() { }
+  experiences = {};
+  user: User;
+  titleOptions = [
+    'Junior Front-end Developer',
+    'Senior Front-end Developer',
+    'Front-end Developer',
+    'CQ/AEM Expert',
+    'Junior AEM Developer',
+    'Senior AEM Developer',
+    'AEM Developer',
+    'QA Consultant'
+  ];
+  constructor(private route: ActivatedRoute, private auth: AuthService ) { }
 
   ngOnInit() {
-   this.initForm();
-  }
-
-  onAddExperience() {
-    (<FormArray>this.experienceForm.get('experiences')).push(
-      new FormGroup({
-        'company': new FormControl(null, Validators.required),
-        'from': new FormControl(null, Validators.required),
-        'description': new FormControl(null, Validators.required)
-      })
+    this.route.data.subscribe(
+      (data: { user: User }) => {
+        this.user = data.user;
+      }
     );
   }
 
-  private initForm() {
-    let company = 'moje';
-    let from = '2018-05';
-    let desc = 'bardzo długi opis';
-    let experiences = new FormArray([]);
-
-    experiences.push( new FormGroup({
-      'company': new FormControl(company, Validators.required),
-      'from': new FormControl(from, Validators.required),
-      'description': new FormControl(desc, Validators.required)
-    }));
-
-    this.experienceForm = new FormGroup({
-      'name': new FormControl('wart', Validators.required),
-      'experiences': experiences
+  onSubmit(f: NgForm) {
+    console.log(f.value);
+    this.auth.updateUserData(this.user).then((result) => {
+      console.log(result);
+    }).catch((error) => {
+      console.log(error);
     });
   }
 }

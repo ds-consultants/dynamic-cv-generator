@@ -17,7 +17,8 @@ import { AuthGuard } from './core/auth/auth.guard';
 import { CoreModule } from './core/core.module';
 import { UserSignUpComponent } from './user-sign-up/user-sign-up.component';
 import { HeaderComponent } from './header/header.component';
-import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { UserResolver } from './user/user-resolver.module';
+// import { UserSettingsComponent } from './user-settings/user-settings.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,7 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
         UserLoginComponent,
         UserSignUpComponent,
         HeaderComponent,
-        UserSettingsComponent
+        // UserSettingsComponent
     ],
     imports: [
         BrowserModule,
@@ -38,7 +39,7 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
         FormsModule,
         ReactiveFormsModule
     ],
-    providers: [AuthGuard],
+    providers: [AuthGuard, UserResolver],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
