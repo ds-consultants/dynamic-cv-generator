@@ -10,7 +10,13 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./user-settings.component.css']
 })
 export class UserSettingsComponent implements OnInit {
-  experiences = {};
+  education =  {
+    place: '',
+    time: '',
+    name: '',
+    namePlace: ''
+    };
+  showEducationForm = false;
   user: User;
   titleOptions = [
     'Junior Front-end Developer',
@@ -37,11 +43,45 @@ export class UserSettingsComponent implements OnInit {
     );
   }
 
-  onSubmit(f: NgForm) {
+  save(redirect: boolean) {
     this.auth.updateUserData(this.user).then((result) => {
-      this.router.navigate(['/user/dashboard']);
+      if (redirect) {
+        this.router.navigate(['/user/dashboard']);
+      }
     }).catch((error) => {
       console.log(error);
     });
+  }
+
+  onSubmit(f: NgForm) {
+    this.save(true);
+  }
+
+  deleteEducation(e) {
+    // alert('test' + e);
+    if (confirm('delete ?') === true) {
+      this.user.education.splice(e, 1);
+     // this.save(false);
+    }
+  }
+
+  addEducation() {
+    this.user.education.push(
+      {
+        name: this.education.name,
+        place: this.education.place,
+        namePlace: this.education.namePlace,
+        time: this.education.time
+      }
+    );
+    this.education.name = '';
+    this.education.time = '';
+    this.education.place = '';
+    this.education.namePlace = '';
+    this.showEducationForm = false;
+  }
+
+  onAddEducationForm() {
+    this.showEducationForm = (this.showEducationForm === true) ? false : true;
   }
 }

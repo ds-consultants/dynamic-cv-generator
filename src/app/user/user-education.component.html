@@ -1,16 +1,18 @@
 <div class="row education-row">
   <div class="col-sm-4">
-    <p class="custom-left-column">
+    <p [ngClass]="{'custom-left-column' : edit!=true}">
       {{ school.place }}
     </p>
-    <p class="custom-left-column">
+    <p  [ngClass]="{'custom-left-column' : edit!=true}">
       {{ school.time }}
     </p>
   </div>
   <div class="col-sm-8">
-    <i class="main-project-icon"></i>
+    <i class="main-project-icon" *ngIf="edit!=true"></i>
+    <button class="btn btn-danger btnremove" type="button" *ngIf="edit==true" (click)="removeElement()">-</button>
     <p>{{ school.name }}</p>
     <p>{{ school.namePlace }}</p>
   </div>
   <div class="clearfix"></div>
+  
 </div>
