@@ -17,16 +17,22 @@
   </div>
 </div>
 
-<div id="cv-page-1" class="a4" #cvPageOneContainer>
-  <div class="container" id="cv-page-one-content" #pageOneContainer>
+<div id="cv-page-1" class="a4">
+  <div class="container" id="cv-page-one-content" #cvPageOneContainer>
     <ng-template cvPageOne>
     </ng-template>
   </div>
 </div>
 <br>
 <div id="cv-page-2" class="a4">
-  <div class="container" id="cv-page-two-content" #pageTwoContainer>
+  <div class="container" id="cv-page-two-content" #cvPageTwoContainer>
     <ng-template cvPageTwo>
+    </ng-template>
+  </div>
+</div>
+<div id="cv-page-3" class="a4" *ngIf="showPageThree">
+  <div class="container" id="cv-page-three-content" #cvPageThreeContainer>
+    <ng-template cvPageThree>
     </ng-template>
   </div>
 </div>

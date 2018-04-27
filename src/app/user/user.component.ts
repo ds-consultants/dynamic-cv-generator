@@ -6,8 +6,6 @@ import {
     ComponentFactoryResolver,
     OnDestroy,
     ElementRef,
-    AfterViewInit,
-    Renderer2,
     ViewContainerRef
 } from '@angular/core';
 import { User } from '../user';
@@ -19,32 +17,41 @@ import { forEach } from '@angular/router/src/utils/collection';
 import * as html2canvas from 'html2canvas';
 import * as jsPDF from 'jspdf';
 
+import { UserProfExpectationsComponent } from './user-prof-expectations.component';
 import { UserEducationHeaderComponent } from './user-education-header.component';
 import { UserExperienceComponent } from './user-experience.component';
 import { UserEducationComponent } from './user-education.component';
 import { UserHeaderComponent } from './user-header.component';
+import { UserFooterComponent } from './user-footer.component';
 
 import { CVPageOneDirective } from '../cv-page-one.directive';
 import { CVPageTwoDirective } from '../cv-page-two.directive';
+import { CVPageThreeDirective } from '../cv-page-three.directive';
+
+const pageHeight = 1223;
 
 @Component({
     selector: 'app-user',
     templateUrl: './user.component.html',
     styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit, AfterViewInit {
+export class UserComponent implements OnInit {
     @ViewChild(CVPageOneDirective) cvPageOne: CVPageOneDirective;
     @ViewChild(CVPageTwoDirective) cvPageTwo: CVPageTwoDirective;
+    @ViewChild(CVPageThreeDirective) cvPageThree: CVPageThreeDirective;
 
-    @ViewChild('pageOneContainer') pageOneContainer: ElementRef;
-    @ViewChild('cvPageOneContainer') cvPageOneContainer: ElementRef;
+    @ViewChild('cvPageOneContainer') pageOneContainer: ElementRef;
+    @ViewChild('cvPageTwoContainer') pageTwoContainer: ElementRef;
+    @ViewChild('cvPageThreeContainer') pageThreeContainer: ElementRef;
 
     user: User;
     website = 'www.ds-consultants.eu';
     email = 'info@ds-consultants.eu';
     _languages = [];
     _others = [];
-    currentPage: ViewContainerRef;
+    currentPage: CVPageOneDirective | CVPageTwoDirective | CVPageThreeDirective;
+    currentPageContainer: ElementRef;
+    showPageThree: Boolean = false;
 
     constructor(
         // private userService: UserService,
@@ -92,9 +99,20 @@ export class UserComponent implements OnInit, AfterViewInit {
         return this._others;
     }
 
+    bumpCurrentPage() {
+        if (this.currentPage === this.cvPageTwo) {
+            this.currentPage = this.cvPageThree;
+            this.currentPageContainer = this.pageThreeContainer;
+            this.showPageThree = true;
+        } else {
+            this.currentPage = this.cvPageTwo;
+            this.currentPageContainer = this.pageTwoContainer;
+        }
+    }
+
     renderUserHeader(name, title) {
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserHeaderComponent);
-        const componentRef = this.currentPage.createComponent(componentFactory);
+        const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
 
         (<UserHeaderComponent>componentRef.instance).name = name;
         (<UserHeaderComponent>componentRef.instance).title = title;
@@ -103,43 +121,60 @@ export class UserComponent implements OnInit, AfterViewInit {
     renderExperience(experience) {
         experience.forEach(exp => {
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserExperienceComponent);
-            const componentRef = this.currentPage.createComponent(componentFactory);
+            const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
             (<UserExperienceComponent>componentRef.instance).experience = exp;
         });
     }
 
     renderEducation(education) {
-        const pageHeight = this.cvPageOneContainer.nativeElement.offsetHeight;
-        const currentContentHeight = this.pageOneContainer.nativeElement.offsetHeight;
+        let currentContentHeight = this.currentPageContainer.nativeElement.offsetHeight;
         if (pageHeight - currentContentHeight - 165 < 0) {
-            this.currentPage = this.cvPageTwo.viewContainerRef;
+            this.bumpCurrentPage();
         }
         let componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserEducationHeaderComponent);
-        let componentRef = this.currentPage.createComponent(componentFactory);
+        let componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
 
         education.forEach(school => {
+            currentContentHeight = this.currentPageContainer.nativeElement.offsetHeight;
+
             if (pageHeight - currentContentHeight - 165 < 0) {
-                this.currentPage = this.cvPageTwo.viewContainerRef;
+                this.bumpCurrentPage();
             }
             componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserEducationComponent);
-            componentRef = this.currentPage.createComponent(componentFactory);
+            componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
             (<UserEducationComponent>componentRef.instance).school = school;
         });
     }
 
+    renderProfessionalExpectations(expectations) {
+        const currentContentHeight = this.currentPageContainer.nativeElement.offsetHeight;
+        if (pageHeight - currentContentHeight - 180 < 0) {
+            this.bumpCurrentPage();
+        }
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserProfExpectationsComponent);
+        const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
+        (<UserProfExpectationsComponent>componentRef.instance).description = expectations;
+    }
+
+    renderFooter(website, email) {
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserFooterComponent);
+        const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
+        (<UserFooterComponent>componentRef.instance).email = this.email;
+        (<UserFooterComponent>componentRef.instance).website = this.website;
+    }
+
     ngOnInit() {
-        this.currentPage = this.cvPageOne.viewContainerRef;
+        this.currentPage = this.cvPageOne;
+        this.currentPageContainer = this.pageOneContainer;
         this.renderUserHeader(this.user.name, this.user.title);
         this.renderExperience(this.user.experience);
-        // this.renderExperience(this.user.experience);
+        this.renderExperience(this.user.experience);
 
         setTimeout(() => {
             this.renderEducation(this.user.education);
+            this.renderProfessionalExpectations(this.user.professionalExpectations);
+            this.renderFooter(this.website, this.email);
         }, 100);
-    }
-
-    ngAfterViewInit() {
-
     }
 
     printCV() {
