@@ -30,7 +30,7 @@
     </ng-template>
   </div>
 </div>
-<div id="cv-page-3" class="a4" *ngIf="showPageThree">
+<div id="cv-page-3" class="a4"  [ngClass]="{'d-none': !showPageThree}">
   <div class="container" id="cv-page-three-content" #cvPageThreeContainer>
     <ng-template cvPageThree>
     </ng-template>

@@ -1,29 +1,30 @@
-<div class="row justify-content-center page-top">
+<div class="container no-top-padding">
+  <div class="justify-content-center page-top">
     <div class="col-sm-12">
       <div class="row">
         <div class="col-sm-3">
-          {{name}}
+          {{name | titlecase}}
         </div>
         <div class="col-sm-9">
-          <div class="row" *ngIf="skills">
-            <div class="col-sm-4">
-
-              <p *ngFor="let content of getColumnContent(skills,1)">
-                <i [ngClass]="{'main-project-icon-no-position':content.main==false, 'second-project-icon-no-position ':content.main==true}"></i>
-                {{content?.name}}</p>
-            </div>
-            <div class="col-sm-4">
-                <p *ngFor="let content of getColumnContent(skills,2)">
-                    <i [ngClass]="{'main-project-icon-no-position':content.main==false, 'second-project-icon-no-position ':content.main==true}"></i>
-                  {{content?.name}}</p>
-            </div>
-            <div class="col-sm-4">
-              <p *ngFor="let content of getColumnContent(skills,3)">
-                  <i [ngClass]="{'main-project-icon-no-position':content?.main==false, 'second-project-icon-no-position ':content?.main==true}"></i>
-                 {{content?.name}}</p>
-            </div>
-          </div>            
+          <div class="row">
+            <ul class="col-sm-4 no-bullet">
+              <li class="main-skill" *ngFor="let name of skills.main">
+                {{name}}
+              </li>
+            </ul>
+            <ul class="col-sm-4 no-bullet">
+              <li class="second-skill" *ngFor="let name of skills.second">
+                {{name}}
+              </li>
+            </ul>
+            <ul class="col-sm-4 no-bullet">
+              <li *ngFor="let name of skills.future">
+                {{name}}
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 </div>

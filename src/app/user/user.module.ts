@@ -6,6 +6,7 @@ import { ProjectComponent } from '../project/project.component';
 import { UserEducationComponent } from './user-education.component';
 import { UserProfExpectationsComponent } from './user-prof-expectations.component';
 import { UserPersonalNoteComponent } from './user-personal-note.component';
+import { UserSkillsHeaderComponent } from './user-skills-header.component';
 
 import { FormsModule } from '@angular/forms';
 import { UserRoutingModule } from './user-routing.module';
@@ -42,7 +43,8 @@ import { UserFooterComponent } from './user-footer.component';
         CVPageThreeDirective,
         UserHeaderComponent,
         UserEducationHeaderComponent,
-        UserFooterComponent
+        UserFooterComponent,
+        UserSkillsHeaderComponent
     ],
     providers: [
         UserResolver,
@@ -54,7 +56,9 @@ import { UserFooterComponent } from './user-footer.component';
         UserEducationComponent,
         UserEducationHeaderComponent,
         UserProfExpectationsComponent,
-        UserFooterComponent
+        UserFooterComponent,
+        UserSkillsHeaderComponent,
+        UserSkillsetComponent
     ]
 })
 export class UserModule { }

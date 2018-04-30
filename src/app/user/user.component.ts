@@ -19,16 +19,21 @@ import * as jsPDF from 'jspdf';
 
 import { UserProfExpectationsComponent } from './user-prof-expectations.component';
 import { UserEducationHeaderComponent } from './user-education-header.component';
+import { UserSkillsHeaderComponent } from './user-skills-header.component';
 import { UserExperienceComponent } from './user-experience.component';
 import { UserEducationComponent } from './user-education.component';
+import { UserSkillsetComponent } from './user-skillset.component';
 import { UserHeaderComponent } from './user-header.component';
 import { UserFooterComponent } from './user-footer.component';
 
 import { CVPageOneDirective } from '../cv-page-one.directive';
 import { CVPageTwoDirective } from '../cv-page-two.directive';
 import { CVPageThreeDirective } from '../cv-page-three.directive';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
+import 'rxjs/add/operator/takeWhile';
 
-const pageHeight = 1223;
+const pageHeight = 1123;
 
 @Component({
     selector: 'app-user',
@@ -51,7 +56,7 @@ export class UserComponent implements OnInit {
     _others = [];
     currentPage: CVPageOneDirective | CVPageTwoDirective | CVPageThreeDirective;
     currentPageContainer: ElementRef;
-    showPageThree: Boolean = false;
+    showPageThree: Boolean = true;
 
     constructor(
         // private userService: UserService,
@@ -63,40 +68,9 @@ export class UserComponent implements OnInit {
         this.route.data.subscribe(
             (data: { user: User }) => {
                 this.user = data.user;
-                this.languages();
-                this.others();
+                this.showPageThree = false;
             }
         );
-    }
-
-    languages(): Array<{ name: string, main: boolean }> {
-        this._languages = [];
-        if (this.user) {
-            for (let index = 0; index < this.user.skillset.languages.main.length; index++) {
-                this._languages.push({ name: this.user.skillset.languages.main[index], main: true });
-            }
-            for (let index = 0; index < this.user.skillset.languages.second.length; index++) {
-                this._languages.push({ name: this.user.skillset.languages.second[index], main: false });
-            }
-            // this._languages.push(...this.user.skillset.languages.main) ;
-            // this._languages.push(...this.user.skillset.languages.second);
-        }
-        return this._languages;
-    }
-
-    others(): Array<{ name: string, main: boolean }> {
-        this._others = [];
-        if (this.user) {
-            for (let index = 0; index < this.user.skillset.others.main.length; index++) {
-                this._others.push({ name: this.user.skillset.others.main[index], main: true });
-            }
-            for (let index = 0; index < this.user.skillset.others.second.length; index++) {
-                this._others.push({ name: this.user.skillset.others.second[index], main: false });
-            }
-            // this._others.push(...this.user.skillset.others.main) ;
-            // this._others.push(...this.user.skillset.others.second);
-        }
-        return this._others;
     }
 
     bumpCurrentPage() {
@@ -127,7 +101,7 @@ export class UserComponent implements OnInit {
     }
 
     renderEducation(education) {
-        let currentContentHeight = this.currentPageContainer.nativeElement.offsetHeight;
+        let currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
         if (pageHeight - currentContentHeight - 165 < 0) {
             this.bumpCurrentPage();
         }
@@ -135,8 +109,7 @@ export class UserComponent implements OnInit {
         let componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
 
         education.forEach(school => {
-            currentContentHeight = this.currentPageContainer.nativeElement.offsetHeight;
-
+            currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
             if (pageHeight - currentContentHeight - 165 < 0) {
                 this.bumpCurrentPage();
             }
@@ -147,13 +120,50 @@ export class UserComponent implements OnInit {
     }
 
     renderProfessionalExpectations(expectations) {
-        const currentContentHeight = this.currentPageContainer.nativeElement.offsetHeight;
+        const currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
         if (pageHeight - currentContentHeight - 180 < 0) {
             this.bumpCurrentPage();
         }
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserProfExpectationsComponent);
         const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
         (<UserProfExpectationsComponent>componentRef.instance).description = expectations;
+
+        setTimeout(() => {
+            this.renderSkills(this.user.skillset);
+            // this.renderFooter(this.website, this.email);
+        }, 100);
+    }
+
+    renderSkills(skillset) {
+        const skillsetNames = Object.keys(skillset);
+        // 280 = skillset header + first row of skills(max 3 main skills)
+        // 60 = bottom padding
+        if (pageHeight - this.currentPageContainer.nativeElement.clientHeight - 280 - 60 < 0) {
+            this.bumpCurrentPage();
+        }
+
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserSkillsHeaderComponent);
+        const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
+        // UserSkillsetComponent
+
+        skillsetNames.forEach(name => {
+            this.renderSingleSkillRow(name, skillset[name]);
+            setTimeout(() => {
+                if (pageHeight - this.currentPageContainer.nativeElement.clientHeight - 60 < 0) {
+                    const detachedView = this.currentPage.viewContainerRef.detach();
+                    this.bumpCurrentPage();
+                    this.currentPage.viewContainerRef.insert(detachedView);
+                }
+            }, 100);
+        });
+    }
+
+    renderSingleSkillRow(skillName, skills) {
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserSkillsetComponent);
+        const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
+        (<UserSkillsetComponent>componentRef.instance).name = skillName;
+        (<UserSkillsetComponent>componentRef.instance).skills = skills;
+
     }
 
     renderFooter(website, email) {
@@ -172,8 +182,9 @@ export class UserComponent implements OnInit {
 
         setTimeout(() => {
             this.renderEducation(this.user.education);
+            this.renderEducation(this.user.education);
+            // this.renderEducation(this.user.education);
             this.renderProfessionalExpectations(this.user.professionalExpectations);
-            this.renderFooter(this.website, this.email);
         }, 100);
     }
 
