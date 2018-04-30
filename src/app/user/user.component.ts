@@ -78,7 +78,7 @@ export class UserComponent implements OnInit {
             this.currentPage = this.cvPageThree;
             this.currentPageContainer = this.pageThreeContainer;
             this.showPageThree = true;
-        } else {
+        } else if (this.currentPage === this.cvPageOne) {
             this.currentPage = this.cvPageTwo;
             this.currentPageContainer = this.pageTwoContainer;
         }
@@ -97,6 +97,7 @@ export class UserComponent implements OnInit {
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserExperienceComponent);
             const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
             (<UserExperienceComponent>componentRef.instance).experience = exp;
+            this.ensureLastComponentFitPage();
         });
     }
 
@@ -127,11 +128,6 @@ export class UserComponent implements OnInit {
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserProfExpectationsComponent);
         const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
         (<UserProfExpectationsComponent>componentRef.instance).description = expectations;
-
-        setTimeout(() => {
-            this.renderSkills(this.user.skillset);
-            // this.renderFooter(this.website, this.email);
-        }, 100);
     }
 
     renderSkills(skillset) {
@@ -145,17 +141,19 @@ export class UserComponent implements OnInit {
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserSkillsHeaderComponent);
         const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
         // UserSkillsetComponent
+        let index = 0;
+        Observable.interval(800)
+            .takeWhile(() => index !== skillsetNames.length)
+            .subscribe(i => {
+                const name = skillsetNames[index];
+                this.renderSingleSkillRow(name, skillset[name]);
+                this.ensureLastComponentFitPage();
+                index++;
 
-        skillsetNames.forEach(name => {
-            this.renderSingleSkillRow(name, skillset[name]);
-            setTimeout(() => {
-                if (pageHeight - this.currentPageContainer.nativeElement.clientHeight - 60 < 0) {
-                    const detachedView = this.currentPage.viewContainerRef.detach();
-                    this.bumpCurrentPage();
-                    this.currentPage.viewContainerRef.insert(detachedView);
+                if (index === skillsetNames.length) {
+                    this.renderFooter(this.website, this.email);
                 }
-            }, 100);
-        });
+            });
     }
 
     renderSingleSkillRow(skillName, skills) {
