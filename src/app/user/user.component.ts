@@ -57,6 +57,7 @@ export class UserComponent implements OnInit {
     currentPage: CVPageOneDirective | CVPageTwoDirective | CVPageThreeDirective;
     currentPageContainer: ElementRef;
     showPageThree: Boolean = true;
+    pdf = new jsPDF('p', 'px');
 
     constructor(
         // private userService: UserService,
@@ -171,21 +172,39 @@ export class UserComponent implements OnInit {
         (<UserFooterComponent>componentRef.instance).website = this.website;
     }
 
+    ensureLastComponentFitPage() {
+        setTimeout(() => {
+            if (pageHeight - this.currentPageContainer.nativeElement.clientHeight - 60 < 0) {
+                const detachedView = this.currentPage.viewContainerRef.detach();
+                this.bumpCurrentPage();
+                this.currentPage.viewContainerRef.insert(detachedView);
+            }
+        }, 100);
+    }
+
     ngOnInit() {
         this.currentPage = this.cvPageOne;
         this.currentPageContainer = this.pageOneContainer;
         this.renderUserHeader(this.user.name, this.user.title);
         this.renderExperience(this.user.experience);
-        this.renderExperience(this.user.experience);
 
         setTimeout(() => {
             this.renderEducation(this.user.education);
-            this.renderEducation(this.user.education);
-            // this.renderEducation(this.user.education);
             this.renderProfessionalExpectations(this.user.professionalExpectations);
+            this.renderSkills(this.user.skillset);
         }, 100);
     }
 
     printCV() {
+        ['cv-page-1', 'cv-page-2', 'cv-page-3'].forEach((page) => {
+            html2canvas(document.getElementById(page)).then((canvasPage) => {
+                if (canvasPage.height > 0) {
+                    this.compressor.compress(canvasPage, this.pdf);
+                }
+            });
+        });
+        setTimeout(() => {
+           this.pdf.save('download.pdf');
+        }, 2000);
     }
 }
