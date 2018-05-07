@@ -35,7 +35,7 @@ export class AuthService {
     emailSignUp(email: string, password: string) {
         return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
             .then((user) => {
-                return this.updateUserData(user); // if using firestore
+                return user; // if using firestore
             })
             .catch((error) => this.handleError(error));
     }
@@ -43,7 +43,8 @@ export class AuthService {
     emailLogin(email: string, password: string) {
         return this.afAuth.auth.signInWithEmailAndPassword(email, password)
             .then((user) => {
-                return this.updateUserData(user); // if using firestore
+                // console.log(Object.prototype.toString.call(user));
+                return user; // if using firestore
             });
     }
 
@@ -69,7 +70,7 @@ export class AuthService {
         const data: User = {
             uid: user.uid,
             email: user.email || null,
-            name: user.name || 'Dawid Kozak - V2.0',
+            name: user.name || 'Dawid Kozak',
             title: user.title || 'Senior Front-end Developer',
             experience: user.experience || [
                 {

@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
 })
 export class UserExperienceComponent {
 
-    @Input() experience: Array<number>;
+    @Input() experience: any;
 
     constructor() { }
 

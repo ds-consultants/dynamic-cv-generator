@@ -1,7 +1,7 @@
 export class User {
     name: string;
     title: string;
-    experience: {};
+    experience: Array<any>;
     education: Array<any>;
     professionalExpectations: string;
     personalNote: string;

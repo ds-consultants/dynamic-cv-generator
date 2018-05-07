@@ -16,97 +16,23 @@
     </div>
   </div>
 </div>
+
 <div id="cv-page-1" class="a4">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="row">
-          <div class="col-sm-8">
-            <div class="row">
-              <div class="col-sm-5">
-                <div class="user-logo">
-                  <img src="/assets/img/logo.png" class="image-width" alt="logo">
-                </div>
-              </div>
-              <div class="col-sm-7">
-                <div class="row user-desc-place">
-                  <div class="col-sm-12">
-                    <h3 class="userName">{{user.name}}</h3>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                    {{user.title}}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="user-img-title-place">
-              <img src="/assets/img/front-end.svg" class="image-width" *ngIf="user.title=='Senior Front-end Developer'" alt="User title">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <i class="experience-icon"></i>
-        <h2>Experience</h2>
-      </div>
-    </div>
-    <div *ngFor="let exp of user.experience">
-      <app-user-experience [experience]="exp"></app-user-experience>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <i class="education-icon"></i>
-        <h2>Education</h2>
-      </div>
-    </div>
-    <div *ngFor="let school of user.education">
-      <app-user-education [school]="school"></app-user-education>
-    </div>
+  <div class="container" id="cv-page-one-content" #cvPageOneContainer>
+    <ng-template cvPageOne>
+    </ng-template>
   </div>
 </div>
 <br>
 <div id="cv-page-2" class="a4">
-  <div class="container">
-    <div class="row page-top">
-      <div class="col-sm-12">
-        <i class="expectations-icon"></i>
-        <h2>Profesional Expectations</h2>
-      </div>
-    </div>
-    <div>
-      <app-prof-expectations [description]="user.professionalExpectations"></app-prof-expectations>
-    </div>
-    <div class="row justify-content-center page-top">
-        <div class="col-sm-4-auto">
-            <div><i class="skills-icon"></i></div>
-        </div>
-    </div>
-    <div class="row justify-content-center page-top">
-        <div class="col-sm-4-auto">
-          <h2>Skillset</h2>
-        </div>
-    </div>
-    <app-user-skillset  name="Languages" [skills]="_languages"></app-user-skillset>
-    <br>
-    <app-user-skillset  name="Others" [skills]="_others"></app-user-skillset>
-    <div class="row">
-      <div class="col-sm-12">
-        <i class="personal-note-icon"></i>
-        <h2>Personal Note</h2>
-      </div>
-    </div>
-    <div>
-      <app-personal-note [description]="user.personalNote"></app-personal-note>
-    </div>
-
-  <div class="bottom-right-footer" *ngIf="!(website=='' && email =='')">
-    <p class="bottom-right-footer-content">{{email}}</p>
-    <p class="bottom-right-footer-content">{{website}}</p>
+  <div class="container" id="cv-page-two-content" #cvPageTwoContainer>
+    <ng-template cvPageTwo>
+    </ng-template>
+  </div>
+</div>
+<div id="cv-page-3" class="a4"  [ngClass]="{'d-none': !showPageThree}">
+  <div class="container" id="cv-page-three-content" #cvPageThreeContainer>
+    <ng-template cvPageThree>
+    </ng-template>
   </div>
 </div>

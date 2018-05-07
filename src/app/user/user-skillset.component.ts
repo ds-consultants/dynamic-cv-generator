@@ -1,26 +1,33 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-user-skillset',
-  templateUrl: './user-skillset.component.html'
+    selector: 'app-user-skillset',
+    templateUrl: './user-skillset.component.html',
+    styles: [`
+        ul.no-bullet {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li.second-skill {
+            background: url(/assets/img/circle-grey-middle.svg) no-repeat left top;
+            background-size: 20px 20px;
+            margin: 0 10px 10px 10px;
+            padding-left: 30px;
+        }
+
+        li.main-skill {
+            background: url(/assets/img/circle-maroon-middle.svg) no-repeat left top;
+            background-size: 20px 20px;
+            margin: 0 10px 10px 10px;
+            padding-left: 30px;
+        }`]
 })
-export class UserSkillsetComponent implements OnInit {
+export class UserSkillsetComponent {
 
-  @Input() name: string;
-  @Input() skills: Array<{name: string, main: boolean}>;
-  constructor() { }
-
-  getColumnContent(from: Array<{name: string, main: boolean}>, numberOfColumn: number): Array<string> {
-    const rowInCol = Math.ceil(from.length / 3);
-    const start = (rowInCol * numberOfColumn) - rowInCol;
-    const toReturn = [];
-    for (let i = start; i < rowInCol * numberOfColumn; i++) {
-      toReturn.push(from[i]);
-    }
-    return toReturn;
-  }
-
-  ngOnInit() {
-  }
+    @Input() name: string;
+    @Input() skills: Array<{ name: string, main: boolean }>;
+    constructor() { }
 
 }
