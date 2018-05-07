@@ -15,7 +15,7 @@
     </ul>
     <div class="form-inline my-2 my-lg-0 white-nav" *ngIf="auth.user | async">
       <span class="user-greeter">
-        Hello {{auth.user.name}} |
+        Hello {{name}} |
       </span>
       <span class="user-greeter">
         <a class="nav-link white-nav" href="" (click)="signOut()">Sign out</a>
