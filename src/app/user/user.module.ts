@@ -13,7 +13,7 @@ import { UserComponent } from './user.component';
 import { UserResolver } from './user-resolver.module';
 import { PdfCompressorService } from '../pdf-compressor.service';
 import { UserSkillsetComponent } from './user-skillset.component';
-
+import { UserSettingsComponent } from '../user-settings/user-settings.component';
 @NgModule({
 
     imports: [
@@ -28,7 +28,8 @@ import { UserSkillsetComponent } from './user-skillset.component';
         UserEducationComponent,
         UserProfExpectationsComponent,
         UserPersonalNoteComponent,
-        UserSkillsetComponent
+        UserSkillsetComponent,
+        UserSettingsComponent
     ],
     providers: [
         UserResolver,

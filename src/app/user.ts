@@ -2,7 +2,7 @@ export class User {
     name: string;
     title: string;
     experience: {};
-    education: {};
+    education: Array<any>;
     professionalExpectations: string;
     personalNote: string;
     skillset: {

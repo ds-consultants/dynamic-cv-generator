@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-sm-10">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="form-group">
+        <label for="company">Name</label>
+        <input type="text" class="form-control" [(ngModel)]="user.name" name="name" placeholder="Name">
+      </div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <select [(ngModel)]="user.title" class="form-control" id="title" name="title">
+          <option *ngFor="let title of titleOptions" [ngValue]="title">{{title}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="professionalExpectations">Professional Expectations</label>
+        <textarea class="form-control" [(ngModel)]="user.professionalExpectations" name="professionalExpectations" id="professionalExpectations"
+          cols="30" rows="3">
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="personalNote">Personal Note</label>
+        <textarea class="form-control" [(ngModel)]="user.personalNote" name="personalNote" id="personalNote" cols="30" rows="3">
+        </textarea>
+      </div>
+      <label for="education">Education</label>
+      <div *ngFor="let school of user.education;let i=index">
+        <app-user-education [school]="school" [edit]="true" [id]="i" (delete)="deleteEducation($event)"></app-user-education>
+      </div>
+
+      <ng-template [ngIf]="showEducationForm">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="company">Place</label>
+              <input type="text" class="form-control" [(ngModel)]="education.place" name="educationPlace" placeholder="Place">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="company">Time</label>
+              <input type="text" class="form-control" [(ngModel)]="education.time" name="educationTime" placeholder="Time">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="company">Name</label>
+              <input type="text" class="form-control" [(ngModel)]="education.name" name="educationName" placeholder="Name">
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="company">Name of place</label>
+              <input type="text" class="form-control" [(ngModel)]="education.namePlace" name="educationNameOfPlace" placeholder="Name of place">
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-success" (click)=addEducation()>Save education</button>
+      </ng-template>
+
+      <button type="button" class="btn btn-primary" (click)=onAddEducationForm()>+</button>
+      <hr>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</div>
