@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from '../core/auth/auth.service';
-import { UserDataService } from '../core/user-data.service';
 
 @Component({
     selector: 'app-header',
@@ -19,7 +18,9 @@ export class HeaderComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.auth.user.subscribe(user => this.name = user.name);
+        this.auth.user.subscribe(user => {
+            this.name = user !== null ? user.name : '';
+        });
     }
 
     signOut() {

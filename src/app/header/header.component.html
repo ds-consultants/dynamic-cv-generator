@@ -4,7 +4,7 @@
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="headerNavbar">
+  <div class="collapse navbar-collapse" id="headerNavbar" *ngIf="auth.user | async">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" routerLink="/user/dashboard">Dashboard</a>
@@ -13,7 +13,7 @@
         <a class="nav-link" routerLink="/user/settings">Settings</a>
       </li>
     </ul>
-    <div class="form-inline my-2 my-lg-0 white-nav" *ngIf="auth.user | async">
+    <div class="form-inline my-2 my-lg-0 white-nav">
       <span class="user-greeter">
         Hello {{name}} |
       </span>

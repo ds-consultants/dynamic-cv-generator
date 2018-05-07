@@ -35,7 +35,7 @@ export class AuthService {
     emailSignUp(email: string, password: string) {
         return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
             .then((user) => {
-                return user; // if using firestore
+                return this.updateUserData(user); // if using firestore
             })
             .catch((error) => this.handleError(error));
     }
