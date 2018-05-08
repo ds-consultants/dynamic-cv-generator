@@ -9,7 +9,11 @@
   </div>
   <div class="col-sm-8">
     <i class="main-project-icon"></i>
-    <p class="position">{{ experience.position }}</p>
+    <p class="position">
+      <b>
+        {{ experience.position }}
+      </b>
+    </p>
     <div *ngFor="let project of experience.mainProjects">
       <app-project [project]="project" [ngClass]="{'main-project': experience.company == 'Dynamic Solutions'}">
       </app-project>

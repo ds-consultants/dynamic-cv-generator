@@ -13,15 +13,15 @@ import { Component, Input, OnInit } from '@angular/core';
         li.second-skill {
             background: url(/assets/img/circle-grey-middle.svg) no-repeat left top;
             background-size: 20px 20px;
-            margin: 0 10px 10px 10px;
-            padding-left: 30px;
+            margin: 0 0 7px 5px;
+            padding-left: 27px;
         }
 
         li.main-skill {
             background: url(/assets/img/circle-maroon-middle.svg) no-repeat left top;
             background-size: 20px 20px;
-            margin: 0 10px 10px 10px;
-            padding-left: 30px;
+            margin: 0 0 7px 5px;
+            padding-left: 27px;
         }`]
 })
 export class UserSkillsetComponent implements OnInit {

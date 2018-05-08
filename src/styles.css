@@ -8,7 +8,8 @@
 }
 
 .position {
-    font-weight: bold;
+    font-style: italic;
+    color: gray;
 }
 
 p {
@@ -25,7 +26,7 @@ b {
     background-size: contain;
     display: block;
     height: 20px;
-    left: -20px;
+    left: -15px;
     margin: 0 5px;
     position: absolute;
     top: 2px;
@@ -216,7 +217,7 @@ b {
 .image-width {
     float: right;
     padding-right: 10px;
-    width: 170px;
+    width: 120px;
 }
 
 h2 {
@@ -256,7 +257,7 @@ h3 {
 }
 
 .name-container {
-    padding-top: 40px;
+    padding-top: 10px;
 }
 
 .developer-title {
@@ -271,6 +272,14 @@ h3 {
     margin-bottom: 10px;
 }
 
+.technologies span {
+    font-style: italic;
+}
+
 .main-project .technologies {
     margin-bottom: 0px;
+}
+
+.main-project .title span {
+    display: none;
 }
