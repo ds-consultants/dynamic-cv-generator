@@ -50,8 +50,8 @@ export class UserComponent implements OnInit {
     @ViewChild('cvPageThreeContainer') pageThreeContainer: ElementRef;
 
     user: User;
-    website = 'www.ds-consultants.eu';
-    email = 'info@ds-consultants.eu';
+    website = window.localStorage.getItem('dynamicCvWebsite') || 'www.ds-consultants.eu';
+    email = window.localStorage.getItem('dynamicCvEmail') || 'info@ds-consultants.eu';
     _languages = [];
     _others = [];
     currentPage: CVPageOneDirective | CVPageTwoDirective | CVPageThreeDirective;
@@ -94,12 +94,26 @@ export class UserComponent implements OnInit {
     }
 
     renderExperience(experience) {
-        experience.forEach(exp => {
-            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserExperienceComponent);
-            const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
-            (<UserExperienceComponent>componentRef.instance).experience = exp;
-            this.ensureLastComponentFitPage();
-        });
+        let index = 0;
+        Observable.interval(100)
+            .takeWhile(() => index !== experience.length)
+            .subscribe(i => {
+                this.renderSingleExperienceRow(experience[index]);
+                this.ensureLastComponentFitPage();
+                index++;
+
+                if (index === experience.length) {
+                    this.renderEducation(this.user.education);
+                    this.renderProfessionalExpectations(this.user.professionalExpectations);
+                    this.renderSkills(this.user.skillset);
+                }
+            });
+    }
+
+    renderSingleExperienceRow(exp) {
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserExperienceComponent);
+        const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
+        (<UserExperienceComponent>componentRef.instance).experience = exp;
     }
 
     renderEducation(education) {
@@ -143,18 +157,22 @@ export class UserComponent implements OnInit {
         const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
         // UserSkillsetComponent
         let index = 0;
-        Observable.interval(800)
-            .takeWhile(() => index !== skillsetNames.length)
+        Observable.interval(100)
+            .takeWhile(() => {
+                if (index !== skillsetNames.length) {
+                    return true;
+                } else {
+                    this.renderFooter();
+                    return false;
+                }
+            })
             .subscribe(i => {
                 const name = skillsetNames[index];
                 this.renderSingleSkillRow(name, skillset[name]);
                 this.ensureLastComponentFitPage();
                 index++;
-
-                if (index === skillsetNames.length) {
-                    this.renderFooter(this.website, this.email);
-                }
             });
+
     }
 
     renderSingleSkillRow(skillName, skills) {
@@ -165,7 +183,7 @@ export class UserComponent implements OnInit {
 
     }
 
-    renderFooter(website, email) {
+    renderFooter() {
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserFooterComponent);
         const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
         (<UserFooterComponent>componentRef.instance).email = this.email;
@@ -173,6 +191,7 @@ export class UserComponent implements OnInit {
     }
 
     ensureLastComponentFitPage() {
+        console.log(this.currentPageContainer.nativeElement.clientHeight);
         setTimeout(() => {
             if (pageHeight - this.currentPageContainer.nativeElement.clientHeight - 60 < 0) {
                 const detachedView = this.currentPage.viewContainerRef.detach();
@@ -187,12 +206,6 @@ export class UserComponent implements OnInit {
         this.currentPageContainer = this.pageOneContainer;
         this.renderUserHeader(this.user.name, this.user.title);
         this.renderExperience(this.user.experience);
-
-        setTimeout(() => {
-            this.renderEducation(this.user.education);
-            this.renderProfessionalExpectations(this.user.professionalExpectations);
-            this.renderSkills(this.user.skillset);
-        }, 100);
     }
 
     printCV() {
@@ -204,7 +217,7 @@ export class UserComponent implements OnInit {
             });
         });
         setTimeout(() => {
-           this.pdf.save('download.pdf');
+            this.pdf.save('download.pdf');
         }, 2000);
     }
 }

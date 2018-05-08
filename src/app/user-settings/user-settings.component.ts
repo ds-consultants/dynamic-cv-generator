@@ -10,12 +10,14 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./user-settings.component.css']
 })
 export class UserSettingsComponent implements OnInit {
-  education =  {
+  education = {
     place: '',
     time: '',
     name: '',
     namePlace: ''
-    };
+  };
+  website = window.localStorage.getItem('dynamicCvWebsite') || 'www.ds-consultants.eu';
+  email = window.localStorage.getItem('dynamicCvEmail') || 'info@ds-consultants.eu';
   showEducationForm = false;
   user: User;
   titleOptions = [
@@ -29,7 +31,7 @@ export class UserSettingsComponent implements OnInit {
     'QA Consultant'
   ];
 
-  constructor (
+  constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
     private router: Router
@@ -54,6 +56,8 @@ export class UserSettingsComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
+    window.localStorage.setItem('dynamicCvEmail', this.email);
+    window.localStorage.setItem('dynamicCvWebsite', this.website);
     this.save(true);
   }
 
@@ -61,7 +65,7 @@ export class UserSettingsComponent implements OnInit {
     // alert('test' + e);
     if (confirm('delete ?') === true) {
       this.user.education.splice(e, 1);
-     // this.save(false);
+      // this.save(false);
     }
   }
 

@@ -1,21 +1,4 @@
-<div class="a4-width">
-  <div class="row">
-    <div class="col-sm-12">
-      <form class="form-inline">
-        <div class="form-group">
-          <label for="email">*Email address:</label>
-          <input type="text" class="form-control form-input" id="email" [(ngModel)]="email" name="email">
-        </div>
-        <div class="form-group">
-          <label for="website" class="label-margin">*Website: </label>
-          <input type="text" class="form-control form-input" id="website" [(ngModel)]="website" name="website">
-        </div>
-        <button (click)="printCV()" type="button" class="btn btn-success form-button">PDF</button>
-      </form>
-      <p class="prompt"> * Completing the above fields, will generate additional footer.</p>
-    </div>
-  </div>
-</div>
+<button (click)="printCV()" type="button" class="btn btn-success form-button">PDF</button>
 
 <div id="cv-page-1" class="a4">
   <div class="container" id="cv-page-one-content" #cvPageOneContainer>
@@ -30,7 +13,7 @@
     </ng-template>
   </div>
 </div>
-<div id="cv-page-3" class="a4"  [ngClass]="{'d-none': !showPageThree}">
+<div id="cv-page-3" class="a4" [ngClass]="{'d-none': !showPageThree}">
   <div class="container" id="cv-page-three-content" #cvPageThreeContainer>
     <ng-template cvPageThree>
     </ng-template>
