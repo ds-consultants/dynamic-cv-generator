@@ -58,7 +58,8 @@ import { UserFooterComponent } from './user-footer.component';
         UserProfExpectationsComponent,
         UserFooterComponent,
         UserSkillsHeaderComponent,
-        UserSkillsetComponent
+        UserSkillsetComponent,
+        UserPersonalNoteComponent
     ]
 })
 export class UserModule { }

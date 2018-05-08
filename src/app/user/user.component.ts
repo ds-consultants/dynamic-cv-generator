@@ -32,6 +32,7 @@ import { CVPageThreeDirective } from '../cv-page-three.directive';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/takeWhile';
+import { UserPersonalNoteComponent } from './user-personal-note.component';
 
 const pageHeight = 1123;
 
@@ -105,7 +106,7 @@ export class UserComponent implements OnInit {
                 if (index === experience.length) {
                     this.renderEducation(this.user.education);
                     this.renderProfessionalExpectations(this.user.professionalExpectations);
-                    this.renderSkills(this.user.skillset);
+                    this.renderSkills(this.user);
                 }
             });
     }
@@ -145,8 +146,8 @@ export class UserComponent implements OnInit {
         (<UserProfExpectationsComponent>componentRef.instance).description = expectations;
     }
 
-    renderSkills(skillset) {
-        const skillsetNames = Object.keys(skillset);
+    renderSkills(user) {
+        const skillsetNames = Object.keys(user.skillset);
         // 280 = skillset header + first row of skills(max 3 main skills)
         // 60 = bottom padding
         if (pageHeight - this.currentPageContainer.nativeElement.clientHeight - 280 - 60 < 0) {
@@ -162,17 +163,24 @@ export class UserComponent implements OnInit {
                 if (index !== skillsetNames.length) {
                     return true;
                 } else {
-                    this.renderFooter();
+                    this.renderPersonalNote(user.personalNote);
                     return false;
                 }
             })
             .subscribe(i => {
                 const name = skillsetNames[index];
-                this.renderSingleSkillRow(name, skillset[name]);
+                this.renderSingleSkillRow(name, user.skillset[name]);
                 this.ensureLastComponentFitPage();
                 index++;
             });
 
+    }
+
+    renderPersonalNote(personalNote) {
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserPersonalNoteComponent);
+        const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
+        (<UserPersonalNoteComponent>componentRef.instance).description = personalNote;
+        this.renderFooter();
     }
 
     renderSingleSkillRow(skillName, skills) {
