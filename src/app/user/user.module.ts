@@ -5,7 +5,6 @@ import { UserExperienceComponent } from './user-experience.component';
 import { ProjectComponent } from '../project/project.component';
 import { UserEducationComponent } from './user-education.component';
 import { UserProfExpectationsComponent } from './user-prof-expectations.component';
-import { UserPersonalNoteComponent } from './user-personal-note.component';
 import { UserSkillsHeaderComponent } from './user-skills-header.component';
 
 import { FormsModule } from '@angular/forms';
@@ -35,7 +34,6 @@ import { UserFooterComponent } from './user-footer.component';
         UserExperienceComponent,
         UserEducationComponent,
         UserProfExpectationsComponent,
-        UserPersonalNoteComponent,
         UserSkillsetComponent,
         UserSettingsComponent,
         CVPageOneDirective,
@@ -59,7 +57,6 @@ import { UserFooterComponent } from './user-footer.component';
         UserFooterComponent,
         UserSkillsHeaderComponent,
         UserSkillsetComponent,
-        UserPersonalNoteComponent
     ]
 })
 export class UserModule { }

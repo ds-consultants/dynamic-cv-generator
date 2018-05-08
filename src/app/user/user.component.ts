@@ -105,8 +105,8 @@ export class UserComponent implements OnInit {
 
                 if (index === experience.length) {
                     this.renderEducation(this.user.education);
-                    this.renderProfessionalExpectations(this.user.professionalExpectations);
-                    this.renderSkills(this.user);
+                    this.renderProfessionalExpectations(this.user.professionalExpectations, this.user.personalNote);
+                    this.renderSkills(this.user.skillset);
                 }
             });
     }
@@ -136,18 +136,19 @@ export class UserComponent implements OnInit {
         });
     }
 
-    renderProfessionalExpectations(expectations) {
+    renderProfessionalExpectations(expectations, note) {
         const currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
         if (pageHeight - currentContentHeight - 180 < 0) {
             this.bumpCurrentPage();
         }
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserProfExpectationsComponent);
         const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
-        (<UserProfExpectationsComponent>componentRef.instance).description = expectations;
+        (<UserProfExpectationsComponent>componentRef.instance).proffesionalExpectations = expectations;
+        (<UserProfExpectationsComponent>componentRef.instance).personalNote = note;
     }
 
-    renderSkills(user) {
-        const skillsetNames = Object.keys(user.skillset);
+    renderSkills(skillset) {
+        const skillsetNames = Object.keys(skillset);
         // 280 = skillset header + first row of skills(max 3 main skills)
         // 60 = bottom padding
         if (pageHeight - this.currentPageContainer.nativeElement.clientHeight - 280 - 60 < 0) {
@@ -163,24 +164,17 @@ export class UserComponent implements OnInit {
                 if (index !== skillsetNames.length) {
                     return true;
                 } else {
-                    this.renderPersonalNote(user.personalNote);
+                    this.renderFooter();
                     return false;
                 }
             })
             .subscribe(i => {
                 const name = skillsetNames[index];
-                this.renderSingleSkillRow(name, user.skillset[name]);
+                this.renderSingleSkillRow(name, skillset[name]);
                 this.ensureLastComponentFitPage();
                 index++;
             });
 
-    }
-
-    renderPersonalNote(personalNote) {
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserPersonalNoteComponent);
-        const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
-        (<UserPersonalNoteComponent>componentRef.instance).description = personalNote;
-        this.renderFooter();
     }
 
     renderSingleSkillRow(skillName, skills) {

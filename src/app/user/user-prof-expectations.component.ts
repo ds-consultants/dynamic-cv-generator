@@ -6,7 +6,8 @@ import { Component, Input } from '@angular/core';
 })
 export class UserProfExpectationsComponent {
 
-    @Input() description: string;
+    @Input() proffesionalExpectations: string;
+    @Input() personalNote: string;
 
     constructor() { }
 }

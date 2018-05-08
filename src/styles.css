@@ -2,9 +2,11 @@
 
 @import "~bootstrap/dist/css/bootstrap.css";
 @import url(https://fonts.googleapis.com/css?family=Lato);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 .main-content {
     position: relative;
     top: 80px;
+    font-family: 'Open Sans';
 }
 
 .position {
