@@ -9,18 +9,17 @@
   </div>
   <div class="col-sm-8">
     <i class="main-project-icon"></i>
-    <p>{{ experience.position }}</p>
+    <p class="position">{{ experience.position }}</p>
     <div *ngFor="let project of experience.mainProjects">
       <app-project [project]="project" [ngClass]="{'main-project': experience.company == 'Dynamic Solutions'}">
       </app-project>
     </div>
-    <p *ngIf="experience.projects">
+    <p *ngIf="experience.projects" class="working-on">
       Working on projects for:
     </p>
     <br>
     <div *ngFor="let project of experience.projects">
       <app-project [project]="project" internalProject=[true] [ngClass]="ds-project"></app-project>
-      <br>
     </div>
   </div>
   <div class="clearfix"></div>

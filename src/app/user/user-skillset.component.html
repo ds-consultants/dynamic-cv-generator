@@ -12,13 +12,8 @@
                 {{name}}
               </li>
             </ul>
-            <ul class="col-sm-4 no-bullet">
-              <li class="second-skill" *ngFor="let name of skills.second">
-                {{name}}
-              </li>
-            </ul>
-            <ul class="col-sm-4 no-bullet">
-              <li *ngFor="let name of skills.future">
+            <ul class="col-sm-4 no-bullet" *ngFor="let s of skills.second">
+              <li class="second-skill" *ngFor="let name of s" >
                 {{name}}
               </li>
             </ul>

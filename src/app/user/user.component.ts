@@ -199,7 +199,6 @@ export class UserComponent implements OnInit {
     }
 
     ensureLastComponentFitPage() {
-        console.log(this.currentPageContainer.nativeElement.clientHeight);
         setTimeout(() => {
             if (pageHeight - this.currentPageContainer.nativeElement.clientHeight - 60 < 0) {
                 const detachedView = this.currentPage.viewContainerRef.detach();
@@ -226,6 +225,6 @@ export class UserComponent implements OnInit {
         });
         setTimeout(() => {
             this.pdf.save('download.pdf');
-        }, 2000);
+        }, 3000);
     }
 }

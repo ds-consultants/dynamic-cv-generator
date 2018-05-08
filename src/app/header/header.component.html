@@ -13,9 +13,10 @@
         <a class="nav-link" routerLink="/user/settings">Settings</a>
       </li>
     </ul>
+    <button (click)="printCV()" type="button" class="btn btn-success form-button">PDF</button>
     <div class="form-inline my-2 my-lg-0 white-nav">
       <span class="user-greeter">
-        Hello {{name}} |
+        Hello {{name.split(" ")[0]}} |
       </span>
       <span class="user-greeter">
         <a class="nav-link white-nav" href="" (click)="signOut()">Sign out</a>

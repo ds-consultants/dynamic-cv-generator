@@ -7,12 +7,12 @@
     top: 80px;
 }
 
-.main-project .description, .main-project .technologies {
+.position {
     font-weight: bold;
 }
 
 p {
-    color: #5b5b5b;
+    color: gray;
     margin: 0;
 }
 
@@ -33,7 +33,7 @@ b {
 }
 
 .custom-left-column {
-    margin: 0 0 0 75px;
+    margin: 0 0 0 70px;
 }
 
 .education-row {
@@ -161,12 +161,12 @@ b {
 
 .user-logo {
     padding-left: 60px;
-    padding-top: 30px;
+    padding-top: 21px;
     text-align: center;
 }
 
 .user-logo img {
-    width: 70px;
+    width: 80px;
 }
 
 .user-desc-place {
@@ -233,8 +233,8 @@ h3 {
 }
 
 .proffesional-expecattions {
-    padding: 0 0 0 8mm;
-    text-align: justify;
+    padding: 0 0 0 80px;
+    text-align: left;
 }
 
 .a4 .container.no-top-padding {
@@ -257,4 +257,20 @@ h3 {
 
 .name-container {
     padding-top: 40px;
+}
+
+.developer-title {
+    font-size: 17px;
+}
+
+.school-place {
+    font-style: italic;
+}
+
+.technologies {
+    margin-bottom: 10px;
+}
+
+.main-project .technologies {
+    margin-bottom: 0px;
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-user-skillset',
@@ -24,10 +24,22 @@ import { Component, Input } from '@angular/core';
             padding-left: 30px;
         }`]
 })
-export class UserSkillsetComponent {
+export class UserSkillsetComponent implements OnInit {
 
     @Input() name: string;
-    @Input() skills: Array<{ name: string, main: boolean }>;
+    @Input() skills: Array<any>;
     constructor() { }
+
+    ngOnInit() {
+        // Mapping array of skills into array of arrays
+        if (this.skills.second.length >= 6) {
+            const half_length = Math.ceil(this.skills.second.length / 2);
+
+            const leftHalf = this.skills.second.splice(0, half_length);
+            this.skills.second = [leftHalf, this.skills.second];
+        } else {
+            this.skills.second = [this.skills.second];
+        }
+    }
 
 }
