@@ -2,7 +2,6 @@
 
 @import "~bootstrap/dist/css/bootstrap.css";
 @import url(https://fonts.googleapis.com/css?family=Lato);
-
 .main-content {
     position: relative;
     top: 80px;
@@ -133,6 +132,10 @@ b {
     padding-top: 60px;
 }
 
+#cv-page-1 .container:first-child {
+    padding-top: 30px;
+}
+
 .container {
     padding-top: 40px;
 }
@@ -213,7 +216,7 @@ b {
 .image-width {
     float: right;
     padding-right: 10px;
-    width: 120px;
+    width: 170px;
 }
 
 h2 {
@@ -236,4 +239,22 @@ h3 {
 
 .a4 .container.no-top-padding {
     padding-top: 0;
+}
+
+#cv-page-1 {
+    background-image: url(/assets/img/half-background-logo-left.png);
+    background-size: 105mm 205mm;
+    background-repeat: no-repeat;
+    background-position: right 240px;
+}
+
+#cv-page-2 {
+    background-image: url(/assets/img/half-background-logo-right.png);
+    background-size: 105mm 205mm;
+    background-repeat: no-repeat;
+    background-position: left 180px;
+}
+
+.name-container {
+    padding-top: 40px;
 }
