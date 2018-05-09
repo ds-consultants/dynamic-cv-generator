@@ -73,16 +73,6 @@ b {
     width: 45px;
 }
 
-.personal-note-icon {
-    background-image: url(/assets/img/profile.svg);
-    background-size: contain;
-    display: block;
-    float: left;
-    height: 45px;
-    margin: 0 15px 0 5px;
-    width: 45px;
-}
-
 .skills-icon {
     background-image: url(/assets/img/skillset.svg);
     background-size: contain;
@@ -192,20 +182,19 @@ b {
 .bottom-right-footer {
     background-image: url(/assets/img/blue-part-circle.svg);
     bottom: 0;
-    display: table;
     height: 160px;
-    padding-top: 55px;
     position: absolute;
     right: 0;
     width: 200px;
 }
 
 .bottom-right-footer-content {
+    bottom: 24px;
     color: #fff;
-    display: table-cell;
-    font-size: 10px;
+    font-size: 11px;
     text-align: center;
-    vertical-align: middle;
+    position: absolute;
+    right: 24px;
 }
 
 .prompt {

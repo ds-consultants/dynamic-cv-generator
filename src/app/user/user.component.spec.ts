@@ -7,7 +7,6 @@ import { UserRoutingModule } from './user-routing.module';
 import { ProjectComponent } from '../project/project.component';
 import { UserExperienceComponent } from './user-experience.component';
 import { UserEducationComponent } from './user-education.component';
-import { UserPersonalNoteComponent } from './user-personal-note.component';
 import { UserProfExpectationsComponent } from './user-prof-expectations.component';
 import { UserSkillsetComponent } from './user-skillset.component';
 import { UserResolver } from './user-resolver.module';
@@ -51,7 +50,6 @@ describe('UserTestComponent', () => {
         UserExperienceComponent,
         UserEducationComponent,
         UserProfExpectationsComponent,
-        UserPersonalNoteComponent,
         UserSkillsetComponent
       ],
       providers: [

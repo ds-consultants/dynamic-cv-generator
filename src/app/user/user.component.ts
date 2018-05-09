@@ -32,7 +32,6 @@ import { CVPageThreeDirective } from '../cv-page-three.directive';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/takeWhile';
-import { UserPersonalNoteComponent } from './user-personal-note.component';
 
 const pageHeight = 1123;
 
