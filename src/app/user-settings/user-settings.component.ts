@@ -16,6 +16,10 @@ export class UserSettingsComponent implements OnInit {
     name: '',
     namePlace: ''
   };
+  tags: {
+    languages: { main: Array<string>, second: Array<string> },
+    others: { main: Array<string>, second: Array<string> }
+};;
   website = window.localStorage.getItem('dynamicCvWebsite') || 'www.ds-consultants.eu';
   email = window.localStorage.getItem('dynamicCvEmail') || 'info@ds-consultants.eu';
   showEducationForm = false;
@@ -30,7 +34,7 @@ export class UserSettingsComponent implements OnInit {
     'AEM Developer',
     'QA Consultant'
   ];
-
+  
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
@@ -46,6 +50,8 @@ export class UserSettingsComponent implements OnInit {
   }
 
   save(redirect: boolean) {
+    console.log(this.auth.userUid);
+    console.log(this.user.tags)
     this.auth.updateUserData(this.user).then((result) => {
       if (redirect) {
         this.router.navigate(['/user/dashboard']);
@@ -56,16 +62,16 @@ export class UserSettingsComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    window.localStorage.setItem('dynamicCvEmail', this.email);
-    window.localStorage.setItem('dynamicCvWebsite', this.website);
-    this.save(true);
+     window.localStorage.setItem('dynamicCvEmail', this.email);
+     window.localStorage.setItem('dynamicCvWebsite', this.website);
+     this.save(true);
   }
 
   deleteEducation(e) {
     // alert('test' + e);
     if (confirm('delete ?') === true) {
       this.user.education.splice(e, 1);
-      // this.save(false);
+      this.save(false);
     }
   }
 
@@ -87,5 +93,17 @@ export class UserSettingsComponent implements OnInit {
 
   onAddEducationForm() {
     this.showEducationForm = (this.showEducationForm === true) ? false : true;
+  }
+
+  onAddTags(){
+  // this.user.skillset.others.main = this.tags.others.main
+   console.log(this.user.skillset.others.main )
+  }
+
+  handleEnterKeyPress(event) {
+    const tagName = event.target.tagName.toLowerCase();
+    if (tagName !== 'textarea') {
+      return false;
+    }
   }
 }

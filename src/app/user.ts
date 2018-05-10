@@ -3,6 +3,7 @@ export class User {
     title: string;
     experience: Array<any>;
     education: Array<any>;
+    tags: Array<any>;
     professionalExpectations: string;
     personalNote: string;
     skillset: {

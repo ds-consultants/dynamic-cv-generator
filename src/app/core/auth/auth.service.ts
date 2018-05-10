@@ -15,7 +15,7 @@ import { User } from '../../user';
 export class AuthService {
 
     user: Observable<User | null>;
-
+    userUid: String | '';
     constructor(private afAuth: AngularFireAuth,
         private afs: AngularFirestore,
         private router: Router,
@@ -24,7 +24,9 @@ export class AuthService {
         this.user = this.afAuth.authState
             .switchMap((user) => {
                 if (user) {
-                    return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+                    this.userUid = user.uid;
+                    console.log("Czy zmienia sie user tags "  + this.user);
+                    return this.afs.doc<User>(`users/${this.userUid}`).valueChanges();
                 } else {
                     return Observable.of(null);
                 }
@@ -65,7 +67,7 @@ export class AuthService {
     // Sets user data to firestore after succesful login
     public updateUserData(user: User) {
 
-        const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+        const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${this.userUid}`);
 
         const data = {
             uid: '',
@@ -198,6 +200,8 @@ export class AuthService {
                     'namePlace': 'Białystok'
                 }
             ],
+            tags:  user.tags ||  [ { displayValue: "Angular" },
+            ],
             professionalExpectations: 'As a front-end developer Dawid wants to develop his skills in current and new technologies as AngularJS and Node.js . He likes making nice looking and smooth working websites and applications. He sees himself as a front-end developer with full responsibility for software produced by him',
             personalNote: 'I am a front-end developer and a person of with hobbies like strategic, board and logic games.',
             skillset: {
@@ -206,7 +210,7 @@ export class AuthService {
                     'second': ['SQL', 'React.JS']
                 },
                 'others': {
-                    'main': ['jQuery', 'RWD', 'Bootstrap', 'SASS/LESS', 'Native', 'Node.js', 'D3.js', 'Gulp.js', 'Webpack'],
+                    'main':  user.tags || ['jQuery', 'RWD', 'Bootstrap', 'SASS/LESS', 'Native', 'Node.js', 'D3.js', 'Gulp.js', 'Webpack'],
                     'second': ['Python', 'Django', 'Django Rest Framework', 'Java', 'C#', 'Spring MVC', 'Maven', 'Jira', 'SVN/Git/Mercurial', 'Netbeans', 'PostgresSQL', 'MySQL', 'MongoDB']
                 }
             }

@@ -18,7 +18,7 @@
 <br />
 <div class="row">
   <div class="col-sm-8 offset-sm-2">
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <form #f="ngForm" (keydown.enter)="handleEnterKeyPress($event)" (ngSubmit)="onSubmit(f)" >
       <div class="form-group">
         <label for="company">Name</label>
         <input type="text" class="form-control" [(ngModel)]="user.name" name="name" placeholder="Name">
@@ -78,9 +78,20 @@
         <button type="button" class="btn btn-success" (click)=addEducation()>Save education</button>
       </ng-template>
 
-      <button type="button" class="btn btn-primary" (click)=onAddEducationForm()>+</button>
+      <button type="button" class="btn btn-primary form-group" (click)=onAddEducationForm()>+</button>
+      <br>
+
+      <div class="tags form-group">
+        <label for="skills">Skills</label>
+        <!-- <div  *ngFor="let tag of user.tags; let i=index"> <span class="view-tags">{{tag.displayValue}} </span> </div>  (keydown.enter)="onAddTags()"-->
+        <tags-input   #box class="form-control input-lg" placeholder='Add tag by pressing enter' [removeLastOnBackspace]="true" [(ngModel)]="user.tags"   
+          name="tags">  </tags-input>
+      </div>
+
+    
       <hr>
       <button type="submit" class="btn btn-primary">Save</button>
+
     </form>
   </div>
 </div>
