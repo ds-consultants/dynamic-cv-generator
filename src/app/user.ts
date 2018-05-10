@@ -4,6 +4,7 @@ export class User {
     experience: Array<any>;
     education: Array<any>;
     tags: Array<any>;
+    tagsOther: Array<any>;
     professionalExpectations: string;
     personalNote: string;
     skillset: {

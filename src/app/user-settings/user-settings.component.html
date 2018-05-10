@@ -81,13 +81,21 @@
       <button type="button" class="btn btn-primary form-group" (click)=onAddEducationForm()>+</button>
       <br>
 
-      <div class="tags form-group">
-        <label for="skills">Skills</label>
-        <!-- <div  *ngFor="let tag of user.tags; let i=index"> <span class="view-tags">{{tag.displayValue}} </span> </div>  (keydown.enter)="onAddTags()"-->
+      <div class="row form-group">
+      <div class="tags form-group col-6">
+        <label for="skills">Skills Primary</label>
+        <!-- <div  *ngFor="let tag of user.tags; let i=index"> <span class="view-tags">{{tag.displayValue}} </span> </div>  [(ngModel)]="user.tags.others.main"  (keydown.enter)="onAddTags()"-->
         <tags-input   #box class="form-control input-lg" placeholder='Add tag by pressing enter' [removeLastOnBackspace]="true" [(ngModel)]="user.tags"   
           name="tags">  </tags-input>
       </div>
 
+      <div class="tags form-group col-6">
+        <label for="skillsOther">Skills Other</label>
+        <tags-input    class="form-control input-lg" placeholder='Add tag by pressing enter' [removeLastOnBackspace]="true" [(ngModel)]="user.tagsOther"   (keydown.enter)="onAddTags()"
+          name="tagsOther">  </tags-input>
+      </div>
+
+    </div>
     
       <hr>
       <button type="submit" class="btn btn-primary">Save</button>

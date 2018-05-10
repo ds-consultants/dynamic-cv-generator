@@ -50,8 +50,6 @@ export class UserSettingsComponent implements OnInit {
   }
 
   save(redirect: boolean) {
-    console.log(this.auth.userUid);
-    console.log(this.user.tags)
     this.auth.updateUserData(this.user).then((result) => {
       if (redirect) {
         this.router.navigate(['/user/dashboard']);
@@ -71,7 +69,7 @@ export class UserSettingsComponent implements OnInit {
     // alert('test' + e);
     if (confirm('delete ?') === true) {
       this.user.education.splice(e, 1);
-      this.save(false);
+     // this.save(false);
     }
   }
 
@@ -97,6 +95,7 @@ export class UserSettingsComponent implements OnInit {
 
   onAddTags(){
   // this.user.skillset.others.main = this.tags.others.main
+  debugger
    console.log(this.user.skillset.others.main )
   }
 
