@@ -83,16 +83,31 @@
 
       <div class="row form-group">
       <div class="tags form-group col-6">
-        <label for="skills">Skills Primary</label>
+        <label for="skills">Languages Primary</label>
         <!-- <div  *ngFor="let tag of user.tags; let i=index"> <span class="view-tags">{{tag.displayValue}} </span> </div>  [(ngModel)]="user.tags.others.main"  (keydown.enter)="onAddTags()"-->
-        <tags-input   #box class="form-control input-lg" placeholder='Add tag by pressing enter' [removeLastOnBackspace]="true" [(ngModel)]="user.tags"   
-          name="tags">  </tags-input>
+        <tags-input    class="form-control input-lg" placeholder='Add tag by pressing enter' [removeLastOnBackspace]="true" [(ngModel)]="this.tagsLanguagesMain" (keydown.enter)="onAddTags()"
+          name="Language1">  </tags-input>
       </div>
 
       <div class="tags form-group col-6">
-        <label for="skillsOther">Skills Other</label>
-        <tags-input    class="form-control input-lg" placeholder='Add tag by pressing enter' [removeLastOnBackspace]="true" [(ngModel)]="user.tagsOther"   (keydown.enter)="onAddTags()"
-          name="tagsOther">  </tags-input>
+        <label for="skillsOther">Languages Secondary</label>
+        <tags-input    class="form-control input-lg" placeholder='Add tag by pressing enter' [removeLastOnBackspace]="true" [(ngModel)]="this.tagsLanguagesSecond" (keydown.enter)="onAddTags()"
+          name="Language2">  </tags-input>
+      </div>
+
+    </div>
+
+    <div class="row form-group">
+      <div class="tags form-group col-6">
+        <label for="skills">Others Primary</label>
+        <tags-input   class="form-control input-lg" placeholder='Add tag by pressing enter' [removeLastOnBackspace]="true" [(ngModel)]="this.tagsOtherMain" (keydown.enter)="onAddTags()"
+          name="Others1">  </tags-input>
+      </div>
+
+      <div class="tags form-group col-6">
+        <label for="skillsOther">Others Secondary</label>
+        <tags-input    class="form-control input-lg" placeholder='Add tag by pressing enter' [removeLastOnBackspace]="true" [(ngModel)]="this.tagsOtherSecond"   (keydown.enter)="onAddTags()"
+          name="Others2">  </tags-input>
       </div>
 
     </div>

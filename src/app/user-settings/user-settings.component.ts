@@ -3,6 +3,7 @@ import { User } from '../user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../core/auth/auth.service';
 import { NgForm } from '@angular/forms';
+import { Key } from 'protractor';
 
 @Component({
   selector: 'app-user-settings',
@@ -16,10 +17,13 @@ export class UserSettingsComponent implements OnInit {
     name: '',
     namePlace: ''
   };
-  tags: {
-    languages: { main: Array<string>, second: Array<string> },
-    others: { main: Array<string>, second: Array<string> }
-};;
+ 
+  tagsLanguagesMain: Array<any>;
+  tagsLanguagesSecond: Array<any>;
+  tagsOtherMain: Array<any>;
+  tagsOtherSecond: Array<any>;
+
+
   website = window.localStorage.getItem('dynamicCvWebsite') || 'www.ds-consultants.eu';
   email = window.localStorage.getItem('dynamicCvEmail') || 'info@ds-consultants.eu';
   showEducationForm = false;
@@ -34,12 +38,12 @@ export class UserSettingsComponent implements OnInit {
     'AEM Developer',
     'QA Consultant'
   ];
-  
+
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
     private router: Router
-  ) { }
+  ) {  }
 
   ngOnInit() {
     this.route.data.subscribe(
@@ -47,6 +51,10 @@ export class UserSettingsComponent implements OnInit {
         this.user = data.user;
       }
     );
+    this.tagsLanguagesMain = this.user.skillset.languages.main;
+    this.tagsLanguagesSecond = this.user.skillset.languages.second;
+    this.tagsOtherMain = this.user.skillset.others.main;
+    this.tagsOtherSecond = this.user.skillset.others.second;
   }
 
   save(redirect: boolean) {
@@ -60,16 +68,16 @@ export class UserSettingsComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-     window.localStorage.setItem('dynamicCvEmail', this.email);
-     window.localStorage.setItem('dynamicCvWebsite', this.website);
-     this.save(true);
+    window.localStorage.setItem('dynamicCvEmail', this.email);
+    window.localStorage.setItem('dynamicCvWebsite', this.website);
+    this.save(true);
   }
 
   deleteEducation(e) {
     // alert('test' + e);
     if (confirm('delete ?') === true) {
       this.user.education.splice(e, 1);
-     // this.save(false);
+      // this.save(false);
     }
   }
 
@@ -93,11 +101,14 @@ export class UserSettingsComponent implements OnInit {
     this.showEducationForm = (this.showEducationForm === true) ? false : true;
   }
 
-  onAddTags(){
-  // this.user.skillset.others.main = this.tags.others.main
-  debugger
-   console.log(this.user.skillset.others.main )
+  onAddTags() {
+    this.user.skillset.others.main = this.tagsOtherMain;;
+    this.user.skillset.others.second = this.tagsOtherSecond;
+    this.user.skillset.languages.main = this.tagsLanguagesMain;
+    this.user.skillset.languages.second = this.tagsLanguagesSecond
   }
+  // Notatka: Musze zrobić tak ze do tablicy bede dorzucał cały dodatkowy obiekt z polami o nowych skillach 
+  // Pytanie: Jak definiować kolumnę, tzn: Kolumnę mam np Languages ona posiada pola "displayValue": Angular, 
 
   handleEnterKeyPress(event) {
     const tagName = event.target.tagName.toLowerCase();
