@@ -7,8 +7,8 @@
       {{ experience.time }}
     </p>
   </div>
-  <div class="col-sm-8">
-    <i class="main-project-icon"></i>
+  <div class="col-sm-8" [ngClass]="{'draw-line' : !lastExperience}">
+    <i class="main-project-icon" *ngIf="edit!=true"></i>
     <p class="position">
       <b>
         {{ experience.position }}

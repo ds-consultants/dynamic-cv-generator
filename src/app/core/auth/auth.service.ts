@@ -21,6 +21,7 @@ export class AuthService {
         private router: Router,
         public notify: NotifyService) {
 
+        this.afs.firestore.settings({ timestampsInSnapshots: true });
         this.user = this.afAuth.authState
             .switchMap((user) => {
                 if (user) {

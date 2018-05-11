@@ -3,7 +3,7 @@
   <b>
     {{ project.name }}
   </b>
-  <span *ngIf="internalProject">as: {{ project.title }}</span>
+  <span *ngIf="internalProject">as {{ project.title }}</span>
 </p>
 <p class="description">{{ project.desc }}</p>
 <p class="technologies">

@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 export class UserExperienceComponent {
 
     @Input() experience: any;
+    @Input() lastExperience: Boolean | false;
 
     constructor() { }
 

@@ -33,7 +33,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/takeWhile';
 
-const pageHeight = 1123;
+const pageHeight = 1323;
 
 @Component({
     selector: 'app-user',
@@ -98,7 +98,8 @@ export class UserComponent implements OnInit {
         Observable.interval(100)
             .takeWhile(() => index !== experience.length)
             .subscribe(i => {
-                this.renderSingleExperienceRow(experience[index]);
+                const lastExperience = index === experience.length - 1;
+                this.renderSingleExperienceRow(experience[index], lastExperience);
                 this.ensureLastComponentFitPage();
                 index++;
 
@@ -110,10 +111,11 @@ export class UserComponent implements OnInit {
             });
     }
 
-    renderSingleExperienceRow(exp) {
+    renderSingleExperienceRow(exp, lastExperience) {
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserExperienceComponent);
         const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
         (<UserExperienceComponent>componentRef.instance).experience = exp;
+        (<UserExperienceComponent>componentRef.instance).lastExperience = lastExperience;
     }
 
     renderEducation(education) {
@@ -209,15 +211,15 @@ export class UserComponent implements OnInit {
     }
 
     printCV() {
-        ['cv-page-1', 'cv-page-2', 'cv-page-3'].forEach((page) => {
-            html2canvas(document.getElementById(page)).then((canvasPage) => {
-                if (canvasPage.height > 0) {
-                    this.compressor.compress(canvasPage, this.pdf);
-                }
-            });
-        });
-        setTimeout(() => {
-            this.pdf.save('download.pdf');
-        }, 3000);
+        // ['cv-page-1', 'cv-page-2', 'cv-page-3'].forEach((page) => {
+        //     html2canvas(document.getElementById(page)).then((canvasPage) => {
+        //         if (canvasPage.height > 0) {
+        //             this.compressor.compress(canvasPage, this.pdf);
+        //         }
+        //     });
+        // });
+        // setTimeout(() => {
+        //     this.pdf.save('download.pdf');
+        // }, 3000);
     }
 }
