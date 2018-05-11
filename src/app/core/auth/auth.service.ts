@@ -200,20 +200,20 @@ export class AuthService {
                     'namePlace': 'Białystok'
                 }
             ],
-            tagSkills: [ 
-                { 
-                'languages': { 'main': ['PrimaryLanguage'], 'second': ['SecondaryLanguage'] },
-                'others': { 'main': ['OtherLanguage'], 'second': ['OtherSecondary']}
-                }
-            ],
-            tags:  user.tags ||  [ { displayValue: "Angular" } ],
-            tagsOther: user.tagsOther || [ { displayValue: "OtherSkill" }],
+            // tagSkills: [ 
+            //     { 
+            //     'languages': { 'main': ['PrimaryLanguage'], 'second': ['SecondaryLanguage'] },
+            //     'others': { 'main': ['OtherLanguage'], 'second': ['OtherSecondary']}
+            //     }
+            // ],
+            // tags:  user.tags ||  [ { displayValue: "Angular" } ],
+            // tagsOther: user.tagsOther || [ { displayValue: "OtherSkill" }],
             professionalExpectations: 'As a front-end developer Dawid wants to develop his skills in current and new technologies as AngularJS and Node.js . He likes making nice looking and smooth working websites and applications. He sees himself as a front-end developer with full responsibility for software produced by him',
             personalNote: 'I am a front-end developer and a person of with hobbies like strategic, board and logic games.',
             skillset: {
                 'languages': {
-                    'main': user.skillset.others.main || ['jQuery', 'RWD', 'Bootstrap', 'SASS/LESS', 'Native', 'Node.js', 'D3.js', 'Gulp.js', 'Webpack'],
-                    'second': user.skillset.others.second || ['Python', 'Django', 'Django Rest Framework', 'Java', 'C#', 'Spring MVC', 'Maven', 'Jira', 'SVN/Git/Mercurial', 'Netbeans', 'PostgresSQL', 'MySQL', 'MongoDB']
+                    'main': user.skillset.languages.main || ['jQuery', 'RWD', 'Bootstrap', 'SASS/LESS', 'Native', 'Node.js', 'D3.js', 'Gulp.js', 'Webpack'],
+                    'second': user.skillset.languages.second || ['Python', 'Django', 'Django Rest Framework', 'Java', 'C#', 'Spring MVC', 'Maven', 'Jira', 'SVN/Git/Mercurial', 'Netbeans', 'PostgresSQL', 'MySQL', 'MongoDB']
                 },
                 'others': {
                     'main':  user.skillset.others.main || ['jQuery', 'RWD', 'Bootstrap', 'SASS/LESS', 'Native', 'Node.js', 'D3.js', 'Gulp.js', 'Webpack'],

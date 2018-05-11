@@ -3,9 +3,6 @@ export class User {
     title: string;
     experience: Array<any>;
     education: Array<any>;
-    tagSkills: Array<any>;
-    tags: Array<any>;
-    tagsOther: Array<any>;
     professionalExpectations: string;
     personalNote: string;
     skillset: {
@@ -15,4 +12,7 @@ export class User {
     uid: string;
     email?: string | null;
     photoURL?: string;
+    // tagSkills: Array<any>;
+    // tags: Array<any>;
+    // tagsOther: Array<any>;
 }

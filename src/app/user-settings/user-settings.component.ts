@@ -18,15 +18,24 @@ export class UserSettingsComponent implements OnInit {
     namePlace: ''
   };
  
+  allTags: Array<any> = [];
   tagsLanguagesMain: Array<any>;
   tagsLanguagesSecond: Array<any>;
   tagsOtherMain: Array<any>;
   tagsOtherSecond: Array<any>;
 
+  newSkillsets: Array<any>;
+
+  newSkillsetsX = {
+    name: '',
+    skills: [],
+    // skills: { main: [], second: [], future: []},
+  };
 
   website = window.localStorage.getItem('dynamicCvWebsite') || 'www.ds-consultants.eu';
   email = window.localStorage.getItem('dynamicCvEmail') || 'info@ds-consultants.eu';
   showEducationForm = false;
+  showSkillsetForm = false;
   user: User;
   titleOptions = [
     'Junior Front-end Developer',
@@ -55,6 +64,16 @@ export class UserSettingsComponent implements OnInit {
     this.tagsLanguagesSecond = this.user.skillset.languages.second;
     this.tagsOtherMain = this.user.skillset.others.main;
     this.tagsOtherSecond = this.user.skillset.others.second;
+    //this.allTags.push(this.tagsLanguagesMain,this.tagsLanguagesSecond,this.tagsOtherMain,this.tagsOtherSecond);
+    this.allTags =  [{
+     '1': { skill: this.tagsLanguagesMain},
+      '2':  { skill: this.tagsLanguagesSecond},
+      '3': { skill: this.tagsOtherMain},
+      '4': { skill: this.tagsOtherSecond},
+    }
+    ];
+    // Notatka: tutaj w push durzucic jako obiekty i dać ID wczesniej czyli: 
+    // { id: 1, this.tagsLanguagesMain }
   }
 
   save(redirect: boolean) {
@@ -101,6 +120,12 @@ export class UserSettingsComponent implements OnInit {
     this.showEducationForm = (this.showEducationForm === true) ? false : true;
   }
 
+  onAddSkillsetForm() {
+    this.showSkillsetForm = (this.showSkillsetForm === true) ? false : true;
+    debugger
+    console.log(this.allTags);
+  }
+
   onAddTags() {
     this.user.skillset.others.main = this.tagsOtherMain;;
     this.user.skillset.others.second = this.tagsOtherSecond;
@@ -109,6 +134,17 @@ export class UserSettingsComponent implements OnInit {
   }
   // Notatka: Musze zrobić tak ze do tablicy bede dorzucał cały dodatkowy obiekt z polami o nowych skillach 
   // Pytanie: Jak definiować kolumnę, tzn: Kolumnę mam np Languages ona posiada pola "displayValue": Angular, 
+
+  addNewSkillset(){
+    this.newSkillsets.push(
+      {
+        name: this.newSkillsetsX.name,
+        skills: this.newSkillsetsX.skills,
+        // skills: { main: 'MainTag', second: this.newSkillsetsX.skills.second }
+      }
+    );
+    this.showSkillsetForm = false;
+  }
 
   handleEnterKeyPress(event) {
     const tagName = event.target.tagName.toLowerCase();
