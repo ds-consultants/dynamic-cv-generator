@@ -27,7 +27,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class UserSkillsetComponent implements OnInit {
 
     @Input() name: string;
-    @Input() skills: Array<any>;
+    @Input() skills: { main: Array<any>, second: Array<any>, future: Array<any>};
     constructor() { }
 
     ngOnInit() {

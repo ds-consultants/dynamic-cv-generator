@@ -33,7 +33,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/takeWhile';
 
-const pageHeight = 1323;
+const pageHeight = 1223;
 
 @Component({
     selector: 'app-user',
@@ -105,8 +105,6 @@ export class UserComponent implements OnInit {
 
                 if (index === experience.length) {
                     this.renderEducation(this.user.education);
-                    this.renderProfessionalExpectations(this.user.professionalExpectations, this.user.personalNote);
-                    this.renderSkills(this.user.skillset);
                 }
             });
     }
@@ -135,6 +133,10 @@ export class UserComponent implements OnInit {
             componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
             (<UserEducationComponent>componentRef.instance).school = school;
         });
+
+        setTimeout(() => {
+            this.renderProfessionalExpectations(this.user.professionalExpectations, this.user.personalNote);
+        }, 3000);
     }
 
     renderProfessionalExpectations(expectations, note) {
@@ -146,6 +148,10 @@ export class UserComponent implements OnInit {
         const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
         (<UserProfExpectationsComponent>componentRef.instance).proffesionalExpectations = expectations;
         (<UserProfExpectationsComponent>componentRef.instance).personalNote = note;
+
+        setTimeout(() => {
+            this.renderSkills(this.user.skillset);
+        }, 3000);
     }
 
     renderSkills(skillset) {
