@@ -32,13 +32,13 @@ export class UserSkillsetComponent implements OnInit {
 
     ngOnInit() {
         // Mapping array of skills into array of arrays
-        if (this.skills.second.length >= 6) {
-            const half_length = Math.ceil(this.skills.second.length / 2);
+        if (this.skills.main.length >= 6) {
+            const half_length = Math.ceil(this.skills.main.length / 2);
 
-            const leftHalf = this.skills.second.splice(0, half_length);
-            this.skills.second = [leftHalf, this.skills.second];
+            const leftHalf = this.skills.main.splice(0, half_length);
+            this.skills.main = [leftHalf, this.skills.main];
         } else {
-            this.skills.second = [this.skills.second];
+            this.skills.main = [this.skills.main];
         }
     }
 

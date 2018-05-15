@@ -33,7 +33,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/takeWhile';
 
-const pageHeight = 1223;
+const pageHeight = 1123;
 
 @Component({
     selector: 'app-user',

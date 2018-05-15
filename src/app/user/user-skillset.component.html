@@ -7,13 +7,13 @@
         </div>
         <div class="col-sm-9">
           <div class="row">
-            <ul class="col-sm-4 no-bullet">
-              <li class="main-skill" *ngFor="let name of skills.main">
+            <ul class="col-sm-4 no-bullet" *ngFor="let s of skills.main">
+              <li class="main-skill" *ngFor="let name of s" >
                 {{name}}
               </li>
             </ul>
-            <ul class="col-sm-4 no-bullet" *ngFor="let s of skills.second">
-              <li class="second-skill" *ngFor="let name of s" >
+            <ul class="col-sm-4 no-bullet">
+              <li class="second-skill" *ngFor="let name of skills.second">
                 {{name}}
               </li>
             </ul>

@@ -42,6 +42,9 @@ b {
     margin-top: 1px;
     border-left: 1px solid #5791b9;
 }
+.draw-line-no-margin{
+    border-left: 1px solid #5791b9;
+}
 
 .custom-left-column {
     margin: 0 0 0 70px;
@@ -273,7 +276,7 @@ h3 {
 .a4 {
     font-size: 16px;
     padding: 50px;
-    height: 1403px;
+    height: 1123px;
 }
 
 @page {
