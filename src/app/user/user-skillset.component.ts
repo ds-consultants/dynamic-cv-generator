@@ -27,18 +27,35 @@ import { Component, Input, OnInit } from '@angular/core';
 export class UserSkillsetComponent implements OnInit {
 
     @Input() name: string;
-    @Input() skills: { main: Array<any>, second: Array<any>, future: Array<any>};
+    @Input() skills: { main: Array<any>, second: Array<any>, future: Array<any> };
+    mainSkills: Array<any>;
+    secondSkills: Array<any>;
+
     constructor() { }
+
+    splitSkills(skills): Array<any> {
+        let splitedSkills;
+        if (skills.length >= 6) {
+            const half_length = Math.ceil(skills.length / 2);
+
+            const leftHalf = skills.splice(0, half_length);
+            splitedSkills = [leftHalf, skills];
+        } else {
+            splitedSkills = [skills];
+        }
+
+        return splitedSkills;
+    }
 
     ngOnInit() {
         // Mapping array of skills into array of arrays
-        if (this.skills.main.length >= 6) {
-            const half_length = Math.ceil(this.skills.main.length / 2);
 
-            const leftHalf = this.skills.main.splice(0, half_length);
-            this.skills.main = [leftHalf, this.skills.main];
+        if (this.skills.main.length > this.skills.second.length) {
+            this.mainSkills = this.splitSkills(this.skills.main);
+            this.secondSkills = [this.skills.second];
         } else {
-            this.skills.main = [this.skills.main];
+            this.mainSkills = [this.skills.main];
+            this.secondSkills = this.splitSkills(this.skills.second);
         }
     }
 

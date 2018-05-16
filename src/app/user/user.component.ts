@@ -33,7 +33,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/takeWhile';
 
-const pageHeight = 1123;
+const pageHeight = 1223;
 
 @Component({
     selector: 'app-user',
@@ -118,7 +118,7 @@ export class UserComponent implements OnInit {
 
     renderEducation(education) {
         let currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
-        if (pageHeight - currentContentHeight - 165 < 0) {
+        if (pageHeight - currentContentHeight - 248 < 0) {
             this.bumpCurrentPage();
         }
         let componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserEducationHeaderComponent);
@@ -126,7 +126,7 @@ export class UserComponent implements OnInit {
 
         education.forEach(school => {
             currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
-            if (pageHeight - currentContentHeight - 165 < 0) {
+            if (pageHeight - currentContentHeight - 60 < 0) {
                 this.bumpCurrentPage();
             }
             componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserEducationComponent);
@@ -201,7 +201,7 @@ export class UserComponent implements OnInit {
 
     ensureLastComponentFitPage() {
         setTimeout(() => {
-            if (pageHeight - this.currentPageContainer.nativeElement.clientHeight - 60 < 0) {
+            if (pageHeight - this.currentPageContainer.nativeElement.clientHeight - 20 < 0) {
                 const detachedView = this.currentPage.viewContainerRef.detach();
                 this.bumpCurrentPage();
                 this.currentPage.viewContainerRef.insert(detachedView);

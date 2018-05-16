@@ -5,7 +5,7 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 .main-content {
     position: relative;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans' !important;
     font-weight: lighter;
     /* ADD BORDER */
     /* border: 1px solid; */
@@ -189,14 +189,14 @@ b {
 .bottom-right-footer-content {
     bottom: 24px;
     color: #fff;
-    font-size: 11px;
+    font-size: 8pt;
     text-align: center;
     position: absolute;
     right: 24px;
 }
 
 .prompt {
-    font-size: 12px;
+    font-size: 9pt;
 }
 
 .label-margin {
@@ -211,14 +211,14 @@ b {
 
 h2 {
     color: #5791b9;
-    font-size: 28px;
+    font-size: 22pt;
     line-height: 46px;
     text-transform: uppercase;
 }
 
 h3 {
     font-family: 'Lato';
-    font-size: 40px;
+    font-size: 30pt;
     font-style: italic;
 }
 
@@ -250,7 +250,7 @@ h3 {
 }
 
 .developer-title {
-    font-size: 17px;
+    font-size: 13pt;
 }
 
 .school-place {
@@ -274,9 +274,12 @@ h3 {
 }
 
 .a4 {
-    font-size: 16px;
-    padding: 50px;
-    height: 1123px;
+    font-size: 12pt;
+    padding: 60px 50px 0 50px;
+    size: A4;
+    min-height: 1403px;
+    width: 993px;
+    position: relative;
 }
 
 @page {
@@ -288,6 +291,12 @@ h3 {
     .noprint {
         display: none;
     }
+}
+
+.print-submitter {
+    position: absolute;
+    right: 20px;
+    top: 20px;
 }
 
 * {

@@ -1,16 +1,22 @@
-<button (click)="printCV()" type="button" class="btn btn-success form-button noprint">PDF</button>
+<br class="no-print">
+<br class="no-print">
+<br class="no-print">
+
 <div id="cv-page-1" class="a4">
+  <button (click)="printCV()" type="button" class="btn btn-success form-button noprint print-submitter">Print</button>
   <div class="" id="cv-page-one-content" #cvPageOneContainer>
     <ng-template cvPageOne>
     </ng-template>
   </div>
 </div>
+<br class="no-print">
 <div id="cv-page-2" class="a4">
   <div class="" id="cv-page-two-content" #cvPageTwoContainer>
     <ng-template cvPageTwo>
     </ng-template>
   </div>
 </div>
+<br class="no-print">
 <div id="cv-page-3" class="a4" [ngClass]="{'d-none': !showPageThree}">
   <div class="" id="cv-page-three-content" #cvPageThreeContainer>
     <ng-template cvPageThree>
