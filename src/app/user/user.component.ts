@@ -124,7 +124,7 @@ export class UserComponent implements OnInit {
         let componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserEducationHeaderComponent);
         let componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
 
-        education.forEach(school => {
+        education.forEach((school, index) => {
             currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
             if (pageHeight - currentContentHeight - 60 < 0) {
                 this.bumpCurrentPage();
@@ -132,6 +132,9 @@ export class UserComponent implements OnInit {
             componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserEducationComponent);
             componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
             (<UserEducationComponent>componentRef.instance).school = school;
+            if ((education.length - 1) === index) {
+                (<UserEducationComponent>componentRef.instance).lastRow = true;
+            }
         });
 
         setTimeout(() => {

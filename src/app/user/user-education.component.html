@@ -7,7 +7,7 @@
       {{ school.time }}
     </p>
   </div>
-  <div class="col-sm-8">
+  <div class="col-sm-8" [ngClass]="{'draw-line-no-margin': !lastRow}">
     <i class="main-project-icon" *ngIf="edit!=true"></i>
     <button class="btn btn-danger btnremove" type="button" *ngIf="edit==true" (click)="removeElement()">-</button>
     <p>{{ school.name }}</p>

@@ -42,7 +42,8 @@ b {
     margin-top: 1px;
     border-left: 1px solid #5791b9;
 }
-.draw-line-no-margin{
+
+.draw-line-no-margin {
     border-left: 1px solid #5791b9;
 }
 
@@ -51,7 +52,11 @@ b {
 }
 
 .education-row {
-    margin-bottom: 10px;
+
+}
+
+.education-row .col-sm-4, .education-row .col-sm-8 {
+    padding-bottom: 20px;
 }
 
 .invalid-form-value {
@@ -96,7 +101,7 @@ b {
 
 .a4::after, .a4::before {
     content: "";
-    height: 297mm;
+    min-height: 1403px;
     left: -2px;
     position: absolute;
     top: -5px;
@@ -104,7 +109,7 @@ b {
     -ms-transform: rotate(-2deg);
     -webkit-transform: rotate(-2deg);
     transform: rotate(-2deg);
-    width: 210mm;
+    width: 993px;
     z-index: -1;
 }
 
@@ -289,6 +294,9 @@ h3 {
 
 @media print {
     .noprint {
+        display: none;
+    }
+    .a4::after, .a4::before {
         display: none;
     }
 }
