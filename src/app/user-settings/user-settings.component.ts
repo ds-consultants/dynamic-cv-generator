@@ -30,7 +30,13 @@ export class UserSettingsComponent implements OnInit {
     'AEM Developer',
     'QA Consultant'
   ];
-
+  photoOptions = [
+    'Analyst',
+    'AEM',
+    'Frontend',
+    'Java',
+    'Tester'
+  ];
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
@@ -41,24 +47,19 @@ export class UserSettingsComponent implements OnInit {
     this.route.data.subscribe(
       (data: { user: User }) => {
         this.user = data.user;
+        console.log(this.user.photoURL);
       }
     );
   }
 
-  save(redirect: boolean) {
+  onSubmit() {
+    window.localStorage.setItem('dynamicCvEmail', this.email);
+    window.localStorage.setItem('dynamicCvWebsite', this.website);
     this.auth.updateUserData(this.user).then((result) => {
-      if (redirect) {
-        this.router.navigate(['/user/dashboard']);
-      }
+      this.router.navigate(['/user/dashboard']);
     }).catch((error) => {
       console.log(error);
     });
-  }
-
-  onSubmit(f: NgForm) {
-    window.localStorage.setItem('dynamicCvEmail', this.email);
-    window.localStorage.setItem('dynamicCvWebsite', this.website);
-    this.save(true);
   }
 
   deleteEducation(e) {
@@ -87,5 +88,6 @@ export class UserSettingsComponent implements OnInit {
 
   onAddEducationForm() {
     this.showEducationForm = (this.showEducationForm === true) ? false : true;
+    console.log(this.user.photoURL)
   }
 }

@@ -59,6 +59,23 @@ export class UserComponent implements OnInit {
     showPageThree: Boolean = true;
     pdf = new jsPDF('p', 'px');
 
+
+    title = 'My component!';
+
+  editableText = 'myText';
+  editablePassword = 'myPassword';
+  editableTextArea = 'Text in text area';
+  editableSelect = 2;
+  editableSelectOptions =[
+    {value: 1, text: 'status1'},
+    {value: 2, text: 'status2'},
+    {value: 3, text: 'status3'},
+    {value: 4, text: 'status4'}
+  ];
+
+
+
+
     constructor(
         // private userService: UserService,
         private route: ActivatedRoute,
@@ -74,6 +91,7 @@ export class UserComponent implements OnInit {
         );
     }
 
+      
     bumpCurrentPage() {
         if (this.currentPage === this.cvPageTwo) {
             this.currentPage = this.cvPageThree;
@@ -222,4 +240,6 @@ export class UserComponent implements OnInit {
     printCV() {
         window.print();
     }
+
+    
 }

@@ -11,13 +11,13 @@
           <div class="col-sm-8 shift-to-left">
             <div class="row user-desc-place">
               <div class="col-sm-12">
-                <h3>{{name}}</h3>
+                <h3><inline-editor type="textarea" [(ngModel)]="user.name"> </inline-editor></h3>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-12">
                 <p class="developer-title">
-                  {{title | uppercase}}
+                    <inline-editor type="textarea" [(ngModel)]="user.title"> </inline-editor>
                 </p>
               </div>
             </div>
@@ -26,8 +26,9 @@
       </div>
       <div class="col-sm-3">
         <div class="user-img-title-place">
-          <img src="/assets/img/cq5.svg" class="image-width" alt="User title">
-        </div>
+          <!-- <img src="/assets/img/cq5.svg" class="image-width" alt="User title"> -->
+            <app-user-image-header  [src]="imgUrl"  [imgUrl]='imgUrl' >  </app-user-image-header> 
+          </div>
       </div>
     </div>
   </div>
@@ -35,6 +36,6 @@
 <div class="row">
   <div class="col-sm-12">
     <i class="experience-icon"></i>
-    <h2>Experience</h2>
+    <h2><inline-editor type="textarea" [(ngModel)]="experienceTitle"> </inline-editor></h2> 	
   </div>
 </div>

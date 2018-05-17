@@ -18,7 +18,7 @@
 <br />
 <div class="row">
   <div class="col-sm-8 offset-sm-2">
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <form (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="company">Name</label>
         <input type="text" class="form-control" [(ngModel)]="user.name" name="name" placeholder="Name">
@@ -27,6 +27,12 @@
         <label for="title">Title</label>
         <select [(ngModel)]="user.title" class="form-control" id="title" name="title">
           <option *ngFor="let title of titleOptions" [ngValue]="title">{{title}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="Image">Choose Image</label>
+        <select  [(ngModel)]="user.photoURL" class="form-control" id="image" name="image">
+          <option *ngFor="let photo of photoOptions" [ngValue]="photo">{{photo}}</option>
         </select>
       </div>
       <div class="form-group">
