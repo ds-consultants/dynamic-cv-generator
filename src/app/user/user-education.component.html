@@ -1,17 +1,18 @@
 <div class="row education-row">
   <div class="col-sm-4">
     <p [ngClass]="{'custom-left-column' : edit!=true}">
-      {{ school.place }}
+        <inline-editor type="textarea" [(ngModel)]="school.place"> </inline-editor>
+ 
     </p>
     <p  [ngClass]="{'custom-left-column' : edit!=true}">
-      {{ school.time }}
+        <inline-editor type="textarea" [(ngModel)]="school.time"> </inline-editor>
     </p>
   </div>
   <div class="col-sm-8" [ngClass]="{'draw-line-no-margin': !lastRow}">
     <i class="main-project-icon" *ngIf="edit!=true"></i>
     <button class="btn btn-danger btnremove" type="button" *ngIf="edit==true" (click)="removeElement()">-</button>
-    <p>{{ school.name }}</p>
-    <p class="school-place">{{ school.namePlace }}</p>
+    <p>      <inline-editor type="textarea" [(ngModel)]="school.name"> </inline-editor></p>
+    <p class="school-place"> <inline-editor type="textarea" [(ngModel)]="school.namePlace"> </inline-editor></p>
   </div>
   <div class="clearfix"></div>
 </div>

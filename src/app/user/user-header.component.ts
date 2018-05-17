@@ -8,6 +8,7 @@ import { AuthService } from '../core/auth/auth.service';
 })
 export class UserHeaderComponent implements OnInit {
 
+    experienceTitle = "Experience"
     user: User;
     imgUrl = "";
     imgUrlFront = "/assets/img/front-end.svg";
@@ -15,7 +16,7 @@ export class UserHeaderComponent implements OnInit {
     imgUrlAem = "/assets/img/cq5.svg";
     imgUrlAnalyst = "/assets/img/bussinessAnalyst.svg";
     imgUrlJava = "/assets/img/java.svg";
-    // imgUrl = this.user.photoURL;
+
     @Input() name: string;
     @Input() title: string;
 

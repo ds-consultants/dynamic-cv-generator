@@ -1,17 +1,17 @@
 <div class="row">
   <div class="col-sm-4 ">
     <p class="custom-left-column">
-      {{ experience.company }}
+        <inline-editor type="textarea" [(ngModel)]="experience.company"> </inline-editor>
     </p>
     <p class="custom-left-column">
-      {{ experience.time }}
+        <inline-editor type="textarea" [(ngModel)]="experience.time"> </inline-editor>
     </p>
   </div>
   <div class="col-sm-8 draw-line">
     <i class="main-project-icon" *ngIf="edit!=true"></i>
     <p class="position">
       <b>
-        {{ experience.position }}
+          <inline-editor type="textarea" [(ngModel)]="experience.position"> </inline-editor>
       </b>
     </p>
     <div *ngFor="let project of experience.mainProjects">
