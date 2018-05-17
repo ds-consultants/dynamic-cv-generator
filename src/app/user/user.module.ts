@@ -20,6 +20,7 @@ import { CVPageThreeDirective } from '../cv-page-three.directive';
 import { UserHeaderComponent } from './user-header.component';
 import { UserEducationHeaderComponent } from './user-education-header.component';
 import { UserFooterComponent } from './user-footer.component';
+import { UserImageHeaderComponent } from '../user/user-image-header.component';
 
 @NgModule({
 
@@ -42,7 +43,8 @@ import { UserFooterComponent } from './user-footer.component';
         UserHeaderComponent,
         UserEducationHeaderComponent,
         UserFooterComponent,
-        UserSkillsHeaderComponent
+        UserSkillsHeaderComponent,
+        UserImageHeaderComponent
     ],
     providers: [
         UserResolver,
