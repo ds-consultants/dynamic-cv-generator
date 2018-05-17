@@ -33,7 +33,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/takeWhile';
 
-const pageHeight = 1223;
+const pageHeight = 1123;
 
 @Component({
     selector: 'app-user',
@@ -220,15 +220,6 @@ export class UserComponent implements OnInit {
     }
 
     printCV() {
-        // ['cv-page-1', 'cv-page-2', 'cv-page-3'].forEach((page) => {
-        //     html2canvas(document.getElementById(page)).then((canvasPage) => {
-        //         if (canvasPage.height > 0) {
-        //             this.compressor.compress(canvasPage, this.pdf);
-        //         }
-        //     });
-        // });
-        // setTimeout(() => {
-        //     this.pdf.save('download.pdf');
-        // }, 3000);
+        window.print();
     }
 }
