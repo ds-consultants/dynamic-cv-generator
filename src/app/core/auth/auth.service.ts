@@ -15,7 +15,7 @@ import { User } from '../../user';
 export class AuthService {
 
     user: Observable<User | null>;
-
+    userUid: String | '';
     constructor(private afAuth: AngularFireAuth,
         private afs: AngularFirestore,
         private router: Router,
@@ -25,7 +25,8 @@ export class AuthService {
         this.user = this.afAuth.authState
             .switchMap((user) => {
                 if (user) {
-                    return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+                    this.userUid = user.uid;
+                    return this.afs.doc<User>(`users/${this.userUid}`).valueChanges();
                 } else {
                     return Observable.of(null);
                 }
@@ -65,14 +66,14 @@ export class AuthService {
 
     // Sets user data to firestore after succesful login
     public updateUserData(user: User) {
-
-        const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+        const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${this.userUid}`);
 
         const data = {
             uid: '',
             email: null,
             name: "Paweł Boguski",
             title: 'AEM Developer',
+            photoUrl: user.photoURL,
             experience:  [
               {
                 "company": "Dynamic Solutions",
@@ -148,6 +149,6 @@ export class AuthService {
           
         
         };
-        return userRef.set(data);
+        return userRef.set(user);
     }
 }
