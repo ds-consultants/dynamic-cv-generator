@@ -1,0 +1,86 @@
+#inlineEditWrapper {
+    display: relative;
+    
+    .btn-primary {
+        background-color: #428bca;
+        border-color: #357ebd;
+        color: #ffffff;
+
+        &:hover {
+            color: #ffffff;
+            background-color: #3276b1;
+            border-color: #285e8e;
+        }
+    }
+    
+    .btn-danger {
+        background-color: #ffffff;
+        border-color: #cccccc;
+        color: #333333;
+    
+        &:hover {
+            color: #333333;
+            background-color: #ebebeb;
+            border-color: #adadad;
+        }
+    }
+    
+    a[hidden] {
+        display: inline-block !important;
+    }
+    
+    .inlineEditForm {
+        position: absolute;
+        z-index: 1010;
+        bottom: 120%;
+        
+        .form-group{    
+            padding: 9px 14px;
+            text-align: left;
+            white-space: normal;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            background-clip: padding-box;
+
+            .inline-editor-button-group {
+              margin-left: 10px;
+            }
+        }
+
+        .form-group:after, .form-group:before {
+            top: 99%;
+            left: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        .form-group:after {
+            border-top-color: #999999;
+            border-top-color: rgba(0, 0, 0, 0.25);
+            border-top-color: #ffffff;
+            border-width: 10px;
+            margin-left: -31px;
+        }
+        .form-group:before {
+            color: #ffffff;
+            border-top-color: #999999;
+            border-top-color: rgba(0, 0, 0, 0.25);
+            border-width: 11px;
+            margin-left: -32px;
+        }
+    }
+}
+
+@media print {
+    #inlineEditWrapper {
+        display: none;
+    }
+}

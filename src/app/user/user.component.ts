@@ -32,13 +32,13 @@ import { CVPageThreeDirective } from '../cv-page-three.directive';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/takeWhile';
+import { AuthService } from '../core/auth/auth.service';
 
 const pageHeight = 1123;
 
 @Component({
     selector: 'app-user',
-    templateUrl: './user.component.html',
-    styleUrls: ['./user.component.css']
+    templateUrl: './user.component.html'
 })
 export class UserComponent implements OnInit {
     @ViewChild(CVPageOneDirective) cvPageOne: CVPageOneDirective;
@@ -63,6 +63,7 @@ export class UserComponent implements OnInit {
         // private userService: UserService,
         private route: ActivatedRoute,
         private compressor: PdfCompressorService,
+        private auth: AuthService,
         private componentFactoryResolver: ComponentFactoryResolver
     ) {
         // Retreive the prefetched user
@@ -72,6 +73,14 @@ export class UserComponent implements OnInit {
                 this.showPageThree = false;
             }
         );
+    }
+
+    saveCurrentUser(data) {
+        this.auth.updateUserData(this.user).then((result) => {
+            console.log('User saved');
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     bumpCurrentPage() {
@@ -91,6 +100,7 @@ export class UserComponent implements OnInit {
 
         (<UserHeaderComponent>componentRef.instance).name = name;
         (<UserHeaderComponent>componentRef.instance).title = title;
+        (<UserHeaderComponent>componentRef.instance).updateUser.subscribe( data => this.saveCurrentUser(data));
     }
 
     renderExperience(experience) {
