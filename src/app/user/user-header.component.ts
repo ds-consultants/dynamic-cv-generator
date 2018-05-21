@@ -12,7 +12,7 @@ export class UserHeaderComponent {
 
     saveUser(e) {
         console.log('Name changed: ' + e);
-        this.updateUser.emit();
+        this.updateUser.emit({name: e});
     }
 
     constructor() { }

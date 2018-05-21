@@ -76,6 +76,11 @@ export class UserComponent implements OnInit {
     }
 
     saveCurrentUser(data) {
+        const keys = Object.keys(data);
+        keys.forEach(key => {
+            this.user[key] = data[key];
+        });
+
         this.auth.updateUserData(this.user).then((result) => {
             console.log('User saved');
         }).catch((error) => {
@@ -100,7 +105,7 @@ export class UserComponent implements OnInit {
 
         (<UserHeaderComponent>componentRef.instance).name = name;
         (<UserHeaderComponent>componentRef.instance).title = title;
-        (<UserHeaderComponent>componentRef.instance).updateUser.subscribe( data => this.saveCurrentUser(data));
+        (<UserHeaderComponent>componentRef.instance).updateUser.subscribe(data => this.saveCurrentUser(data));
     }
 
     renderExperience(experience) {
