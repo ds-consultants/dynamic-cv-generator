@@ -10,11 +10,11 @@ export class UserHeaderComponent {
     @Input() name: string;
     @Input() title: string;
     @Output() updateUser = new EventEmitter<any>();
-    imgUrlFront = "/assets/img/front-end.svg";
-    imgUrlTester = "/assets/img/test.svg";
-    imgUrlAem = "/assets/img/cq5.svg";
-    imgUrlAnalyst = "/assets/img/bussinessAnalyst.svg";
-    imgUrlJava = "/assets/img/java.svg";
+    imgUrlFront = '/assets/img/front-end.svg';
+    imgUrlTester = '/assets/img/test.svg';
+    imgUrlAem = '/assets/img/cq5.svg';
+    imgUrlAnalyst = '/assets/img/bussinessAnalyst.svg';
+    imgUrlJava = '/assets/img/java.svg';
 
     titles = [
         { name: 'Junior Front-end Developer', image: this.imgUrlFront },
