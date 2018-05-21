@@ -12,14 +12,15 @@
             <div class="row user-desc-place">
               <div class="col-sm-12">
                 <h3>
-                  <inline-editor type="text" [(ngModel)]="name" (onSave)="saveUser($event)" name="editableText1" size="30"></inline-editor>
+                  <inline-editor type="text" [(ngModel)]="name" (onSave)="saveUser('name', $event)" name="editableText1" size="30"></inline-editor>
                 </h3>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-12">
                 <p class="developer-title">
-                  {{title | uppercase}}
+                  <inline-editor type="select" [(ngModel)]="title" (onSave)="saveUser('title', $event)" [options]="titleOptions"
+                    value="valor"></inline-editor>
                 </p>
               </div>
             </div>
