@@ -170,7 +170,7 @@ export class UserComponent implements OnInit {
         const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
         (<UserProfExpectationsComponent>componentRef.instance).proffesionalExpectations = expectations;
         (<UserProfExpectationsComponent>componentRef.instance).personalNote = note;
-
+        (<UserProfExpectationsComponent>componentRef.instance).updateUser.subscribe(data => this.saveCurrentUser(data));
         setTimeout(() => {
             this.renderSkills(this.user.skillset);
         }, 3000);
