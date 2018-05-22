@@ -135,75 +135,80 @@ export class UserComponent implements OnInit {
     }
 
     renderEducation(education) {
-        let currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
-        if (pageHeight - currentContentHeight - 248 < 0) {
-            this.bumpCurrentPage();
-        }
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserEducationHeaderComponent);
-        const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
-
-        education.forEach((school, index) => {
-            currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
-            if (pageHeight - currentContentHeight - 60 < 0) {
+        setTimeout(() => {
+            let currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
+            if (pageHeight - currentContentHeight - 248 < 0) {
                 this.bumpCurrentPage();
             }
-            const factory = this.componentFactoryResolver.resolveComponentFactory(UserEducationComponent);
-            const ref = this.currentPage.viewContainerRef.createComponent(factory);
-            (<UserEducationComponent>ref.instance).school = school;
-            (<UserEducationComponent>ref.instance).updateUser.subscribe(data => this.saveCurrentUser(data));
-            if ((education.length - 1) === index) {
-                (<UserEducationComponent>ref.instance).lastRow = true;
-            }
-        });
+            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserEducationHeaderComponent);
+            const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
 
-        setTimeout(() => {
-            this.renderProfessionalExpectations(this.user.professionalExpectations, this.user.personalNote);
-        }, 3000);
+            education.forEach((school, index) => {
+                currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
+                if (pageHeight - currentContentHeight - 60 < 0) {
+                    this.bumpCurrentPage();
+                }
+                const factory = this.componentFactoryResolver.resolveComponentFactory(UserEducationComponent);
+                const ref = this.currentPage.viewContainerRef.createComponent(factory);
+                (<UserEducationComponent>ref.instance).school = school;
+                (<UserEducationComponent>ref.instance).updateUser.subscribe(data => this.saveCurrentUser(data));
+                if ((education.length - 1) === index) {
+                    (<UserEducationComponent>ref.instance).lastRow = true;
+                }
+            });
+
+            setTimeout(() => {
+                this.renderProfessionalExpectations(this.user.professionalExpectations, this.user.personalNote);
+            }, 3000);
+        }, 0);
     }
 
     renderProfessionalExpectations(expectations, note) {
-        const currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
-        if (pageHeight - currentContentHeight - 180 < 0) {
-            this.bumpCurrentPage();
-        }
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserProfExpectationsComponent);
-        const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
-        (<UserProfExpectationsComponent>componentRef.instance).proffesionalExpectations = expectations;
-        (<UserProfExpectationsComponent>componentRef.instance).personalNote = note;
-        (<UserProfExpectationsComponent>componentRef.instance).updateUser.subscribe(data => this.saveCurrentUser(data));
         setTimeout(() => {
-            this.renderSkills(this.user.skillset);
-        }, 3000);
+            const currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
+            if (pageHeight - currentContentHeight - 180 < 0) {
+                this.bumpCurrentPage();
+            }
+            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserProfExpectationsComponent);
+            const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
+            (<UserProfExpectationsComponent>componentRef.instance).proffesionalExpectations = expectations;
+            (<UserProfExpectationsComponent>componentRef.instance).personalNote = note;
+            (<UserProfExpectationsComponent>componentRef.instance).updateUser.subscribe(data => this.saveCurrentUser(data));
+            setTimeout(() => {
+                this.renderSkills(this.user.skillset);
+            }, 3000);
+        }, 0);
     }
 
     renderSkills(skillset) {
-        const skillsetNames = Object.keys(skillset);
-        // 280 = skillset header + first row of skills(max 3 main skills)
-        // 60 = bottom padding
-        if (pageHeight - this.currentPageContainer.nativeElement.clientHeight - 280 - 60 < 0) {
-            this.bumpCurrentPage();
-        }
+        setTimeout(() => {
+            const skillsetNames = Object.keys(skillset);
+            // 280 = skillset header + first row of skills(max 3 main skills)
+            // 60 = bottom padding
+            if (pageHeight - this.currentPageContainer.nativeElement.clientHeight - 280 - 60 < 0) {
+                this.bumpCurrentPage();
+            }
 
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserSkillsHeaderComponent);
-        const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
-        // UserSkillsetComponent
-        let index = 0;
-        Observable.interval(100)
-            .takeWhile(() => {
-                if (index !== skillsetNames.length) {
-                    return true;
-                } else {
-                    this.renderFooter();
-                    return false;
-                }
-            })
-            .subscribe(i => {
-                const name = skillsetNames[index];
-                this.renderSingleSkillRow(name, skillset[name]);
-                this.ensureLastComponentFitPage();
-                index++;
-            });
-
+            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserSkillsHeaderComponent);
+            const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
+            // UserSkillsetComponent
+            let index = 0;
+            Observable.interval(100)
+                .takeWhile(() => {
+                    if (index !== skillsetNames.length) {
+                        return true;
+                    } else {
+                        this.renderFooter();
+                        return false;
+                    }
+                })
+                .subscribe(i => {
+                    const name = skillsetNames[index];
+                    this.renderSingleSkillRow(name, skillset[name]);
+                    this.ensureLastComponentFitPage();
+                    index++;
+                });
+        }, 0);
     }
 
     renderSingleSkillRow(skillName, skills) {
@@ -215,10 +220,12 @@ export class UserComponent implements OnInit {
     }
 
     renderFooter() {
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserFooterComponent);
-        const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
-        (<UserFooterComponent>componentRef.instance).email = this.email;
-        (<UserFooterComponent>componentRef.instance).website = this.website;
+        setTimeout(() => {
+            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserFooterComponent);
+            const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
+            (<UserFooterComponent>componentRef.instance).email = this.email;
+            (<UserFooterComponent>componentRef.instance).website = this.website;
+        }, 0);
     }
 
     ensureLastComponentFitPage() {
