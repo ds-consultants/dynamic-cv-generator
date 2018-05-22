@@ -12,8 +12,13 @@ export class UserEducationComponent {
     @Input() edit: boolean;
     @Input() id: number;
     @Output() delete: EventEmitter<any> = new EventEmitter();
+    @Output() updateUser = new EventEmitter<any>();
 
     constructor() { }
+
+    saveSchool(key, newValue) {
+        this.updateUser.emit();
+    }
 
     removeElement() {
         // add remove action

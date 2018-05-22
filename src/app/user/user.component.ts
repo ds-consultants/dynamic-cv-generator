@@ -139,19 +139,20 @@ export class UserComponent implements OnInit {
         if (pageHeight - currentContentHeight - 248 < 0) {
             this.bumpCurrentPage();
         }
-        let componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserEducationHeaderComponent);
-        let componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserEducationHeaderComponent);
+        const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
 
         education.forEach((school, index) => {
             currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
             if (pageHeight - currentContentHeight - 60 < 0) {
                 this.bumpCurrentPage();
             }
-            componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserEducationComponent);
-            componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
-            (<UserEducationComponent>componentRef.instance).school = school;
+            const factory = this.componentFactoryResolver.resolveComponentFactory(UserEducationComponent);
+            const ref = this.currentPage.viewContainerRef.createComponent(factory);
+            (<UserEducationComponent>ref.instance).school = school;
+            (<UserEducationComponent>ref.instance).updateUser.subscribe(data => this.saveCurrentUser(data));
             if ((education.length - 1) === index) {
-                (<UserEducationComponent>componentRef.instance).lastRow = true;
+                (<UserEducationComponent>ref.instance).lastRow = true;
             }
         });
 
