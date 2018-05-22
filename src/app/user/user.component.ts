@@ -76,10 +76,12 @@ export class UserComponent implements OnInit {
     }
 
     saveCurrentUser(data) {
-        const keys = Object.keys(data);
-        keys.forEach(key => {
-            this.user[key] = data[key];
-        });
+        if (data) {
+            const keys = Object.keys(data);
+            keys.forEach(key => {
+                this.user[key] = data[key];
+            });
+        }
 
         this.auth.updateUserData(this.user).then((result) => {
             console.log('User saved');
@@ -129,6 +131,7 @@ export class UserComponent implements OnInit {
         const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
         (<UserExperienceComponent>componentRef.instance).experience = exp;
         (<UserExperienceComponent>componentRef.instance).lastExperience = lastExperience;
+        (<UserExperienceComponent>componentRef.instance).updateUser.subscribe(data => this.saveCurrentUser(data));
     }
 
     renderEducation(education) {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-project',
@@ -9,7 +9,11 @@ export class ProjectComponent {
 
     @Input() project: Object;
     @Input() internalProject: Boolean = false;
+    @Output() updateUser = new EventEmitter<any>();
 
+    saveProject(key, newValue) {
+        this.updateUser.emit();
+    }
     constructor() { }
 
 }
