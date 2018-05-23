@@ -23,7 +23,7 @@ export class UserSettingsComponent implements OnInit {
   website = window.localStorage.getItem('dynamicCvWebsite') || 'www.ds-consultants.eu';
   email = window.localStorage.getItem('dynamicCvEmail') || 'info@ds-consultants.eu';
   showEducationForm = false;
-  showSkillsetForm = true;
+  showSkillsetForm = false;
   user: User;
   titleOptions = [
     'Junior Front-end Developer',
@@ -113,11 +113,21 @@ export class UserSettingsComponent implements OnInit {
     this.showSkillsetForm = !this.showSkillsetForm;
   }
 
+  removeSkillset(skillName) {
+    if (confirm('delete ?') === true) {
+      const index = this.skillNames.indexOf(skillName, 0);
+      if (index > -1) {
+        this.skillNames.splice(index, 1);
+        delete this.user.skillset[skillName];
+      }
+    }
+  }
+
   addNewSkillset() {
     console.log(this.newSkillset);
     this.toggleSkillsetForm();
     this.skillNames.push(this.newSkillset);
-    this.user.skillset[this.newSkillset] = {main:  [], second: []};
+    this.user.skillset[this.newSkillset] = { main: [], second: [] };
   }
 
   onAddEducationForm() {

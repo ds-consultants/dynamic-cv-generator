@@ -86,10 +86,11 @@
     <div class="row form-group">
       <div class="tags form-group col-12" *ngFor="let name of skillNames">
         <label for="skills">{{name}}</label>
+        <button type="button" class="btn btn-danger btnremove" (click)=removeSkillset(name)>x</button>
         <tag-input [(ngModel)]='user.skillset[name].main' name="{{name}}" theme='bootstrap'></tag-input>
         <tag-input [(ngModel)]='user.skillset[name].second' name="{{name}}" theme='bootstrap'></tag-input>
       </div>
-      <button type="button" class="btn btn-primary" (click)=toggleSkillsetForm() *ngIf="!showSkillsetForm">+</button>
+      <button type="button" class="btn btn-primary" (click)=toggleSkillsetForm() *ngIf="!showSkillsetForm">Add new skillset</button>
       <div class="tags form-group col-12" *ngIf="showSkillsetForm">
         <div class="row form-group">
           <label for="newSkillset" class="col-2 skillset-name-label">Name: </label>
