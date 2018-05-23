@@ -3,6 +3,8 @@ import { User } from '../user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../core/auth/auth.service';
 import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { TagModel } from 'ngx-chips/core/accessor';
 
 @Component({
   selector: 'app-user-settings',
@@ -17,9 +19,11 @@ export class UserSettingsComponent implements OnInit {
     namePlace: ''
   };
   skillNames = [];
+  newSkillset = '';
   website = window.localStorage.getItem('dynamicCvWebsite') || 'www.ds-consultants.eu';
   email = window.localStorage.getItem('dynamicCvEmail') || 'info@ds-consultants.eu';
   showEducationForm = false;
+  showSkillsetForm = true;
   user: User;
   titleOptions = [
     'Junior Front-end Developer',
@@ -47,7 +51,25 @@ export class UserSettingsComponent implements OnInit {
     );
   }
 
+  prepareSkills(skill): Array<any> {
+    const cleanCopy = [];
+    skill.forEach(name => {
+      if (typeof name === 'string') {
+        cleanCopy.push(name);
+      } else {
+        cleanCopy.push(name.value);
+      }
+    });
+    return cleanCopy;
+  }
+
   save(redirect: boolean) {
+    this.skillNames.forEach(name => {
+      this.user.skillset[name].main = this.prepareSkills(this.user.skillset[name].main);
+      this.user.skillset[name].second = this.prepareSkills(this.user.skillset[name].second);
+    });
+
+    console.log(this.user.skillset);
     this.auth.updateUserData(this.user).then((result) => {
       if (redirect) {
         this.router.navigate(['/user/dashboard']);
@@ -85,6 +107,17 @@ export class UserSettingsComponent implements OnInit {
     this.education.place = '';
     this.education.namePlace = '';
     this.showEducationForm = false;
+  }
+
+  toggleSkillsetForm() {
+    this.showSkillsetForm = !this.showSkillsetForm;
+  }
+
+  addNewSkillset() {
+    console.log(this.newSkillset);
+    this.toggleSkillsetForm();
+    this.skillNames.push(this.newSkillset);
+    this.user.skillset[this.newSkillset] = {main:  [], second: []};
   }
 
   onAddEducationForm() {
