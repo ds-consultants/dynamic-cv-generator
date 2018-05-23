@@ -82,5 +82,15 @@
       <hr>
       <button type="submit" class="btn btn-primary">Save</button>
     </form>
+    <div class="row form-group">
+      <div class="tags form-group col-12" *ngFor="let name of skillNames">
+        <label for="skills">{{name}}</label>
+        {{user.skillset[name].main}}
+        <tag-input [(ngModel)]='user.skillset[name].main' name="{{name}}" theme='bootstrap'></tag-input>
+        {{user.skillset[name].second}}
+        <tag-input [(ngModel)]='user.skillset[name].second' name="{{name}}" theme='bootstrap'></tag-input>
+      </div>
+    </div>
+
   </div>
 </div>

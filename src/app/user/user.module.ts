@@ -20,15 +20,16 @@ import { CVPageThreeDirective } from '../cv-page-three.directive';
 import { UserHeaderComponent } from './user-header.component';
 import { UserEducationHeaderComponent } from './user-education-header.component';
 import { UserFooterComponent } from './user-footer.component';
-import {InlineEditorModule} from '@qontu/ngx-inline-editor';
-
+import { InlineEditorModule } from '@qontu/ngx-inline-editor';
+import { TagInputModule } from 'ngx-chips';
 @NgModule({
 
     imports: [
         CommonModule,
         FormsModule,
         UserRoutingModule,
-        InlineEditorModule
+        InlineEditorModule,
+        TagInputModule
     ],
     declarations: [
         UserComponent,

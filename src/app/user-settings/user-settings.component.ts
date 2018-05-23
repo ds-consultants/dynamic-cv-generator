@@ -16,6 +16,7 @@ export class UserSettingsComponent implements OnInit {
     name: '',
     namePlace: ''
   };
+  skillNames = [];
   website = window.localStorage.getItem('dynamicCvWebsite') || 'www.ds-consultants.eu';
   email = window.localStorage.getItem('dynamicCvEmail') || 'info@ds-consultants.eu';
   showEducationForm = false;
@@ -41,6 +42,7 @@ export class UserSettingsComponent implements OnInit {
     this.route.data.subscribe(
       (data: { user: User }) => {
         this.user = data.user;
+        this.skillNames = Object.keys(this.user.skillset);
       }
     );
   }

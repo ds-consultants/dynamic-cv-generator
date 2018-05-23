@@ -317,3 +317,7 @@ h3 {
 .top-space {
     margin-top: 100px;
 }
+
+tag {
+    padding: .08rem .45rem !important;
+}
