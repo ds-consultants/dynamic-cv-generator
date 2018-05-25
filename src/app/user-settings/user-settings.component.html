@@ -18,7 +18,7 @@
 <br />
 <div class="row">
   <div class="col-sm-8 offset-sm-2">
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <form #f="ngForm">
       <div class="form-group">
         <label for="company">Name</label>
         <input type="text" class="form-control" [(ngModel)]="user.name" name="name" placeholder="Name">
@@ -78,9 +78,98 @@
         <button type="button" class="btn btn-success" (click)=addEducation()>Save education</button>
       </ng-template>
 
-      <button type="button" class="btn btn-primary" (click)=onAddEducationForm()>+</button>
+      <button type="button" class="btn btn-primary" (click)=onAddEducationForm()>Add education</button>
       <hr>
-      <button type="submit" class="btn btn-primary">Save</button>
+
+      <label for="experience">Experience</label>
+      <div *ngFor="let experience of user.experience; let i=index">
+        <app-user-experience [experience]="experience" [lastExperience]="false" [id]="i" [editForm]="true"
+          (editUpdateUser)="updateUser($event)"
+          (deleteExperienceProject)="deleteExperienceProject($event)"
+          (deleteExperience)="deleteExperience($event)"></app-user-experience>
+      </div>
+
+      <ng-template [ngIf]="showExperienceForm">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="company">Place</label>
+                <input type="text" class="form-control" [(ngModel)]="experience.company" name="experiencePlace" placeholder="Place">
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="company">Time</label>
+                <input type="text" class="form-control" [(ngModel)]="experience.time" name="experienceTime" placeholder="Time">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="company">Name of position</label>
+                <input type="text" class="form-control" [(ngModel)]="experience.position" name="experiencePosition" placeholder="Name of position">
+              </div>
+            </div>
+          </div>
+          <div class="row">Main projects</div>
+          <div class="row">
+            <!-- <div *ngFor="let mainProject of experience.mainProjects; let i=index" class="experience-form-row">
+              <app-user-experience [experience]="experience" [lastExperience]="false" [id]="i" [editForm]="true" (editUpdateUser)="updateUser($event)"></app-user-experience>
+            </div> -->
+            <app-user-experience [experience]="experience" [lastExperience]="false" [id]="i" [editForm]="true" (editUpdateUser)="updateUser($event)" class="experience-form-row"></app-user-experience>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="company">Desc</label>
+                <input type="text" class="form-control" [(ngModel)]="mainProject.desc" name="mainProjectPlace" placeholder="Place">
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="company">Technologies</label>
+                <input type="text" class="form-control" [(ngModel)]="mainProject.technologies" name="mainProjectTime" placeholder="Time">
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-success" (click)=addMainProject()>Add main project</button>
+          <hr>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="company">Name</label>
+                <input type="text" class="form-control" [(ngModel)]="project.name" name="projectName" placeholder="Name">
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="company">Title</label>
+                <input type="text" class="form-control" [(ngModel)]="project.title" name="projectTitle" placeholder="Title">
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="company">Desc</label>
+                <input type="text" class="form-control" [(ngModel)]="project.desc" name="projectPlace" placeholder="Place">
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="company">Technologies</label>
+                <input type="text" class="form-control" [(ngModel)]="project.technologies" name="projectTime" placeholder="Time">
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-success" (click)=addProject()>Add project</button>
+
+          <button type="button" class="btn btn-success" (click)=addExperience()>Save experience</button>
+        </ng-template>
+        <button type="button" class="btn btn-primary" (click)=onAddExperienceForm()>Add experience</button>
+      <hr>
+
+      <button class="btn btn-primary" (click)="onSubmit()">Save</button>
     </form>
   </div>
 </div>

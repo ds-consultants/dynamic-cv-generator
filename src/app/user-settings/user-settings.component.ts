@@ -16,9 +16,27 @@ export class UserSettingsComponent implements OnInit {
     name: '',
     namePlace: ''
   };
+  experience = {
+    company: '',
+    position: '',
+    projects: [],
+    time: '',
+    mainProjects: []
+  };
+  project = {
+    name: '',
+    title: '',
+    desc: '',
+    technologies: ''
+  };
+  mainProject = {
+    desc: '',
+    technologies: ''
+  };
   website = window.localStorage.getItem('dynamicCvWebsite') || 'www.ds-consultants.eu';
   email = window.localStorage.getItem('dynamicCvEmail') || 'info@ds-consultants.eu';
   showEducationForm = false;
+  showExperienceForm = false;
   user: User;
   titleOptions = [
     'Junior Front-end Developer',
@@ -41,6 +59,7 @@ export class UserSettingsComponent implements OnInit {
     this.route.data.subscribe(
       (data: { user: User }) => {
         this.user = data.user;
+        console.log(this.user);
       }
     );
   }
@@ -85,7 +104,65 @@ export class UserSettingsComponent implements OnInit {
     this.showEducationForm = false;
   }
 
+  addExperience() {
+    console.log('save');
+    this.user.experience.push(
+      {
+        company: this.experience.company,
+        position: this.experience.position,
+        projects: this.experience.projects,
+        time: this.experience.time,
+        mainProjects: this.experience.mainProjects
+      }
+    );
+  }
+
   onAddEducationForm() {
     this.showEducationForm = (this.showEducationForm === true) ? false : true;
+  }
+
+  onAddExperienceForm() {
+    this.showExperienceForm = (this.showExperienceForm === true) ? false : true;
+  }
+
+  updateUser(event) {
+    this.save(false);
+  }
+
+  addMainProject() {
+    this.experience.mainProjects.push(
+      {
+        desc: this.mainProject.desc,
+        technologies: this.mainProject.technologies.split(',')
+      }
+    );
+    this.mainProject.desc = '';
+    this.mainProject.technologies = '';
+  }
+
+  addProject() {
+    this.experience.projects.push(
+      {
+        name: this.project.name,
+        title: this.project.title,
+        desc: this.project.desc,
+        technologies: this.project.technologies.split(',')
+      }
+    );
+    this.project.desc = '';
+    this.project.technologies = '';
+    this.project.name = '';
+    this.project.title = '';
+  }
+
+  deleteExperienceProject(event) {
+    console.log(event);
+    console.log(this.user.experience[event.experienceKey][event.key][event.index])
+    this.user.experience[event.experienceKey][event.key].splice(event.index, 1);
+  }
+
+  deleteExperience(event) {
+    console.log(event);
+    this.user.experience.splice(event.index, 1);
   }
 }
