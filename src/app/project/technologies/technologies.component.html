@@ -1,0 +1,14 @@
+<span (click)="enableInline()" *ngIf="!editing">
+    {{ currentTechnologies.join(", ") }}
+</span>
+<span *ngIf="editing" name="customEditableText" class="customEditableTags">
+  <tag-input [(ngModel)]='currentTechnologies' name="projectTechnologies" theme='bootstrap'></tag-input>
+  <span class="c-inline-editor inline-editor-button-group ng-star-inserted tags-buttons">
+    <button class="btn btn-xs btn-primary c-inline-editor" (click)=saveTechnologies()>
+      <span class="fa fa-check"></span>
+    </button>
+    <button class="btn btn-xs btn-danger c-inline-editor" (click)=cancelEdit()>
+      <span class="fa fa-remove"></span>
+    </button>
+  </span>
+</span>

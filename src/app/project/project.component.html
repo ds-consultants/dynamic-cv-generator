@@ -15,5 +15,5 @@
   <span>
     Technologies used:
   </span>
-  {{ project.technologies.join(", ") }}
+  <project-technologies [technologies]='project.technologies' (onSave)="saveProject('technologies', $event)"></project-technologies>
 </p>

@@ -3,6 +3,8 @@ import { User } from '../user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../core/auth/auth.service';
 import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { TagModel } from 'ngx-chips/core/accessor';
 
 @Component({
   selector: 'app-user-settings',
@@ -37,6 +39,9 @@ export class UserSettingsComponent implements OnInit {
   email = window.localStorage.getItem('dynamicCvEmail') || 'info@ds-consultants.eu';
   showEducationForm = false;
   showExperienceForm = false;
+  skillNames = [];
+  newSkillset = '';
+  showSkillsetForm = false;
   user: User;
   titleOptions = [
     'Junior Front-end Developer',
@@ -60,11 +65,28 @@ export class UserSettingsComponent implements OnInit {
       (data: { user: User }) => {
         this.user = data.user;
         console.log(this.user);
+        this.skillNames = Object.keys(this.user.skillset);
       }
     );
   }
 
+  prepareSkills(skill): Array<any> {
+    const cleanCopy = [];
+    skill.forEach(name => {
+      if (typeof name === 'string') {
+        cleanCopy.push(name);
+      } else {
+        cleanCopy.push(name.value);
+      }
+    });
+    return cleanCopy;
+  }
+
   save(redirect: boolean) {
+    this.skillNames.forEach(name => {
+      this.user.skillset[name].main = this.prepareSkills(this.user.skillset[name].main);
+      this.user.skillset[name].second = this.prepareSkills(this.user.skillset[name].second);
+    });
     this.auth.updateUserData(this.user).then((result) => {
       if (redirect) {
         this.router.navigate(['/user/dashboard']);
@@ -75,8 +97,6 @@ export class UserSettingsComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    window.localStorage.setItem('dynamicCvEmail', this.email);
-    window.localStorage.setItem('dynamicCvWebsite', this.website);
     this.save(true);
   }
 
@@ -84,7 +104,7 @@ export class UserSettingsComponent implements OnInit {
     // alert('test' + e);
     if (confirm('delete ?') === true) {
       this.user.education.splice(e, 1);
-      // this.save(false);
+      this.save(false);
     }
   }
 
@@ -102,10 +122,10 @@ export class UserSettingsComponent implements OnInit {
     this.education.place = '';
     this.education.namePlace = '';
     this.showEducationForm = false;
+    this.save(false);
   }
 
   addExperience() {
-    console.log('save');
     this.user.experience.push(
       {
         company: this.experience.company,
@@ -115,6 +135,30 @@ export class UserSettingsComponent implements OnInit {
         mainProjects: this.experience.mainProjects
       }
     );
+    this.showExperienceForm = (this.showExperienceForm === true) ? false : true;
+    this.save(false);
+  }
+
+  toggleSkillsetForm() {
+    this.showSkillsetForm = !this.showSkillsetForm;
+  }
+
+  removeSkillset(skillName) {
+    if (confirm('delete ?') === true) {
+      const index = this.skillNames.indexOf(skillName, 0);
+      if (index > -1) {
+        this.skillNames.splice(index, 1);
+        delete this.user.skillset[skillName];
+      }
+      this.save(false);
+    }
+  }
+
+  addNewSkillset() {
+    this.toggleSkillsetForm();
+    this.skillNames.push(this.newSkillset);
+    this.user.skillset[this.newSkillset] = { main: [], second: [] };
+    this.save(false);
   }
 
   onAddEducationForm() {
@@ -133,7 +177,7 @@ export class UserSettingsComponent implements OnInit {
     this.experience.mainProjects.push(
       {
         desc: this.mainProject.desc,
-        technologies: this.mainProject.technologies.split(',')
+        technologies: this.prepareSkills(this.mainProject.technologies)
       }
     );
     this.mainProject.desc = '';
@@ -146,7 +190,7 @@ export class UserSettingsComponent implements OnInit {
         name: this.project.name,
         title: this.project.title,
         desc: this.project.desc,
-        technologies: this.project.technologies.split(',')
+        technologies: this.prepareSkills(this.project.technologies)
       }
     );
     this.project.desc = '';
@@ -156,13 +200,12 @@ export class UserSettingsComponent implements OnInit {
   }
 
   deleteExperienceProject(event) {
-    console.log(event);
-    console.log(this.user.experience[event.experienceKey][event.key][event.index])
     this.user.experience[event.experienceKey][event.key].splice(event.index, 1);
+    this.save(false);
   }
 
   deleteExperience(event) {
-    console.log(event);
-    this.user.experience.splice(event.index, 1);
+    this.user.experience.splice(event.experienceKey, 1);
+    this.save(false);
   }
 }

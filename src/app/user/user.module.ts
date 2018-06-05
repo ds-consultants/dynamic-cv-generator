@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UserExperienceComponent } from './user-experience.component';
 import { ProjectComponent } from '../project/project.component';
+import { ProjectTechnologiesComponent } from '../project/technologies/technologies.component';
 import { UserEducationComponent } from './user-education.component';
 import { UserProfExpectationsComponent } from './user-prof-expectations.component';
 import { UserSkillsHeaderComponent } from './user-skills-header.component';
@@ -20,19 +21,21 @@ import { CVPageThreeDirective } from '../cv-page-three.directive';
 import { UserHeaderComponent } from './user-header.component';
 import { UserEducationHeaderComponent } from './user-education-header.component';
 import { UserFooterComponent } from './user-footer.component';
-import {InlineEditorModule} from '@qontu/ngx-inline-editor';
-
+import { InlineEditorModule } from '@qontu/ngx-inline-editor';
+import { TagInputModule } from 'ngx-chips';
 @NgModule({
 
     imports: [
         CommonModule,
         FormsModule,
         UserRoutingModule,
-        InlineEditorModule
+        InlineEditorModule,
+        TagInputModule
     ],
     declarations: [
         UserComponent,
         ProjectComponent,
+        ProjectTechnologiesComponent,
         UserExperienceComponent,
         UserEducationComponent,
         UserProfExpectationsComponent,

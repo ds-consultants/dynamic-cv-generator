@@ -1,7 +1,7 @@
 <div class="bottom-right-footer" *ngIf="!(website=='' && email =='')">
   <p class="bottom-right-footer-content">
-    {{email}}
+    <inline-editor type="text" [(ngModel)]="email" (onSave)="saveProject('dynamicCvEmail', $event)" size="40" name="customEditableText" *ngIf="email"></inline-editor>
     <br/>
-    {{website}}
+    <inline-editor type="text" [(ngModel)]="website" (onSave)="saveProject('dynamicCvWebsite', $event)" size="40" name="customEditableText" *ngIf="website"></inline-editor>
   </p>
 </div>

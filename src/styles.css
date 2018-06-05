@@ -321,3 +321,30 @@ h3 {
 .experience-form-row {
     width: 100%;
 }
+
+tag {
+    padding: .08rem .45rem !important;
+}
+
+.bottom-right-footer-content .inlineEditForm {
+    left: -320px;
+}
+
+.bottom-right-footer-content .inlineEditForm .form-group:before,
+.bottom-right-footer-content .inlineEditForm .form-group:after {
+    left: 90% !important;
+}
+
+.custom-card-title {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.cancel-skillset {
+    margin-left: 16px;
+}
+
+.custom-block-button {
+    margin-top: 16px;
+}

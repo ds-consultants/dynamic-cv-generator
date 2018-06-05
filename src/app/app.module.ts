@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
@@ -31,6 +32,7 @@ import { UserResolver } from './user/user-resolver.module';
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         CoreModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule,
