@@ -8,7 +8,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ProjectTechnologiesComponent {
 
     @Input() technologies: any;
-    // @Input() onSave: any;
     @Output() updateTechnologies = new EventEmitter<any>();
     @Output() onSave = new EventEmitter<any>();
     editing = false;

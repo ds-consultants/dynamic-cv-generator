@@ -22,7 +22,6 @@
         <textarea class="form-control" [(ngModel)]="user.personalNote" name="personalNote" id="personalNote" cols="30" rows="3" (ngModelChange)="save()">
         </textarea>
       </div>
-      <!-- <label for="education">Education</label> -->
       <h1 class="card-title pricing-card-title text-center custom-card-title">
           <label for="education">Education</label>
       </h1>
@@ -78,9 +77,6 @@
 
       <button type="button" class="btn btn-lg btn-block btn-outline-primary custom-block-button" (click)=onAddEducationForm() *ngIf="!showEducationForm">Add education</button>
       <hr>
-
-      <!-- <label for="experience">Experience</label> -->
-
       <h1 class="card-title pricing-card-title text-center custom-card-title">
         <label for="experience">Experience</label>
       </h1>
@@ -121,7 +117,16 @@
               </div>
             </div>
             <div class="row">
-              <app-user-experience [experience]="experience" [lastExperience]="false" [id]="i" [editForm]="true" (editUpdateUser)="updateUser($event)" class="experience-form-row"></app-user-experience>
+              <app-user-experience
+                [experience]="experience"
+                [lastExperience]="false"
+                [id]="i"
+                [editForm]="true"
+                (editUpdateUser)="updateUser($event)"
+                class="experience-form-row"
+                (deleteExperienceProject)="deleteNewExperienceProject($event)"
+                (deleteExperience)="deleteNewExperience($event)"
+              ></app-user-experience>
             </div>
             <h1 class="card-title pricing-card-title text-center custom-card-title">
               Main project
@@ -140,7 +145,6 @@
                 </div>
               </div>
             </div>
-            <!-- <button type="button" class="btn btn-success" (click)=addMainProject()>Add main project</button> -->
             <button type="button" class="btn btn-lg btn-block btn-outline-primary custom-block-button" (click)=addMainProject()>Add main project</button>
             <hr>
             <h1 class="card-title pricing-card-title text-center custom-card-title">
@@ -168,12 +172,10 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="company">Technologies</label>
-                  <!-- <input type="text" class="form-control" [(ngModel)]="project.technologies" name="projectTechnologies" placeholder="Technologies"> -->
                   <tag-input [(ngModel)]='project.technologies' name="projectTechnologies" theme='bootstrap'></tag-input>
                 </div>
               </div>
             </div>
-            <!-- <button type="button" class="btn btn-success" (click)=addProject()>Add project</button> -->
             <button type="button" class="btn btn-lg btn-block btn-outline-primary custom-block-button" (click)=addProject()>Add project</button>
             <hr>
             <div class="row">
@@ -222,10 +224,5 @@
       </div>
       <hr>
     </div>
-
-
-    <!-- <hr>
-    <button class="btn btn-primary" (click)="onSubmit()">Save</button> -->
-
   </div>
 </div>

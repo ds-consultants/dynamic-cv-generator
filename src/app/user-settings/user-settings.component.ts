@@ -64,7 +64,6 @@ export class UserSettingsComponent implements OnInit {
     this.route.data.subscribe(
       (data: { user: User }) => {
         this.user = data.user;
-        console.log(this.user);
         this.skillNames = Object.keys(this.user.skillset);
       }
     );
@@ -72,13 +71,15 @@ export class UserSettingsComponent implements OnInit {
 
   prepareSkills(skill): Array<any> {
     const cleanCopy = [];
-    skill.forEach(name => {
-      if (typeof name === 'string') {
-        cleanCopy.push(name);
-      } else {
-        cleanCopy.push(name.value);
-      }
-    });
+    if(skill.length > 0) {
+      skill.forEach(name => {
+        if (typeof name === 'string') {
+          cleanCopy.push(name);
+        } else {
+          cleanCopy.push(name.value);
+        }
+      });
+    }
     return cleanCopy;
   }
 
@@ -197,6 +198,31 @@ export class UserSettingsComponent implements OnInit {
     this.project.technologies = '';
     this.project.name = '';
     this.project.title = '';
+  }
+
+  deleteNewExperienceProject(event) {
+    console.log(event);
+    this.experience[event.key].splice(event.index, 1);
+  }
+
+  deleteNewExperience(event) {
+    this.experience = {
+      company: '',
+      position: '',
+      projects: [],
+      time: '',
+      mainProjects: []
+    };
+    this.project = {
+      name: '',
+      title: '',
+      desc: '',
+      technologies: ''
+    };
+    this.mainProject = {
+      desc: '',
+      technologies: ''
+    };
   }
 
   deleteExperienceProject(event) {

@@ -16,25 +16,19 @@ export class UserExperienceComponent {
     @Output() deleteExperience = new EventEmitter<any>();
 
     saveExperience(key, newValue) {
-        console.log(key);
-        console.log(newValue);
         if(this.editForm){
-            console.log('1');
             this.editUpdateUser.emit();
         } else {
-            console.log('2');
             this.updateUser.emit();
         }
     }
     constructor() { }
 
     removeProject(i) {
-        console.log(this.experience.company + ' project id ' + i);
         this.deleteProject('projects', i);
     }
 
     removeMainProject(i) {
-        console.log(this.experience.company + ' main project id ' + i);
         this.deleteProject('mainProjects', i);
     }
 
