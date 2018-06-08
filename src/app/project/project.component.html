@@ -11,9 +11,9 @@
 <p class="description">
   <inline-editor type="textarea" [(ngModel)]="project.desc" (onSave)="saveProject('desc', $event)" cols="70" rows="5" name="customEditableText"></inline-editor>
 </p>
-<p class="technologies">
+<p class="technologies" *ngIf="project.technologies.length > 0">
   <span>
     Technologies used:
   </span>
-  {{ project.technologies.join(", ") }}
+  <project-technologies [technologies]='project.technologies' (onSave)="saveProject('technologies', $event)"></project-technologies>
 </p>

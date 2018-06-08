@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter  } from '@angular/core';
 
 @Component({
   selector: 'app-user-footer',
@@ -7,7 +7,12 @@ import { Component, Input } from '@angular/core';
 export class UserFooterComponent {
   @Input() website: string;
   @Input() email: string;
+  @Output() updateFooter = new EventEmitter<any>();
 
   constructor() { }
+
+  saveProject(key, newValue) {
+    window.localStorage.setItem(key, newValue);
+  }
 
 }

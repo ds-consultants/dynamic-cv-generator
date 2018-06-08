@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UserExperienceComponent } from './user-experience.component';
 import { ProjectComponent } from '../project/project.component';
+import { ProjectTechnologiesComponent } from '../project/technologies/technologies.component';
 import { UserEducationComponent } from './user-education.component';
 import { UserProfExpectationsComponent } from './user-prof-expectations.component';
 import { UserSkillsHeaderComponent } from './user-skills-header.component';
@@ -34,6 +35,7 @@ import { TagInputModule } from 'ngx-chips';
     declarations: [
         UserComponent,
         ProjectComponent,
+        ProjectTechnologiesComponent,
         UserExperienceComponent,
         UserEducationComponent,
         UserProfExpectationsComponent,

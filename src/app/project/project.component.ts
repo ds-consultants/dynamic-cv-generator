@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { constructDependencies } from '@angular/core/src/di/reflective_provider';
 
 @Component({
     selector: 'app-project',
@@ -12,8 +13,8 @@ export class ProjectComponent {
     @Output() updateUser = new EventEmitter<any>();
 
     saveProject(key, newValue) {
-        this.updateUser.emit();
+        this.project[key] = newValue;
+        this.updateUser.emit(this.project);
     }
     constructor() { }
-
 }

@@ -18,11 +18,29 @@ export class UserSettingsComponent implements OnInit {
     name: '',
     namePlace: ''
   };
-  skillNames = [];
-  newSkillset = '';
+  experience = {
+    company: '',
+    position: '',
+    projects: [],
+    time: '',
+    mainProjects: []
+  };
+  project = {
+    name: '',
+    title: '',
+    desc: '',
+    technologies: ''
+  };
+  mainProject = {
+    desc: '',
+    technologies: ''
+  };
   website = window.localStorage.getItem('dynamicCvWebsite') || 'www.ds-consultants.eu';
   email = window.localStorage.getItem('dynamicCvEmail') || 'info@ds-consultants.eu';
   showEducationForm = false;
+  showExperienceForm = false;
+  skillNames = [];
+  newSkillset = '';
   showSkillsetForm = false;
   user: User;
   titleOptions = [
@@ -53,13 +71,15 @@ export class UserSettingsComponent implements OnInit {
 
   prepareSkills(skill): Array<any> {
     const cleanCopy = [];
-    skill.forEach(name => {
-      if (typeof name === 'string') {
-        cleanCopy.push(name);
-      } else {
-        cleanCopy.push(name.value);
-      }
-    });
+    if(skill.length > 0) {
+      skill.forEach(name => {
+        if (typeof name === 'string') {
+          cleanCopy.push(name);
+        } else {
+          cleanCopy.push(name.value);
+        }
+      });
+    }
     return cleanCopy;
   }
 
@@ -68,8 +88,6 @@ export class UserSettingsComponent implements OnInit {
       this.user.skillset[name].main = this.prepareSkills(this.user.skillset[name].main);
       this.user.skillset[name].second = this.prepareSkills(this.user.skillset[name].second);
     });
-
-    console.log(this.user.skillset);
     this.auth.updateUserData(this.user).then((result) => {
       if (redirect) {
         this.router.navigate(['/user/dashboard']);
@@ -80,8 +98,6 @@ export class UserSettingsComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    window.localStorage.setItem('dynamicCvEmail', this.email);
-    window.localStorage.setItem('dynamicCvWebsite', this.website);
     this.save(true);
   }
 
@@ -89,7 +105,7 @@ export class UserSettingsComponent implements OnInit {
     // alert('test' + e);
     if (confirm('delete ?') === true) {
       this.user.education.splice(e, 1);
-      // this.save(false);
+      this.save(false);
     }
   }
 
@@ -107,6 +123,21 @@ export class UserSettingsComponent implements OnInit {
     this.education.place = '';
     this.education.namePlace = '';
     this.showEducationForm = false;
+    this.save(false);
+  }
+
+  addExperience() {
+    this.user.experience.push(
+      {
+        company: this.experience.company,
+        position: this.experience.position,
+        projects: this.experience.projects,
+        time: this.experience.time,
+        mainProjects: this.experience.mainProjects
+      }
+    );
+    this.showExperienceForm = (this.showExperienceForm === true) ? false : true;
+    this.save(false);
   }
 
   toggleSkillsetForm() {
@@ -120,17 +151,87 @@ export class UserSettingsComponent implements OnInit {
         this.skillNames.splice(index, 1);
         delete this.user.skillset[skillName];
       }
+      this.save(false);
     }
   }
 
   addNewSkillset() {
-    console.log(this.newSkillset);
     this.toggleSkillsetForm();
     this.skillNames.push(this.newSkillset);
     this.user.skillset[this.newSkillset] = { main: [], second: [] };
+    this.save(false);
   }
 
   onAddEducationForm() {
     this.showEducationForm = (this.showEducationForm === true) ? false : true;
+  }
+
+  onAddExperienceForm() {
+    this.showExperienceForm = (this.showExperienceForm === true) ? false : true;
+  }
+
+  updateUser(event) {
+    this.save(false);
+  }
+
+  addMainProject() {
+    this.experience.mainProjects.push(
+      {
+        desc: this.mainProject.desc,
+        technologies: this.prepareSkills(this.mainProject.technologies)
+      }
+    );
+    this.mainProject.desc = '';
+    this.mainProject.technologies = '';
+  }
+
+  addProject() {
+    this.experience.projects.push(
+      {
+        name: this.project.name,
+        title: this.project.title,
+        desc: this.project.desc,
+        technologies: this.prepareSkills(this.project.technologies)
+      }
+    );
+    this.project.desc = '';
+    this.project.technologies = '';
+    this.project.name = '';
+    this.project.title = '';
+  }
+
+  deleteNewExperienceProject(event) {
+    console.log(event);
+    this.experience[event.key].splice(event.index, 1);
+  }
+
+  deleteNewExperience(event) {
+    this.experience = {
+      company: '',
+      position: '',
+      projects: [],
+      time: '',
+      mainProjects: []
+    };
+    this.project = {
+      name: '',
+      title: '',
+      desc: '',
+      technologies: ''
+    };
+    this.mainProject = {
+      desc: '',
+      technologies: ''
+    };
+  }
+
+  deleteExperienceProject(event) {
+    this.user.experience[event.experienceKey][event.key].splice(event.index, 1);
+    this.save(false);
+  }
+
+  deleteExperience(event) {
+    this.user.experience.splice(event.experienceKey, 1);
+    this.save(false);
   }
 }
