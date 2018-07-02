@@ -69,6 +69,10 @@ export class UserSettingsComponent implements OnInit {
     );
   }
 
+  showNewHireExperienceButton(): Boolean {
+    return !this.user.experience.find(x => x.company.includes("Dynamic Solutions"));
+  }
+
   prepareSkills(skill): Array<any> {
     const cleanCopy = [];
     if (skill.length > 0) {
@@ -151,7 +155,7 @@ export class UserSettingsComponent implements OnInit {
         time: currentDate.getFullYear() + "-present",
         mainProjects: [
           {
-            desc: "New hire. " + currentDateMonthString + ", 1st"
+            desc: "New hire. Start " + currentDateMonthString + ", 1st"
           }]
       }
     );
