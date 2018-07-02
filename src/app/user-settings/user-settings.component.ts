@@ -71,7 +71,7 @@ export class UserSettingsComponent implements OnInit {
 
   prepareSkills(skill): Array<any> {
     const cleanCopy = [];
-    if(skill.length > 0) {
+    if (skill.length > 0) {
       skill.forEach(name => {
         if (typeof name === 'string') {
           cleanCopy.push(name);
@@ -137,6 +137,25 @@ export class UserSettingsComponent implements OnInit {
       }
     );
     this.showExperienceForm = (this.showExperienceForm === true) ? false : true;
+    this.save(false);
+  }
+
+  addNewHireExperience() {
+    let currentDate = new Date();
+    let currentDateMonthString = currentDate.toLocaleString("en-us", { month: "long" });
+
+    this.user.experience.push(
+      {
+        company: "Dynamic Solutions",
+        position: this.user.title,
+        time: currentDate.getFullYear() + "-present",
+        mainProjects: [
+          {
+            desc: "New hire. " + currentDateMonthString + ", 1st"
+          }]
+      }
+    );
+
     this.save(false);
   }
 
