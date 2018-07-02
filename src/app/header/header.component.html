@@ -6,10 +6,10 @@
   </button>
   <div class="collapse navbar-collapse" id="headerNavbar" *ngIf="auth.user | async">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item" [ngClass]="{'active': (router.url == '/user/dashboard')}">
         <a class="nav-link" routerLink="/user/dashboard">Dashboard</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" [ngClass]="{'active': (router.url == '/user/settings')}">
         <a class="nav-link" routerLink="/user/settings">Settings</a>
       </li>
     </ul>
