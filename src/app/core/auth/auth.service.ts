@@ -101,8 +101,8 @@ export class AuthService {
             skillset: user.skillset,
             professionalExpectations: user.professionalExpectations,
             personalNote: user.personalNote,
-            uid: user.uid,
-            email: user.email
+            uid: user.uid || '',
+            email: user.email || ''
         };
 
         return userRef.set(data);
