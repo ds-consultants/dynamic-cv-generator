@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
                 <i class="education-icon"></i>
                 <h2>Education</h2>
             </div>
-            <div class="col-sm-8 draw-line-no-margin"> 
+            <div class="col-sm-8 draw-line-no-margin">
             </div>
         </div>`
 })
