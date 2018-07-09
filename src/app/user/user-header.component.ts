@@ -36,7 +36,9 @@ export class UserHeaderComponent {
 
     getImageIcon() {
         const src = this.titles.find(title => title.name === this.title);
-        return src.image;
+        if (src) {
+          return src.image;
+        }
     }
 
     saveUser(key, newValue) {
