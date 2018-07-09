@@ -72,8 +72,9 @@ export class UserSettingsComponent implements OnInit {
     this.checkNewHireExperienceButtonState();
   }
 
+
   checkNewHireExperienceButtonState(): void {
-    this.showNewHireExperienceButton = this.user.experience.find(x => x.company.includes("Dynamic Solutions"));
+    this.showNewHireExperienceButton = this.user.experience.find(x => x.company.includes('Dynamic Solutions'));
   }
 
   prepareSkills(skill): Array<any> {
@@ -149,16 +150,16 @@ export class UserSettingsComponent implements OnInit {
 
   addNewHireExperience() {
     const currentDate = new Date();
-    const currentDateMonthString = currentDate.toLocaleString("en-us", { month: "long" });
+    const currentDateMonthString = currentDate.toLocaleString('en-us', { month: 'long' });
 
     this.user.experience.push(
       {
-        company: "Dynamic Solutions",
+        company: 'Dynamic Solutions',
         position: this.user.title,
-        time: currentDate.getFullYear() + "-present",
+        time: currentDate.getFullYear() + '-present',
         mainProjects: [
           {
-            desc: "New hire. Start " + currentDateMonthString + ", 1st"
+            desc: `New hire. Start ${currentDateMonthString}, 1st`
           }]
       }
     );

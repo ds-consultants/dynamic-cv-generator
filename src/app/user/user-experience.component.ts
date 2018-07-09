@@ -16,7 +16,7 @@ export class UserExperienceComponent {
     @Output() deleteExperience = new EventEmitter<any>();
 
     saveExperience(key, newValue) {
-        if(this.editForm){
+        if (this.editForm) {
             this.editUpdateUser.emit();
         } else {
             this.updateUser.emit();
