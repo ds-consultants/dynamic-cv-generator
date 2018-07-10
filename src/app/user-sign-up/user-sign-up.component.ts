@@ -30,8 +30,8 @@ export class UserSignUpComponent implements OnInit {
     }
 
     signup() {
-        this.auth.emailSignUp(this.validator.userForm.value['email'], this.validator.userForm.value['password'])
-            .then(() => this.afterSignUp());
+      this.auth.emailSignUp(this.validator.userForm.value['email'], this.validator.userForm.value['password'])
+        .then(() => this.afterSignUp());
     }
 
     private afterSignUp() {

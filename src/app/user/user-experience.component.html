@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-4">
     <p class="custom-left-column">
-      <inline-editor type="text" [(ngModel)]="experience.company" (onSave)="saveExperience(company, $event)" size="20" name="customEditableText"></inline-editor>
+      <inline-editor type="text" [(ngModel)]="experience.company" (onSave)="saveExperience('company', $event)" size="20" name="customEditableText"></inline-editor>
     </p>
     <p class="custom-left-column">
       <inline-editor type="text" [(ngModel)]="experience.time" (onSave)="saveExperience('time', $event)" size="20" name="customEditableText"></inline-editor>
@@ -27,7 +27,7 @@
     </p>
     <br>
     <div *ngFor="let project of experience.projects; let k=index">
-      <app-project [project]="project" internalProject=[true] [ngClass]="ds-project" (updateUser)="saveExperience($event)"></app-project>
+      <app-project [project]="project" internalProject=[true] class="ds-project" (updateUser)="saveExperience($event)"></app-project>
       <button class="btn btn-outline-danger btn-sm" (click)="removeProject(k)" *ngIf="editForm">Remove project</button>
     </div>
   </div>
