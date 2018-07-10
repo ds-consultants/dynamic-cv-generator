@@ -39,6 +39,7 @@ export class UserSettingsComponent implements OnInit {
   email = window.localStorage.getItem('dynamicCvEmail') || 'info@ds-consultants.eu';
   showEducationForm = false;
   showExperienceForm = false;
+  showNewHireExperienceButton = true;
   skillNames = [];
   newSkillset = '';
   showSkillsetForm = false;
@@ -67,10 +68,12 @@ export class UserSettingsComponent implements OnInit {
         this.skillNames = Object.keys(this.user.skillset);
       }
     );
+
+    this.checkNewHireExperienceButtonState();
   }
 
-  showNewHireExperienceButton(): Boolean {
-    return !this.user.experience.find(x => x.company.includes("Dynamic Solutions"));
+  checkNewHireExperienceButtonState(): void {
+    this.showNewHireExperienceButton = this.user.experience.find(x => x.company.includes("Dynamic Solutions"));
   }
 
   prepareSkills(skill): Array<any> {
@@ -145,8 +148,8 @@ export class UserSettingsComponent implements OnInit {
   }
 
   addNewHireExperience() {
-    let currentDate = new Date();
-    let currentDateMonthString = currentDate.toLocaleString("en-us", { month: "long" });
+    const currentDate = new Date();
+    const currentDateMonthString = currentDate.toLocaleString("en-us", { month: "long" });
 
     this.user.experience.push(
       {
@@ -159,6 +162,7 @@ export class UserSettingsComponent implements OnInit {
           }]
       }
     );
+    this.checkNewHireExperienceButtonState();
 
     this.save(false);
   }
@@ -255,6 +259,7 @@ export class UserSettingsComponent implements OnInit {
 
   deleteExperience(event) {
     this.user.experience.splice(event.experienceKey, 1);
+    this.checkNewHireExperienceButtonState();
     this.save(false);
   }
 }
