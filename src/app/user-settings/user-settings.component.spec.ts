@@ -1,7 +1,7 @@
 import { UserSettingsComponent } from './user-settings.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
-describe('UserSettingsComponentTest', () => {
+describe('UserSettingsComponent', () => {
   function setup() {
     const authSpy = jasmine.createSpyObj('AuthService', ['updateUserData']);
     authSpy.updateUserData.and.returnValue(new Promise(() => {}));

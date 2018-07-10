@@ -32,7 +32,7 @@ import { UserSkillsHeaderComponent } from './user-skills-header.component';
 import { UserEducationHeaderComponent } from './user-education-header.component';
 import { UserFooterComponent } from './user-footer.component';
 
-describe('UserTestComponent', () => {
+describe('UserComponent', () => {
 
   let app: UserComponent;
   let fixture: ComponentFixture<UserComponent>;
