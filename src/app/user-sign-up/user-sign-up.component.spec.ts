@@ -1,5 +1,5 @@
 import { PasswordValidation } from './../core/password-validation';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { UserSignUpComponent } from './user-sign-up.component';
@@ -63,7 +63,7 @@ describe('UserSignUpComponent', () => {
     return {emailInput, passwordInput, passwordConfirmationInput, submitButton};
   };
 
-  it('should allow to fill in email and password and validate password', async() => {
+  it('should allow to fill in email and password and validate password', () => {
     const {emailInput, passwordInput, passwordConfirmationInput} = findInputs();
 
     emailInput.value = 'test@email.com';
@@ -75,10 +75,11 @@ describe('UserSignUpComponent', () => {
     passwordConfirmationInput.dispatchEvent(new Event('input'));
 
     fixture.detectChanges();
+
     expect(app.validator.formErrors.password).toContain('Password must include at least one letter and one number.');
   });
 
-  it('should allow to fill in email and password and submit', async() => {
+  it('should allow to fill in email and password and submit', fakeAsync(() => {
     const {emailInput, passwordInput, passwordConfirmationInput, submitButton} = findInputs();
 
     emailInput.value = 'test@email.com';
@@ -93,8 +94,6 @@ describe('UserSignUpComponent', () => {
 
     submitButton.click();
 
-    fixture.whenStable().then(() => {
-      expect(app.auth.emailSignUp).toHaveBeenCalled();
-    });
-  });
+    expect(app.auth.emailSignUp).toHaveBeenCalled();
+  }));
 });

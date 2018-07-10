@@ -1,6 +1,6 @@
 import { AuthService } from './../core/auth/auth.service';
 import { ProjectTechnologiesComponent } from './../project/technologies/technologies.component';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 import { UserComponent } from './user.component';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -114,13 +114,13 @@ describe('UserComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should define and compile component', async() => {
+  it('should define and compile component', fakeAsync(() => {
     const de = fixture.debugElement;
     const el: HTMLElement = de.nativeElement;
     expect(fixture).toBeDefined();
   });
 
-  it('should render userName', async() => {
+  it('should render userName', fakeAsync(() => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
       const de = fixture.debugElement.query(By.css('.user-name'));
@@ -128,5 +128,5 @@ describe('UserComponent', () => {
       expect(el.innerText).toBe('Marcin');
     });
 
-  });
+  }));
 });
