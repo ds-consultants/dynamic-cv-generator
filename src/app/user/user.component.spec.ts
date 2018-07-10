@@ -114,19 +114,16 @@ describe('UserComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should define and compile component', fakeAsync(() => {
+  it('should define and compile component', () => {
     const de = fixture.debugElement;
     const el: HTMLElement = de.nativeElement;
     expect(fixture).toBeDefined();
   });
 
   it('should render userName', fakeAsync(() => {
-    fixture.whenStable().then(() => {
       fixture.detectChanges();
       const de = fixture.debugElement.query(By.css('.user-name'));
       const el: HTMLElement = de.nativeElement;
       expect(el.innerText).toBe('Marcin');
-    });
-
   }));
 });
