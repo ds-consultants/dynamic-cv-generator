@@ -16,7 +16,6 @@ export class AuthService {
 
     user: Observable<User | null>;
     userUid: string | '';
-    email: string | null;
 
     constructor(private afAuth: AngularFireAuth,
         private afs: AngularFirestore,
@@ -40,8 +39,6 @@ export class AuthService {
         return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
             .then((user) => {
                 this.userUid = user.uid;
-                this.email = email;
-                this.initUserData();
 
                 return user; // if using firestore
             })
@@ -70,24 +67,6 @@ export class AuthService {
         this.notify.update(error.message);
     }
 
-    // Sets user data to firestore on sign up
-    private initUserData() {
-      const user: User = {
-        email: this.email,
-        name: '',
-        title: '',
-        experience: [],
-        education: [],
-        professionalExpectations: '',
-        personalNote: '',
-        skillset: {},
-        uid: this.userUid,
-        photoURL: ''
-      };
-
-      this.updateUserData(user);
-    }
-
     // Sets user data to firestore after succesful login
     public updateUserData(user: User) {
 
@@ -100,9 +79,7 @@ export class AuthService {
             education: user.education,
             skillset: user.skillset,
             professionalExpectations: user.professionalExpectations,
-            personalNote: user.personalNote,
-            uid: user.uid || '',
-            email: user.email || ''
+            personalNote: user.personalNote
         };
 
         return userRef.set(data);
