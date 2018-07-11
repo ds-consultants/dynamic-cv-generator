@@ -121,7 +121,6 @@ export class UserComponent implements OnInit {
           concatMap(res =>  of(res).delay(200) ),
           finalize(() => this.renderEducation(this.user.education) )
         ).subscribe(val => {
-          console.log(val);
           const lastExperience = index === experience.length - 1;
           this.renderSingleExperienceRow(val, lastExperience);
           this.ensureLastComponentFitPage();
