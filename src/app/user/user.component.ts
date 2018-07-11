@@ -29,9 +29,13 @@ import { UserFooterComponent } from './user-footer.component';
 import { CVPageOneDirective } from '../cv-page-one.directive';
 import { CVPageTwoDirective } from '../cv-page-two.directive';
 import { CVPageThreeDirective } from '../cv-page-three.directive';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/interval';
-import 'rxjs/add/operator/takeWhile';
+import { Observable } from 'rxjs';
+import { interval } from 'rxjs/observable/interval';
+import { of } from 'rxjs/observable/of';
+import { from } from 'rxjs/observable/from';
+import { takeWhile, concatMap, finalize, take } from 'rxjs/operators';
+
+
 import { AuthService } from '../core/auth/auth.service';
 
 const pageHeight = 1123;
@@ -112,18 +116,17 @@ export class UserComponent implements OnInit {
 
     renderExperience(experience) {
         let index = 0;
-        Observable.interval(100)
-            .takeWhile(() => index !== experience.length)
-            .subscribe(i => {
-                const lastExperience = index === experience.length - 1;
-                this.renderSingleExperienceRow(experience[index], lastExperience);
-                this.ensureLastComponentFitPage();
-                index++;
-
-                if (index === experience.length) {
-                    this.renderEducation(this.user.education);
-                }
-            });
+        const source = from(experience);
+        source.pipe(
+          concatMap(res =>  of(res).delay(200) ),
+          finalize(() => this.renderEducation(this.user.education) )
+        ).subscribe(val => {
+          console.log(val);
+          const lastExperience = index === experience.length - 1;
+          this.renderSingleExperienceRow(val, lastExperience);
+          this.ensureLastComponentFitPage();
+          index++;
+        });
     }
 
     renderSingleExperienceRow(exp, lastExperience) {
@@ -192,22 +195,18 @@ export class UserComponent implements OnInit {
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserSkillsHeaderComponent);
             const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
             // UserSkillsetComponent
-            let index = 0;
-            Observable.interval(100)
-                .takeWhile(() => {
-                    if (index !== skillsetNames.length) {
-                        return true;
-                    } else {
-                        this.renderFooter();
-                        return false;
-                    }
-                })
-                .subscribe(i => {
-                    const name = skillsetNames[index];
-                    this.renderSingleSkillRow(name, skillset[name]);
-                    this.ensureLastComponentFitPage();
-                    index++;
-                });
+            from(skillsetNames)
+            .pipe(
+              concatMap(res =>  of(res).delay(200) ),
+              finalize(() => {
+                this.renderFooter();
+                this.ensureLastComponentFitPage();
+              })
+            ).subscribe(val => {
+              const name = val;
+              this.renderSingleSkillRow(name, skillset[name]);
+              this.ensureLastComponentFitPage();
+            });
         }, 0);
     }
 

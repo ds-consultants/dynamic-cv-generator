@@ -3,7 +3,7 @@ import { User } from '../user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../core/auth/auth.service';
 import { NgForm } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { TagModel } from 'ngx-chips/core/accessor';
 
 @Component({
