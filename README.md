@@ -2,9 +2,18 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
-## Development server
+# Dependencies
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* Node 9.10.1
+* NPM 5.6.0
+* Angular 5.2.11
+* Angular CLI 1.7.4
+
+# Setting up and starting the server
+
+* Run `npm install`.
+* Copy `src/environments/environment.ts` to `src/environments/environment.dev.ts` and populate environment variables.
+* Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
