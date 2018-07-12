@@ -12,6 +12,9 @@
       <li class="nav-item" [routerLinkActive]="['active']">
         <a class="nav-link" routerLink="/user/settings">Settings</a>
       </li>
+      <li class="nav-item" [routerLinkActive]="['active']" *ngIf="superUser">
+        <a class="nav-link" routerLink="/users">Users</a>
+      </li>
     </ul>
     <div class="form-inline my-2 my-lg-0 white-nav">
       <span class="user-greeter">

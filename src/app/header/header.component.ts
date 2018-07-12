@@ -10,6 +10,7 @@ import { AuthService } from '../core/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
     name = '';
+    superUser = false;
 
     constructor(
         public auth: AuthService,
@@ -20,6 +21,7 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
         this.auth.user.subscribe(user => {
             this.name = user !== null ? user.name : '';
+            this.superUser = user !== null ? user.superUser : false;
         });
     }
 

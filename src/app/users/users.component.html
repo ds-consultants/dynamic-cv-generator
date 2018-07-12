@@ -3,7 +3,7 @@
   <div *ngFor="let user of users | async; let i = index">
     <li id="user-{{i}}">
       <a routerLink="/user/{{user.name}}">
-        {{user.name}}
+        {{user.name}} - {{user.email}}
       </a>
     </li>
   </div>
