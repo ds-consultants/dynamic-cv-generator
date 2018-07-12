@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand navbar-right white-nav" routerLink="/user/dashboard">Dynamic CV</a>
+  <div class="navbar-brand navbar-right white-nav">Dynamic CV</div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerNavbar" aria-controls="headerNavbar"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,10 +7,10 @@
   <div class="collapse navbar-collapse" id="headerNavbar" *ngIf="auth.user | async">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" [routerLinkActive]="['active']">
-        <a class="nav-link" routerLink="/user/dashboard">Dashboard</a>
+        <a class="nav-link" [routerLink]="(userUid) ? ['user', userUid,'dashboard'] : ['user', 'dashboard']" [class.disabled]="superUser && !userUid">Dashboard</a>
       </li>
       <li class="nav-item" [routerLinkActive]="['active']">
-        <a class="nav-link" routerLink="/user/settings">Settings</a>
+        <a class="nav-link" [routerLink]="(userUid) ? ['user', userUid,'settings'] : ['user','settings']"  [class.disabled]="superUser && !userUid">Settings</a>
       </li>
       <li class="nav-item" [routerLinkActive]="['active']" *ngIf="superUser">
         <a class="nav-link" routerLink="/users">Users</a>

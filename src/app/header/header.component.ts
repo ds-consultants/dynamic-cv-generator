@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RoutesRecognized } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from '../core/auth/auth.service';
+import { User } from '../user';
 
 @Component({
     selector: 'app-header',
@@ -11,6 +12,7 @@ import { AuthService } from '../core/auth/auth.service';
 export class HeaderComponent implements OnInit {
     name = '';
     superUser = false;
+    userUid = '';
 
     constructor(
         public auth: AuthService,
@@ -19,10 +21,15 @@ export class HeaderComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.auth.user.subscribe(user => {
-            this.name = user !== null ? user.name : '';
-            this.superUser = user !== null ? user.superUser : false;
-        });
+      this.router.events.subscribe(val => {
+        if (val instanceof RoutesRecognized) {
+          this.userUid = val.state.root.firstChild.params['uid'];
+      }});
+
+      this.auth.user.subscribe(user => {
+        this.name = user !== null ? user.name : '';
+        this.superUser = user !== null ? user.superUser : false;
+      });
     }
 
     signOut() {
