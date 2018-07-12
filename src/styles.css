@@ -285,6 +285,7 @@ h3 {
     min-height: 1403px;
     width: 993px;
     position: relative;
+    margin: auto;
 }
 
 @page {
