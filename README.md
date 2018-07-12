@@ -6,8 +6,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 * Node 9.10.1
 * NPM 5.6.0
-* Angular 5.2.11
-* Angular CLI 1.7.4
+* Angular 6.0.7
+* Angular CLI 6.0.8
+
 
 # Setting up and starting the server
 
