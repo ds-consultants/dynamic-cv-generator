@@ -17,7 +17,8 @@ describe('UserSettingsComponent', () => {
       professionalExpectations: '',
       personalNote: '',
       uid: '',
-      email: ''
+      email: '',
+      superUser: false
     };
 
     const experience = {
@@ -43,8 +44,9 @@ describe('UserSettingsComponent', () => {
 
   it('should response with true for no user experience check', () => {
     const { userSettingsComponent } = setup();
+    userSettingsComponent.checkNewHireExperienceButtonState();
 
-    expect(userSettingsComponent.showNewHireExperienceButton())
+    expect(userSettingsComponent.showNewHireExperienceButton)
       .toBe(true);
   });
 

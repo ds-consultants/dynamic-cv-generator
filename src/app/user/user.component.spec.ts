@@ -16,7 +16,7 @@ import { PdfCompressorService } from '../pdf-compressor.service';
 import { Observable } from 'rxjs/Observable';
 import { By } from '@angular/platform-browser';
 import { UserSettingsComponent } from '../user-settings/user-settings.component';
-import { InlineEditorModule, InlineEditorComponent } from '@qontu/ngx-inline-editor';
+import { InlineEditorModule, InlineEditorComponent } from '@fradev/ngx-inline-editor';
 import { TagInputModule } from 'ngx-chips';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FirebaseApp } from 'angularfire2';
