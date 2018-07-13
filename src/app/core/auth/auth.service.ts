@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -52,6 +53,20 @@ export class AuthService {
                 return user; // if using firestore
             });
     }
+
+    addNewUser(email: string, password: string) {
+          const secondaryApp = firebase.apps[1] || firebase.initializeApp(environment.firebase, 'Secondary');
+
+          return secondaryApp.auth().createUserWithEmailAndPassword(email, password)
+              .then(() => {
+                secondaryApp.auth().signOut();
+                return true;
+              })
+              .catch((error) => {
+                this.handleError(error)
+                return false
+              });
+      }
 
     // Sends email allowing user to reset password
     resetPassword(email: string) {
