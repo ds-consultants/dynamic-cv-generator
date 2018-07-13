@@ -1,21 +1,33 @@
-<div id="cv-page-1" class="a4">
-  <button (click)="printCV()" type="button" class="btn btn-success form-button noprint print-submitter">Print</button>
-  <div class="" id="cv-page-one-content" #cvPageOneContainer>
-    <ng-template cvPageOne>
-    </ng-template>
+<div class="cv-pages-wrapper">
+  <div id="overlay" *ngIf="contentLoading">
+      <div id="overlay-loading-text">
+          <div>Generating content</div>
+          <div class="spinner">
+              <div class="bounce1"></div>
+              <div class="bounce2"></div>
+              <div class="bounce3"></div>
+            </div>
+      </div>
   </div>
-</div>
-<br class="noprint">
-<div id="cv-page-2" class="a4">
-  <div class="" id="cv-page-two-content" #cvPageTwoContainer>
-    <ng-template cvPageTwo>
-    </ng-template>
+  <div id="cv-page-1" class="a4">
+    <button (click)="printCV()" type="button" class="btn btn-success form-button noprint print-submitter">Print</button>
+    <div class="" id="cv-page-one-content" #cvPageOneContainer>
+      <ng-template cvPageOne>
+      </ng-template>
+    </div>
   </div>
-</div>
-<br class="noprint">
-<div id="cv-page-3" class="a4" [ngClass]="{'d-none': !showPageThree}">
-  <div class="" id="cv-page-three-content" #cvPageThreeContainer>
-    <ng-template cvPageThree>
-    </ng-template>
+  <br class="noprint">
+  <div id="cv-page-2" class="a4">
+    <div class="" id="cv-page-two-content" #cvPageTwoContainer>
+      <ng-template cvPageTwo>
+      </ng-template>
+    </div>
+  </div>
+  <br class="noprint">
+  <div id="cv-page-3" class="a4" [ngClass]="{'d-none': !showPageThree}">
+    <div class="" id="cv-page-three-content" #cvPageThreeContainer>
+      <ng-template cvPageThree>
+      </ng-template>
+    </div>
   </div>
 </div>

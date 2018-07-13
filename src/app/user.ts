@@ -11,5 +11,6 @@ export class User {
     };
     uid: string;
     email: string | null;
-    photoURL?: string;
+    photoUrl?: string;
+    superUser: boolean;
 }

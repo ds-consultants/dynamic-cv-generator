@@ -35,10 +35,10 @@ export class UserHeaderComponent {
     });
 
     getImageIcon() {
-        const src = this.titles.find(title => title.name === this.title);
-        if (src) {
-          return src.image;
-        }
+      const src = this.titles.find(title => title.name === this.title);
+
+      if (!src) { return; }
+      return src.image;
     }
 
     saveUser(key, newValue) {

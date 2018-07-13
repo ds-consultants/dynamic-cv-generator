@@ -42,7 +42,8 @@ const pageHeight = 1123;
 
 @Component({
     selector: 'app-user',
-    templateUrl: './user.component.html'
+    templateUrl: './user.component.html',
+    styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
     @ViewChild(CVPageOneDirective) cvPageOne: CVPageOneDirective;
@@ -62,6 +63,7 @@ export class UserComponent implements OnInit {
     currentPageContainer: ElementRef;
     showPageThree: Boolean = true;
     pdf = new jsPDF('p', 'px');
+    contentLoading = true;
 
     constructor(
         // private userService: UserService,
@@ -200,6 +202,7 @@ export class UserComponent implements OnInit {
               finalize(() => {
                 this.renderFooter();
                 this.ensureLastComponentFitPage();
+                this.contentLoading = false;
               })
             ).subscribe(val => {
               const name = val;
