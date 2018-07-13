@@ -7,9 +7,7 @@ import { Project } from './project';
     templateUrl: './project.component.html',
     styleUrls: ['./project.component.css']
 })
-
 export class ProjectComponent {
-
     @Input() project: Project;
     @Input() internalProject: Boolean = false;
     @Output() updateUser = new EventEmitter<any>();

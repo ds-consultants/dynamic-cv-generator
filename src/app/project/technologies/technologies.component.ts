@@ -1,11 +1,11 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'project-technologies',
+    selector: 'app-project-technologies',
     templateUrl: './technologies.component.html',
     styleUrls: ['./technologies.component.css']
 })
-export class ProjectTechnologiesComponent {
+export class ProjectTechnologiesComponent implements OnInit {
 
     @Input() technologies: any;
     @Output() updateTechnologies = new EventEmitter<any>();

@@ -1,3 +1,4 @@
+import { catchError } from 'rxjs/operators/catchError';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
@@ -29,6 +30,7 @@ export class AuthGuard implements CanActivate {
                     this.router.navigate(['/login']);
                 }
             }),
+            catchError((e: any) => Observable.throw(console.log(e)))
         );
     }
 }

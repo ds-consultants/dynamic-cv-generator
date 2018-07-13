@@ -15,7 +15,8 @@ import { User } from '../../user';
 export class AuthService {
 
     user: Observable<User | null>;
-    userUid: String | '';
+    userUid: string | '';
+
     constructor(private afAuth: AngularFireAuth,
         private afs: AngularFirestore,
         private router: Router,
@@ -37,6 +38,8 @@ export class AuthService {
     emailSignUp(email: string, password: string) {
         return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
             .then((user) => {
+                this.userUid = user.uid;
+
                 return user; // if using firestore
             })
             .catch((error) => this.handleError(error));

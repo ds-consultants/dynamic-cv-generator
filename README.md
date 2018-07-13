@@ -32,6 +32,13 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
+## Working with firebase functions
+
+* Install `firebase-tools` with npm: `npm i -g firebase-tools`
+* Modify and add new firebase functions to `functions/src/index.ts`
+* Work with firebase library [Documentation](https://firebase.google.com/docs/firestore/quickstart)
+* Deploy functions with `firebase deploy --only functions`
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
