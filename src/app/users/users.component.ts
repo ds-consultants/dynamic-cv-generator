@@ -35,7 +35,7 @@ export class UsersComponent implements OnInit {
     this.users = this.afAuth.authState.pipe(
       switchMap((user) => {
         if (user) {
-          return this.afs.collection<User>('users').valueChanges();
+          return this.afs.collection<User>('users', ref => ref.orderBy('name', 'asc')).valueChanges();
         } else {
           return of(null);
         }
@@ -53,14 +53,14 @@ export class UsersComponent implements OnInit {
       this.validator.userForm.value['email'],
       this.validator.userForm.value['password']
     ).then((userCreated) => {
-      if(userCreated){
+      if (userCreated) {
         this.validator.userForm.reset();
       }
     });
   }
 
   resetPassword(email: string) {
-    if(confirm("Are you sure you want to send a reset password instruction email to: "+email)){
+    if (confirm('Are you sure you want to send a reset password instruction email to: ' + email)) {
       this.auth.resetPassword(email);
     }
   }
