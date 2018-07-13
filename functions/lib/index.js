@@ -2,9 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-
+admin.initializeApp();
 exports.initUserInCloudDb = functions.auth.user().onCreate((user) => {
-    admin.initializeApp();
     const userId = user.uid;
     const db = admin.firestore();
     const data = {
@@ -20,3 +19,4 @@ exports.initUserInCloudDb = functions.auth.user().onCreate((user) => {
     };
     return db.collection('users').doc(userId).set(data);
 });
+//# sourceMappingURL=index.js.map
