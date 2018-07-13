@@ -79,7 +79,7 @@ export class AuthService {
 
     // If error, console log and notify user
     private handleError(error: Error) {
-        this.notify.update(error.message);
+      this.notify.update(error.message);
     }
 
     // Sets user data to firestore after succesful login
