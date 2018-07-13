@@ -9,7 +9,8 @@ export class User {
         languages: { main: Array<string>, second: Array<string> },
         others: { main: Array<string>, second: Array<string> }
     };
-    uid?: string;
-    email?: string | null;
-    photoURL?: string;
+    uid: string;
+    email: string | null;
+    photoUrl?: string;
+    superUser: boolean;
 }

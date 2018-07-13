@@ -16,8 +16,12 @@ const routes: Routes = [
         loadChildren: './user/user.module#UserModule'
     },
     {
+        path: 'user/:uid',
+        loadChildren: './user/user.module#UserModule'
+    },
+    {
         path: '',
-        redirectTo: '/user/dashboard',
+        redirectTo: '/user/settings',
         pathMatch: 'full'
     },
 ];

@@ -5,3 +5,10 @@
 .user-greeter {
     display: inline;
 }
+
+.navbar-brand{
+  cursor: default;
+}
+.disabled {
+  pointer-events: none;
+}
