@@ -22,7 +22,7 @@ export class UserSignUpComponent implements OnInit {
     constructor(
         public auth: AuthService,
         private router: Router,
-        public validator: FormValidatorService
+        private validator: FormValidatorService
     ) { }
 
     ngOnInit() {
