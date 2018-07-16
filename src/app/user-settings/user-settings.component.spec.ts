@@ -1,3 +1,4 @@
+import { fakeAsync } from '@angular/core/testing';
 import { UserSettingsComponent } from './user-settings.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -42,13 +43,13 @@ describe('UserSettingsComponent', () => {
     return {userSettingsComponent, experience, education};
   }
 
-  it('should response with true for no user experience check', () => {
+  it('should response with true for no user experience check', fakeAsync(() => {
     const { userSettingsComponent } = setup();
     userSettingsComponent.checkNewHireExperienceButtonState();
 
     expect(userSettingsComponent.showNewHireExperienceButton)
       .toBe(true);
-  });
+  })) ;
 
   it('should allow to add and delete eduction for user', () => {
     const { userSettingsComponent, experience, education } = setup();

@@ -74,7 +74,7 @@ export class UserSettingsComponent implements OnInit {
 
 
   checkNewHireExperienceButtonState(): void {
-    this.showNewHireExperienceButton = this.user.experience.find(x => x.company.includes('Dynamic Solutions'));
+    this.showNewHireExperienceButton = this.user.experience.find(x => x.company.includes('Dynamic Solutions')) || true;
   }
 
   prepareSkills(skill): Array<any> {

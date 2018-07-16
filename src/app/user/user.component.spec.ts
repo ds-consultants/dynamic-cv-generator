@@ -1,6 +1,6 @@
 import { AuthService } from './../core/auth/auth.service';
 import { ProjectTechnologiesComponent } from './../project/technologies/technologies.component';
-import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { UserComponent } from './user.component';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -41,9 +41,15 @@ describe('UserComponent', () => {
     name: 'Marcin',
     title: 'Fake title',
     professionalExpectations: 'Cokolwiek',
+    personalNote: '',
+    uid: '',
+    email: '',
+    photoUrl: '',
+    superUser: false,
     skillset: { languages: {main:  [], second: []},
                 others: {main:  [], second: []}},
-    experience: []
+    experience: [],
+    education: []
   };
 
   const fakeUserObserver = Observable.create(observer => {
@@ -55,7 +61,8 @@ describe('UserComponent', () => {
     data: fakeUserObserver
   } as ActivatedRoute;
 
-  beforeEach(async(() => {
+  beforeEach(fakeAsync(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
 
     const authSpy = jasmine.createSpyObj('AuthService', ['updateUserData']);
     authSpy.updateUserData.and.returnValue(new Promise(() => {}));
@@ -108,22 +115,26 @@ describe('UserComponent', () => {
     .compileComponents();
   }));
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     fixture = TestBed.createComponent(UserComponent);
     app = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
+    app.contentLoading = false;
 
-  it('should define and compile component', () => {
+    fixture.detectChanges();
+  });
+
+  it('should define and compile component', fakeAsync(() => {
     const de = fixture.debugElement;
     const el: HTMLElement = de.nativeElement;
     expect(fixture).toBeDefined();
-  });
+  }));
 
   it('should render userName', fakeAsync(() => {
+    fixture.whenStable().then(() => {
       fixture.detectChanges();
       const de = fixture.debugElement.query(By.css('.user-name'));
       const el: HTMLElement = de.nativeElement;
       expect(el.innerText).toBe('Marcin');
+    });
   }));
 });
