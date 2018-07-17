@@ -1,10 +1,51 @@
-<h2>Please select one of the users: </h2>
-<ul>
-  <div *ngFor="let user of users | async; let i = index">
-    <li id="user-{{i}}">
-      <a routerLink="/user/{{user.uid}}/settings">
-        {{user.name}} - {{user.email}}
-      </a>
-    </li>
+<div class="container">
+  <h2>Please select one of the users: </h2>
+  <ul>
+    <div *ngFor="let user of users | async; let i = index">
+      <li id="user-{{i}}">
+        <a routerLink="/user/{{user.uid}}/settings">
+          {{user.name}} - {{user.email}} 
+        </a>
+        <span class="pull-right">
+        (<a [routerLink]="" (click)="resetPassword(user.email)">send password reset email</a>)
+        </span>
+      </li>
+    </div>
+  </ul>
+
+  <hr>
+
+  <h2>New user: </h2>
+  <div class="row">
+    <div class="col-12">
+      <form class="row" [formGroup]="validator.userForm" (ngSubmit)="addUser()">
+        <div class="form-group col-sm-12 col-md-6">
+          <input type="email" class="form-control" id="new-user-email" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email"
+            required>
+          <div *ngIf="validator.formErrors.email" class="invalid-form-value">
+            {{ validator.formErrors.email }}
+          </div>
+        </div>
+
+        <div class="form-group col-sm-12 col-md-6">
+          <input type="password" class="form-control" id="new-user-password" placeholder="Password" formControlName="password" required>
+          <div *ngIf="validator.formErrors.password" class="invalid-form-value">
+            {{ validator.formErrors.password }}
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div *ngIf="auth.notify.msg | async as msg" class="invalid-form-value">
+            {{ msg }}
+          </div>
+        </div>
+
+        <div class="col-12">
+          <button type="submit" class="btn btn-lg btn-block btn-outline-primary custom-block-button col-12">
+            Add new user
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-</ul>
+</div>

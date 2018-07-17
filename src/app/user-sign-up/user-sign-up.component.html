@@ -11,7 +11,7 @@
           {{ validator.formErrors.email }}
         </div>
         <div *ngIf="auth.notify.msg | async as msg" class="invalid-form-value">
-          {{ msg.content }}
+          {{ msg }}
         </div>
       </div>
 

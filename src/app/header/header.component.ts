@@ -24,7 +24,8 @@ export class HeaderComponent implements OnInit {
       this.router.events.subscribe(val => {
         if (val instanceof RoutesRecognized) {
           this.userUid = val.state.root.firstChild.params['uid'];
-      }});
+        }
+      });
 
       this.auth.user.subscribe(user => {
         this.name = user !== null ? user.name : '';
