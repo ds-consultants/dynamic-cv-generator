@@ -54,7 +54,6 @@ describe('UserSettingsComponent', () => {
   it('should allow to add and delete eduction for user', () => {
     const { userSettingsComponent, experience, education } = setup();
 
-
     userSettingsComponent.education = { ...education };
 
     expect(userSettingsComponent.user.education)

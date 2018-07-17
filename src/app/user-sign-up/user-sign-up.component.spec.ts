@@ -15,7 +15,6 @@ describe('UserSignUpComponent', () => {
   let app: UserSignUpComponent;
   let fixture: ComponentFixture<UserSignUpComponent>;
 
-
   beforeEach(async(() => {
     const authSpy = jasmine.createSpyObj('AuthService', ['emailSignUp', 'notify']);
     authSpy.emailSignUp.and.returnValue(new Promise(() => {}));
