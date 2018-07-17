@@ -1,6 +1,7 @@
 {
   "projects": {
     "dynamic": "dynamic-cv-generator",
-    "default": "dynamic-cv-generator"
+    "default": "dynamic-cv-generator",
+    "test": "dynamic-cv-generator-test"
   }
 }

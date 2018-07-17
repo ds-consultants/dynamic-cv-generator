@@ -11,7 +11,7 @@
     <i class="main-project-icon" *ngIf="edit!=true"></i>
     <button class="btn btn-outline-danger btnremove btn-sm" type="button" *ngIf="edit==true" (click)="removeElement()">Remove</button>
     <p><inline-editor type="text" [(ngModel)]="school.name" (onSave)="saveSchool('name', $event)" size="40" name="customEditableText"></inline-editor></p>
-    <p class="school-place"><inline-editor type="text" [(ngModel)]="school.place" (onSave)="saveSchool('place', $event)" size="20" name="customEditableText"></inline-editor></p>
+    <p class="school-place"><inline-editor type="text" [(ngModel)]="school.placeName" (onSave)="saveSchool('place', $event)" size="20" name="customEditableText"></inline-editor></p>
   </div>
   <div class="clearfix"></div>
 </div>
