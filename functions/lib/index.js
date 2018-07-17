@@ -10,8 +10,14 @@ exports.initUserInCloudDb = functions.auth.user().onCreate((user) => {
         education: [],
         experience: [],
         skillset: {
-            languages: {},
-            others: {}
+            languages: {
+                main: [],
+                second: []
+            },
+            others: {
+                main: [],
+                second: []
+            }
         },
         name: '',
         personalNote: '',
