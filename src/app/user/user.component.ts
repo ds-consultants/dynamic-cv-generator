@@ -29,13 +29,9 @@ import { UserFooterComponent } from './user-footer.component';
 import { CVPageOneDirective } from '../cv-page-one.directive';
 import { CVPageTwoDirective } from '../cv-page-two.directive';
 import { CVPageThreeDirective } from '../cv-page-three.directive';
-import { Observable } from 'rxjs';
-import { interval } from 'rxjs/observable/interval';
 import { of } from 'rxjs/observable/of';
 import { from } from 'rxjs/observable/from';
 import { concatMap, finalize, delay } from 'rxjs/operators';
-
-
 import { AuthService } from '../core/auth/auth.service';
 
 const pageHeight = 1123;
@@ -61,7 +57,8 @@ export class UserComponent implements OnInit {
     _others = [];
     currentPage: CVPageOneDirective | CVPageTwoDirective | CVPageThreeDirective;
     currentPageContainer: ElementRef;
-    showPageThree: Boolean = true;
+    showPageThree: Boolean = false;
+    showPageTwo: Boolean = false;
     pdf = new jsPDF('p', 'px');
     contentLoading = true;
 
@@ -76,7 +73,6 @@ export class UserComponent implements OnInit {
         this.route.data.subscribe(
             (data: { user: User }) => {
                 this.user = data.user;
-                this.showPageThree = false;
             }
         );
     }
@@ -104,6 +100,7 @@ export class UserComponent implements OnInit {
         } else if (this.currentPage === this.cvPageOne) {
             this.currentPage = this.cvPageTwo;
             this.currentPageContainer = this.pageTwoContainer;
+            this.showPageTwo = true;
         }
     }
 
@@ -203,13 +200,12 @@ export class UserComponent implements OnInit {
               delay(200),
               finalize(() => {
                 this.renderFooter();
-                this.ensureLastComponentFitPage();
                 this.contentLoading = false;
               })
             ).subscribe(val => {
               const name = val;
               this.renderSingleSkillRow(name, skillset[name]);
-              this.ensureLastComponentFitPage();
+              this.ensureLastComponentFitPage(true);
             });
         }, 0);
     }
@@ -231,12 +227,22 @@ export class UserComponent implements OnInit {
         }, 0);
     }
 
-    ensureLastComponentFitPage() {
+    ensureLastComponentFitPage(fitFooterComponent?: Boolean) {
         setTimeout(() => {
-            if (pageHeight - this.currentPageContainer.nativeElement.clientHeight - 20 < 0) {
-                const detachedView = this.currentPage.viewContainerRef.detach();
-                this.bumpCurrentPage();
-                this.currentPage.viewContainerRef.insert(detachedView);
+            const addPage = () => {
+              const detachedView = this.currentPage.viewContainerRef.detach();
+              this.bumpCurrentPage();
+              this.currentPage.viewContainerRef.insert(detachedView);
+            };
+
+            if (fitFooterComponent) {
+              if (pageHeight - this.currentPageContainer.nativeElement.clientHeight + 92 < 0) {
+                addPage();
+              }
+            } else {
+              if (pageHeight - this.currentPageContainer.nativeElement.clientHeight - 20 < 0) {
+                addPage();
+              }
             }
         }, 100);
     }
