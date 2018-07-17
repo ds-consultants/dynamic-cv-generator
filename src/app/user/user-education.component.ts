@@ -7,7 +7,7 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 })
 export class UserEducationComponent {
 
-    @Input() school: Array<number>;
+    @Input() school: any;
     @Input() lastRow = false;
     @Input() edit: boolean;
     @Input() id: number;

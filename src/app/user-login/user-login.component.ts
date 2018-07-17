@@ -23,7 +23,7 @@ export class UserLoginComponent implements OnInit {
     constructor(
         public auth: AuthService,
         private router: Router,
-        private validator: FormValidatorService
+        public validator: FormValidatorService
     ) { }
 
     /// Shared

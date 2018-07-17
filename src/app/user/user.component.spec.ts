@@ -1,4 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { AuthService } from './../core/auth/auth.service';
+import { ProjectTechnologiesComponent } from './../project/technologies/technologies.component';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { UserComponent } from './user.component';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -13,8 +15,24 @@ import { UserResolver } from './user-resolver.module';
 import { PdfCompressorService } from '../pdf-compressor.service';
 import { Observable } from 'rxjs/Observable';
 import { By } from '@angular/platform-browser';
+import { UserSettingsComponent } from '../user-settings/user-settings.component';
+import { InlineEditorModule, InlineEditorComponent } from '@fradev/ngx-inline-editor';
+import { TagInputModule } from 'ngx-chips';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { FirebaseApp } from 'angularfire2';
+import { UserHeaderComponent } from './user-header.component';
 
-describe('UserTestComponent', () => {
+import { CVPageOneDirective } from '../cv-page-one.directive';
+import { CVPageTwoDirective } from '../cv-page-two.directive';
+import { CVPageThreeDirective } from '../cv-page-three.directive';
+
+import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
+
+import { UserSkillsHeaderComponent } from './user-skills-header.component';
+import { UserEducationHeaderComponent } from './user-education-header.component';
+import { UserFooterComponent } from './user-footer.component';
+
+describe('UserComponent', () => {
 
   let app: UserComponent;
   let fixture: ComponentFixture<UserComponent>;
@@ -23,9 +41,15 @@ describe('UserTestComponent', () => {
     name: 'Marcin',
     title: 'Fake title',
     professionalExpectations: 'Cokolwiek',
+    personalNote: '',
+    uid: '',
+    email: '',
+    photoUrl: '',
+    superUser: false,
     skillset: { languages: {main:  [], second: []},
-                others: {main:  [], second: []}}
-
+                others: {main:  [], second: []}},
+    experience: [],
+    education: []
   };
 
   const fakeUserObserver = Observable.create(observer => {
@@ -37,12 +61,32 @@ describe('UserTestComponent', () => {
     data: fakeUserObserver
   } as ActivatedRoute;
 
-  beforeEach(async(() => {
+  beforeEach(fakeAsync(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
+
+    const authSpy = jasmine.createSpyObj('AuthService', ['updateUserData']);
+    authSpy.updateUserData.and.returnValue(new Promise(() => {}));
+
+    TestBed.overrideModule(BrowserDynamicTestingModule, {
+      set: {
+        entryComponents: [
+          UserExperienceComponent,
+          UserHeaderComponent,
+          UserEducationComponent,
+          UserProfExpectationsComponent,
+          UserSkillsetComponent,
+          UserEducationHeaderComponent
+        ]
+      }
+    });
+
     TestBed.configureTestingModule({
       imports: [
         CommonModule,
         FormsModule,
-        UserRoutingModule
+        UserRoutingModule,
+        InlineEditorModule,
+        TagInputModule
       ],
       declarations: [
         UserComponent,
@@ -50,26 +94,47 @@ describe('UserTestComponent', () => {
         UserExperienceComponent,
         UserEducationComponent,
         UserProfExpectationsComponent,
-        UserSkillsetComponent
+        UserSkillsetComponent,
+        UserSettingsComponent,
+        ProjectTechnologiesComponent,
+        UserHeaderComponent,
+        UserEducationHeaderComponent,
+        CVPageOneDirective,
+        CVPageTwoDirective,
+        CVPageThreeDirective
       ],
       providers: [
         UserResolver,
         PdfCompressorService,
-        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
+        AngularFireAuth,
+        FirebaseApp,
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute },
+        { provide: AuthService, useValue: authSpy }
       ]
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     fixture = TestBed.createComponent(UserComponent);
     app = fixture.componentInstance;
+    app.contentLoading = false;
+
     fixture.detectChanges();
+  });
+
+  it('should define and compile component', fakeAsync(() => {
+    const de = fixture.debugElement;
+    const el: HTMLElement = de.nativeElement;
+    expect(fixture).toBeDefined();
   }));
 
-  it('should render userName', () => {
-    const de = fixture.debugElement.query(By.css('.userName'));
-    const el: HTMLElement = de.nativeElement;
-    expect(el.innerText).toBe('Marcin');
-  });
+  it('should render userName', fakeAsync(() => {
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      const de = fixture.debugElement.query(By.css('.user-name'));
+      const el: HTMLElement = de.nativeElement;
+      expect(el.innerText).toBe('Marcin');
+    });
+  }));
 });

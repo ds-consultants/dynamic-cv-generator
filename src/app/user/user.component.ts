@@ -31,9 +31,7 @@ import { CVPageTwoDirective } from '../cv-page-two.directive';
 import { CVPageThreeDirective } from '../cv-page-three.directive';
 import { of } from 'rxjs/observable/of';
 import { from } from 'rxjs/observable/from';
-import { takeWhile, concatMap, finalize } from 'rxjs/operators';
-
-
+import { concatMap, finalize, delay } from 'rxjs/operators';
 import { AuthService } from '../core/auth/auth.service';
 
 const pageHeight = 1123;
@@ -119,7 +117,8 @@ export class UserComponent implements OnInit {
         let index = 0;
         const source = from(experience);
         source.pipe(
-          concatMap(res =>  of(res).delay(200) ),
+          concatMap(res =>  of(res) ),
+          delay(200),
           finalize(() => this.renderEducation(this.user.education) )
         ).subscribe(val => {
           const lastExperience = index === experience.length - 1;
@@ -197,7 +196,8 @@ export class UserComponent implements OnInit {
             // UserSkillsetComponent
             from(skillsetNames)
             .pipe(
-              concatMap(res =>  of(res).delay(200) ),
+              concatMap(res =>  of(res) ),
+              delay(200),
               finalize(() => {
                 this.renderFooter();
                 this.contentLoading = false;
