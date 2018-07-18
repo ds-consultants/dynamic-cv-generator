@@ -13,7 +13,7 @@
               <div class="col-sm-12">
                 <h3 class="user-name">
                   <inline-editor type="text" [(ngModel)]="name" (onSave)="saveUser('name', $event)" size="30" name="customEditableText"
-                  [saveOnBlur]="true" hideButtons="true"></inline-editor>
+                  [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
                 </h3>
               </div>
             </div>
@@ -21,7 +21,7 @@
               <div class="col-sm-12">
                 <p class="developer-title">
                   <inline-editor type="select" [(ngModel)]="title" (onSave)="saveUser('title', $event)" [options]="titleOptions" name="customEditableText"
-                  [saveOnBlur]="true" hideButtons="true"></inline-editor>
+                  [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
                 </p>
               </div>
             </div>

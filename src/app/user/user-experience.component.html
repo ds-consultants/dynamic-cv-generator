@@ -2,11 +2,11 @@
   <div class="col-sm-4">
     <p class="custom-left-column">
       <inline-editor type="text" [(ngModel)]="experience.company" (onSave)="saveExperience('company', $event)" size="20" name="customEditableText"
-        [saveOnBlur]="true" hideButtons="true"></inline-editor>
+        [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
     </p>
     <p class="custom-left-column">
       <inline-editor type="text" [(ngModel)]="experience.time" (onSave)="saveExperience('time', $event)" size="20" name="customEditableText"
-        [saveOnBlur]="true" hideButtons="true"></inline-editor>
+        [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
     </p>
     <p class="custom-left-column" *ngIf="editForm">
       <button class="btn btn-outline-danger btn-sm" (click)="removeExperience()">Remove experience</button>
@@ -17,7 +17,7 @@
     <p class="position">
       <b>
         <inline-editor type="text" [(ngModel)]="experience.position" (onSave)="saveExperience('position', $event)" size="40" name="customEditableText"
-          [saveOnBlur]="true" hideButtons="true"></inline-editor>
+          [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
       </b>
     </p>
     <div *ngFor="let project of experience.mainProjects; let j=index">
