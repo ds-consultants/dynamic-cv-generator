@@ -2,16 +2,17 @@
 <p class="name position">
   <b>
     <inline-editor type="text" [(ngModel)]="project.name" (onSave)="saveProject('name', $event)" size="40" name="customEditableText"
-      *ngIf="project.name"></inline-editor>
+      *ngIf="project.name" [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
   </b>
   <span *ngIf="internalProject">
     as
     <inline-editor type="text" [(ngModel)]="project.title" (onSave)="saveProject('title', $event)" size="40" name="customEditableText"
-      *ngIf="internalProject"></inline-editor>
+      *ngIf="internalProject" [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
   </span>
 </p>
 <p class="description">
-  <inline-editor type="textarea" [(ngModel)]="project.desc" (onSave)="saveProject('desc', $event)" cols="70" rows="5" name="customEditableText"></inline-editor>
+  <inline-editor type="textarea" [(ngModel)]="project.desc" (onSave)="saveProject('desc', $event)" cols="70" rows="5" name="customEditableText"
+    [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
 </p>
 <p class="technologies" *ngIf="project.technologies">
   <span>

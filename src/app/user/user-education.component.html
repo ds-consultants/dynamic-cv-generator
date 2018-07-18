@@ -1,17 +1,26 @@
 <div class="row education-row">
   <div class="col-sm-4">
     <p [ngClass]="{'custom-left-column' : edit!=true}">
-      <inline-editor type="text" [(ngModel)]="school.place" (onSave)="saveSchool('place', $event)" size="30" name="customEditableText"></inline-editor>
+      <inline-editor type="text" [(ngModel)]="school.place" (onSave)="saveSchool('place', $event)" size="30" name="customEditableText"
+        [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
     </p>
     <p [ngClass]="{'custom-left-column' : edit!=true}">
-      <inline-editor type="text" [(ngModel)]="school.time" (onSave)="saveSchool('time', $event)" size="30" name="customEditableText"></inline-editor>
+      <inline-editor type="text" [(ngModel)]="school.time" (onSave)="saveSchool('time', $event)" size="30" name="customEditableText"
+        [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
     </p>
   </div>
   <div class="col-sm-8" [ngClass]="{'draw-line-no-margin': !lastRow}">
     <i class="main-project-icon" *ngIf="edit!=true"></i>
     <button class="btn btn-outline-danger btnremove btn-sm" type="button" *ngIf="edit==true" (click)="removeElement()">Remove</button>
-    <p><inline-editor type="text" [(ngModel)]="school.name" (onSave)="saveSchool('name', $event)" size="40" name="customEditableText"></inline-editor></p>
-    <p class="school-place"><inline-editor type="text" [(ngModel)]="school.placeName" (onSave)="saveSchool('place', $event)" size="20" name="customEditableText"></inline-editor></p>
+    <p>
+      <inline-editor type="text" [(ngModel)]="school.name" (onSave)="saveSchool('name', $event)" size="40" name="customEditableText"
+        [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
+    </p>
+
+    <p class="school-place">
+      <inline-editor type="text" [(ngModel)]="school.namePlace" (onSave)="saveSchool('namePlace', $event)" size="20" name="customEditableText"
+        [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
+    </p>
   </div>
   <div class="clearfix"></div>
 </div>

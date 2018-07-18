@@ -7,13 +7,13 @@
   <div class="collapse navbar-collapse" id="headerNavbar" *ngIf="auth.user | async">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" [routerLinkActive]="['active']">
-        <a class="nav-link" [routerLink]="(userUid) ? ['user', userUid,'dashboard'] : ['user', 'dashboard']" [class.disabled]="superUser && !userUid">Dashboard</a>
+        <a id="preview-nav-button" class="nav-link" [routerLink]="(userUid) ? ['user', userUid,'dashboard'] : ['user', 'dashboard']" [class.disabled]="superUser && !userUid">Preview</a>
       </li>
       <li class="nav-item" [routerLinkActive]="['active']">
-        <a class="nav-link" [routerLink]="(userUid) ? ['user', userUid,'settings'] : ['user','settings']"  [class.disabled]="superUser && !userUid">Settings</a>
+        <a id="settings-nav-button" class="nav-link" [routerLink]="(userUid) ? ['user', userUid,'settings'] : ['user','settings']"  [class.disabled]="superUser && !userUid">Settings</a>
       </li>
       <li class="nav-item" [routerLinkActive]="['active']" *ngIf="superUser">
-        <a class="nav-link" routerLink="/users">Users</a>
+        <a id="users-nav-button" class="nav-link" routerLink="/users">Users</a>
       </li>
     </ul>
     <div class="form-inline my-2 my-lg-0 white-nav">
