@@ -1,3 +1,20 @@
 .skillset-name-label {
     line-height: 30px;
 }
+
+.label-note{
+  position: absolute;
+  font-size: 10px;
+  margin-top: -5px;
+  margin-left: 1px;
+  color: #aaa;
+  text-transform: initial;
+}
+
+.card{
+  margin-top: 10px;
+}
+
+.remove-skillset-button{
+  margin-top: 15px;
+}

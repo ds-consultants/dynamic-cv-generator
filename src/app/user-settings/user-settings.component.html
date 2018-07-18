@@ -38,13 +38,13 @@
           <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="company">Place</label>
-                  <input type="text" class="form-control" [(ngModel)]="education.place" name="educationPlace" placeholder="Place">
+                  <label for="company">City</label>
+                  <input type="text" class="form-control" [(ngModel)]="education.place" name="educationPlace" placeholder="City">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="company">Time</label>
+                  <label for="company">Time period</label>
                   <input type="text" class="form-control" [(ngModel)]="education.time" name="educationTime" placeholder="Time">
                 </div>
               </div>
@@ -52,14 +52,14 @@
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="company">Name</label>
-                  <input type="text" class="form-control" [(ngModel)]="education.name" name="educationName" placeholder="Name">
+                  <label for="company">Academic degree</label>
+                  <input type="text" class="form-control" [(ngModel)]="education.name" name="educationName" placeholder="Academic degree">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="company">Name of place</label>
-                  <input type="text" class="form-control" [(ngModel)]="education.namePlace" name="educationNameOfPlace" placeholder="Name of place">
+                  <label for="company">Name of the university</label>
+                  <input type="text" class="form-control" [(ngModel)]="education.namePlace" name="educationNamePlace" placeholder="Name of the university">
                 </div>
               </div>
             </div>
@@ -96,13 +96,13 @@
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="company">Place</label>
-                  <input type="text" class="form-control" [(ngModel)]="experience.company" name="experiencePlace" placeholder="Place">
+                  <label for="company">Company name</label>
+                  <input type="text" class="form-control" [(ngModel)]="experience.company" name="experiencePlace" placeholder="Company name">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="company">Time</label>
+                  <label for="company">Time period</label>
                   <input type="text" class="form-control" [(ngModel)]="experience.time" name="experienceTime" placeholder="Time">
                 </div>
               </div>
@@ -111,8 +111,8 @@
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="company">Name of position</label>
-                  <input type="text" class="form-control" [(ngModel)]="experience.position" name="experiencePosition" placeholder="Name of position">
+                  <label for="company">Professional title</label>
+                  <input type="text" class="form-control" [(ngModel)]="experience.position" name="experiencePosition" placeholder="Professional title">
                 </div>
               </div>
             </div>
@@ -133,13 +133,16 @@
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="company">Desc</label>
-                  <input type="text" class="form-control" [(ngModel)]="mainProject.desc" name="mainProjectPlace" placeholder="Place">
+                  <label for="company">Description</label>
+                  <input type="text" class="form-control" [(ngModel)]="mainProject.desc" name="mainProjectPlace" placeholder="Description">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="company">Technologies</label>
+                  <label for="company">
+                    Technologies
+                    <div class="label-note">Accept each tag name with Enter</div>
+                  </label>
                   <tag-input [(ngModel)]='mainProject.technologies' name="mainProjectTechnologies" theme='bootstrap'></tag-input>
                 </div>
               </div>
@@ -182,7 +185,7 @@
                   <button type="button" class="btn btn-success btn-lg btn-block" (click)=addExperience()>Save experience</button>
               </div>
               <div class="col-sm-6">
-                  <button type="button" class="btn btn-primary btn-lg btn-block" (click)=onAddExperienceForm() *ngIf="showExperienceForm">Cancel</button>
+                  <button type="button" class="btn btn-danger btn-lg btn-block" (click)=onAddExperienceForm() *ngIf="showExperienceForm">Cancel</button>
               </div>
             </div>
             <hr>
@@ -198,15 +201,24 @@
         <label>Skillset</label>
       </h1>
       <div class="tags form-group col-12" *ngFor="let name of skillNames">
-        <h2 class="card-title pricing-card-title text-center custom-card-title">
-          <label for="skills">{{name}}</label>
+        <h2 class="row card-title pricing-card-title text-center custom-card-title">
+          <label class="col-12" for="skills">
+            {{name}}
+            <div class="row">
+              <div class="col-12 text-center label-note">Accept each tag name with Enter</div>
+
+            </div>
+          </label>
+
         </h2>
         <tag-input [(ngModel)]='user.skillset[name].main' name="{{name}}" theme='bootstrap' (ngModelChange)="save()"></tag-input>
         <tag-input [(ngModel)]='user.skillset[name].second' name="{{name}}" theme='bootstrap' (ngModelChange)="save()"></tag-input>
-        <button type="button" class="btn btn-lg btn-block btn-outline-danger" (click)=removeSkillset(name)>Remove {{name}}</button>
+        <button type="button" class="btn btn-lg btn-block btn-outline-danger remove-skillset-button" (click)=removeSkillset(name)>Remove {{name}}</button>
         <hr>
       </div>
-      <button type="button" class="btn btn-outline-primary btn-lg btn-block custom-block-button" (click)=toggleSkillsetForm() *ngIf="!showSkillsetForm">Add new skillset</button>
+      <div class="col-12">
+        <button type="button" class="btn btn-outline-primary btn-lg btn-block custom-block-button" (click)=toggleSkillsetForm() *ngIf="!showSkillsetForm">Add new skillset</button>
+      </div>
       <div class="tags form-group col-12" *ngIf="showSkillsetForm">
         <div class="card mb-4 box-shadow">
           <div class="card-header">
