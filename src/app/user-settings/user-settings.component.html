@@ -1,27 +1,28 @@
 <div class="row">
   <div class="col-sm-8 offset-sm-2">
     <form #f="ngForm">
-      <div class="form-group">
+      <div id="user-name" class="form-group">
         <label for="company">Name</label>
         <input type="text" class="form-control" [(ngModel)]="user.name" name="name" placeholder="Name" (ngModelChange)="save()">
       </div>
-      <div class="form-group">
+      <div id="user-title" class="form-group">
         <label for="title">Title</label>
         <select [(ngModel)]="user.title" class="form-control" id="title" name="title" (ngModelChange)="save()">
           <option *ngFor="let title of titleOptions" [ngValue]="title">{{title}}</option>
         </select>
       </div>
-      <div class="form-group">
+      <div id="user-professional-expectations" class="form-group">
         <label for="professionalExpectations">Professional Expectations</label>
         <textarea class="form-control" [(ngModel)]="user.professionalExpectations" name="professionalExpectations" id="professionalExpectations" (ngModelChange)="save()"
           cols="30" rows="3">
         </textarea>
       </div>
-      <div class="form-group">
+      <div id="user-personal-note" class="form-group">
         <label for="personalNote">Personal Note</label>
         <textarea class="form-control" [(ngModel)]="user.personalNote" name="personalNote" id="personalNote" cols="30" rows="3" (ngModelChange)="save()">
         </textarea>
       </div>
+
       <h1 class="card-title pricing-card-title text-center custom-card-title">
           <label for="education">Education</label>
       </h1>
@@ -37,13 +38,13 @@
           <div class="card-body">
           <div class="row">
               <div class="col-sm-6">
-                <div class="form-group">
+                <div id="education-city" class="form-group">
                   <label for="company">City</label>
                   <input type="text" class="form-control" [(ngModel)]="education.place" name="educationPlace" placeholder="City">
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-group">
+                <div id="education-time-period" class="form-group">
                   <label for="company">Time period</label>
                   <input type="text" class="form-control" [(ngModel)]="education.time" name="educationTime" placeholder="Time">
                 </div>
@@ -51,13 +52,13 @@
             </div>
             <div class="row">
               <div class="col-sm-6">
-                <div class="form-group">
+                <div id="education-academic-degree" class="form-group">
                   <label for="company">Academic degree</label>
                   <input type="text" class="form-control" [(ngModel)]="education.name" name="educationName" placeholder="Academic degree">
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-group">
+                <div id="education-university-name" class="form-group">
                   <label for="company">Name of the university</label>
                   <input type="text" class="form-control" [(ngModel)]="education.namePlace" name="educationNamePlace" placeholder="Name of the university">
                 </div>
@@ -65,18 +66,19 @@
             </div>
             <div class="row">
               <div class="col-sm-6">
-                  <button type="button" class="btn btn-success btn-lg btn-block" (click)=addEducation()>Save education</button>
+                  <button id="education-save-button" type="button" class="btn btn-success btn-lg btn-block" (click)=addEducation()>Save education</button>
               </div>
               <div class="col-sm-6">
-                  <button type="button" class="btn btn-danger btn-lg btn-block" (click)=onAddEducationForm()>Cancel</button>
+                  <button id="education-cancel-button" type="button" class="btn btn-danger btn-lg btn-block" (click)=onAddEducationForm()>Cancel</button>
               </div>
             </div>
           </div>
         </div>
       </ng-template>
 
-      <button type="button" class="btn btn-lg btn-block btn-outline-primary custom-block-button" (click)=onAddEducationForm() *ngIf="!showEducationForm">Add education</button>
+      <button id="education-add-button" type="button" class="btn btn-lg btn-block btn-outline-primary custom-block-button" (click)=onAddEducationForm() *ngIf="!showEducationForm">Add education</button>
       <hr>
+
       <h1 class="card-title pricing-card-title text-center custom-card-title">
         <label for="experience">Experience</label>
       </h1>
@@ -95,13 +97,13 @@
           <div class="card-body">
             <div class="row">
               <div class="col-sm-6">
-                <div class="form-group">
+                <div id="experience-company-name" class="form-group">
                   <label for="company">Company name</label>
                   <input type="text" class="form-control" [(ngModel)]="experience.company" name="experiencePlace" placeholder="Company name">
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-group">
+                <div id="experience-time-period" class="form-group">
                   <label for="company">Time period</label>
                   <input type="text" class="form-control" [(ngModel)]="experience.time" name="experienceTime" placeholder="Time">
                 </div>
@@ -110,12 +112,13 @@
 
             <div class="row">
               <div class="col-sm-6">
-                <div class="form-group">
+                <div id="experience-professional-title" class="form-group">
                   <label for="company">Professional title</label>
                   <input type="text" class="form-control" [(ngModel)]="experience.position" name="experiencePosition" placeholder="Professional title">
                 </div>
               </div>
             </div>
+
             <div class="row">
               <app-user-experience
                 [experience]="experience"
@@ -127,18 +130,19 @@
                 (deleteExperience)="deleteNewExperience($event)"
               ></app-user-experience>
             </div>
+
             <h1 class="card-title pricing-card-title text-center custom-card-title">
               Main project
             </h1>
-            <div class="row">
+            <div id="new-main-project-section" class="row">
               <div class="col-sm-6">
-                <div class="form-group">
+                <div id="main-project-description" class="form-group">
                   <label for="company">Description</label>
                   <input type="text" class="form-control" [(ngModel)]="mainProject.desc" name="mainProjectPlace" placeholder="Description">
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-group">
+                <div id="main-project-technologies" class="form-group">
                   <label for="company">
                     Technologies
                     <div class="label-note">Accept each tag name with Enter</div>
@@ -147,77 +151,80 @@
                 </div>
               </div>
             </div>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary custom-block-button" (click)=addMainProject()>Add main project</button>
+            <button id="main-project-add-button" type="button" class="btn btn-lg btn-block btn-outline-primary custom-block-button" (click)=addMainProject()>Add main project</button>
             <hr>
             <h1 class="card-title pricing-card-title text-center custom-card-title">
               Project
             </h1>
-            <div class="row">
+            <div id="new-project-section" class="row">
               <div class="col-sm-6">
-                <div class="form-group">
+                <div id="project-name" class="form-group">
                   <label for="company">Name</label>
                   <input type="text" class="form-control" [(ngModel)]="project.name" name="projectName" placeholder="Name">
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-group">
+                <div id="project-title" class="form-group">
                   <label for="company">Title</label>
                   <input type="text" class="form-control" [(ngModel)]="project.title" name="projectTitle" placeholder="Title">
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="company">Desc</label>
+                <div id="project-description" class="form-group">
+                  <label for="company">Description</label>
                   <input type="text" class="form-control" [(ngModel)]="project.desc" name="projectPlace" placeholder="Place">
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-group">
+                <div id="project-technologies" class="form-group">
                   <label for="company">Technologies</label>
                   <tag-input [(ngModel)]='project.technologies' name="projectTechnologies" theme='bootstrap'></tag-input>
                 </div>
               </div>
             </div>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary custom-block-button" (click)=addProject()>Add project</button>
+            <button id="project-add-button" type="button" class="btn btn-lg btn-block btn-outline-primary custom-block-button" (click)=addProject()>Add project</button>
             <hr>
             <div class="row">
               <div class="col-sm-6">
-                  <button type="button" class="btn btn-success btn-lg btn-block" (click)=addExperience()>Save experience</button>
+                  <button id="experience-save-button" type="button" class="btn btn-success btn-lg btn-block" (click)=addExperience()>Save experience</button>
               </div>
               <div class="col-sm-6">
-                  <button type="button" class="btn btn-danger btn-lg btn-block" (click)=onAddExperienceForm() *ngIf="showExperienceForm">Cancel</button>
+                  <button id="experience-cancel-button" type="button" class="btn btn-danger btn-lg btn-block" (click)=onAddExperienceForm() *ngIf="showExperienceForm">Cancel</button>
               </div>
             </div>
             <hr>
           </div>
         </div>
         </ng-template>
-        <button type="button" class="btn btn-lg btn-block btn-outline-primary custom-block-button" (click)=addNewHireExperience() *ngIf="!showNewHireExperienceButton">New Hire</button>
-        <button type="button" class="btn btn-lg btn-block btn-outline-primary custom-block-button" (click)=onAddExperienceForm() *ngIf="!showExperienceForm">Add experience</button>
+        <button id="new-hire-button"  type="button" class="btn btn-lg btn-block btn-outline-primary custom-block-button" (click)=addNewHireExperience() *ngIf="!showNewHireExperienceButton">New Hire</button>
+        <button id="add-experience-button" type="button" class="btn btn-lg btn-block btn-outline-primary custom-block-button" (click)=onAddExperienceForm() *ngIf="!showExperienceForm">Add experience</button>
     </form>
 
     <div class="row form-group">
       <h1 class="card-title pricing-card-title text-center custom-card-title">
         <label>Skillset</label>
       </h1>
-      <div class="tags form-group col-12" *ngFor="let name of skillNames">
+      <div id="skillset-{{name | parametrize}}-section" class="tags form-group col-12" *ngFor="let name of skillNames">
         <h2 class="row card-title pricing-card-title text-center custom-card-title">
           <label class="col-12" for="skills">
             {{name}}
             <div class="row">
               <div class="col-12 text-center label-note">Accept each tag name with Enter</div>
-
             </div>
           </label>
 
         </h2>
-        <tag-input [(ngModel)]='user.skillset[name].main' name="{{name}}" theme='bootstrap' (ngModelChange)="save()"></tag-input>
-        <tag-input [(ngModel)]='user.skillset[name].second' name="{{name}}" theme='bootstrap' (ngModelChange)="save()"></tag-input>
-        <button type="button" class="btn btn-lg btn-block btn-outline-danger remove-skillset-button" (click)=removeSkillset(name)>Remove {{name}}</button>
+        <div id="skillset-{{name | parametrize}}-main-skills">
+          <tag-input [(ngModel)]='user.skillset[name].main' name="{{name}}" theme='bootstrap' (ngModelChange)="save()"></tag-input>
+        </div>
+        <div id="skillset-{{name | parametrize}}-secondary-skills">
+          <tag-input [(ngModel)]='user.skillset[name].second' name="{{name}}" theme='bootstrap' (ngModelChange)="save()"></tag-input>
+        </div>
+        <button id="skillset-{{name | parametrize}}-remove-button" type="button" class="btn btn-lg btn-block btn-outline-danger remove-skillset-button" (click)=removeSkillset(name)>Remove {{name}}</button>
         <hr>
       </div>
       <div class="col-12">
-        <button type="button" class="btn btn-outline-primary btn-lg btn-block custom-block-button" (click)=toggleSkillsetForm() *ngIf="!showSkillsetForm">Add new skillset</button>
+        <button id="skillset-add-button" type="button" class="btn btn-outline-primary btn-lg btn-block custom-block-button" (click)=toggleSkillsetForm() *ngIf="!showSkillsetForm">Add new skillset</button>
       </div>
       <div class="tags form-group col-12" *ngIf="showSkillsetForm">
         <div class="card mb-4 box-shadow">
@@ -227,9 +234,9 @@
           <div class="card-body">
             <div class="row form-group">
               <label for="newSkillset" class="col-2 skillset-name-label">Name: </label>
-              <input type="text" class="form-control new-skillset col-6" id="newSkillset" [(ngModel)]="newSkillset" name="newSkillset">
-              <button type="submit" class="btn btn-success col-1 offset-1" (click)=addNewSkillset()>Add</button>
-              <button type="button" class="btn btn-danger cancel-skillset" (click)=toggleSkillsetForm()>Cancel</button>
+              <input id="skillset-name-input" type="text" class="form-control new-skillset col-6" id="newSkillset" [(ngModel)]="newSkillset" name="newSkillset">
+              <button id="skillset-save-button" type="submit" class="btn btn-success col-1 offset-1" (click)=addNewSkillset()>Add</button>
+              <button id="skillset-cancel-button" type="button" class="btn btn-danger cancel-skillset" (click)=toggleSkillsetForm()>Cancel</button>
             </div>
           </div>
         </div>
