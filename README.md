@@ -32,13 +32,26 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
+# Firebase hosting
+
+Install `firebase-tools` with npm: `npm i -g firebase-tools`
+
+## Doployment
+
+* Make sure you have access to both `test` and `production` firebase environments
+* Add firebase production environment localy: `firebase use --add` with alias `default`
+* Add firebase test environment localy: `firebase use --add` with alias `test`
+* Make sure you have `src/environments/environment.test.ts` and `src/environments/environment.prod.ts` files properly populated
+* Run `bin/deploy.all.sh` to deploy to both environments
+* Run `bin/deploy.test.sh` to deploy to `test` environment
+* Run `bin/deploy.production.sh` to deploy to `production` environment
+
 ## Working with firebase functions
 
-* Install `firebase-tools` with npm: `npm i -g firebase-tools`
 * Modify and add new firebase functions to `functions/src/index.ts`
 * Work with firebase library [Documentation](https://firebase.google.com/docs/firestore/quickstart)
 * Deploy functions with `firebase deploy --only functions`
 
-## Further help
+# Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
