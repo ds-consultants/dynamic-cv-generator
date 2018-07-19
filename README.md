@@ -48,7 +48,6 @@ Install `firebase-tools` with npm: `npm i -g firebase-tools`
 
 ## Working with firebase functions
 
-
 * Modify and add new firebase functions to `functions/src/index.ts`
 * Work with firebase library [Documentation](https://firebase.google.com/docs/firestore/quickstart)
 * Deploy functions with `firebase deploy --only functions`
