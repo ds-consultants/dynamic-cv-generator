@@ -38,13 +38,13 @@ Install `firebase-tools` with npm: `npm i -g firebase-tools`
 
 ## Doployment
 
-* Add firebase production environment `firebase use --add` with alias `default`
-* Add firebase test environment `firebase use --add` with alias `test`
+* Make sure you have access to both `test` and `production` firebase environments
+* Add firebase production environment localy: `firebase use --add` with alias `default`
+* Add firebase test environment localy: `firebase use --add` with alias `test`
 * Make sure you have `src/environments/environment.test.ts` and `src/environments/environment.prod.ts` files properly populated
 * Run `bin/deploy.all.sh` to deploy to both environments
-OR
-* Run `bin/deploy.test.sh` to deploy to test environment
-* Run `bin/deploy.production.sh` to deploy to production environment
+* Run `bin/deploy.test.sh` to deploy to `test` environment
+* Run `bin/deploy.production.sh` to deploy to `production` environment
 
 ## Working with firebase functions
 
