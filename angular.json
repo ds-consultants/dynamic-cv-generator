@@ -65,6 +65,9 @@
             },
             "prod": {
               "browserTarget": "dynamic-cv-generator:build:prod"
+            },
+            "test": {
+              "browserTarget": "dynamic-cv-generator:build:test"
             }
           }
         },
