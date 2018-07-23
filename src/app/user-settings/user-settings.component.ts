@@ -172,6 +172,14 @@ export class UserSettingsComponent implements OnInit {
     this.showSkillsetForm = !this.showSkillsetForm;
   }
 
+  renameSkillset(prevSkillName, skillName) {
+    if (prevSkillName !== skillName) {
+      this.user.skillset[skillName] = this.user.skillset[prevSkillName];
+      delete this.user.skillset[prevSkillName];
+    }
+    this.save(false);
+  }
+
   removeSkillset(skillName) {
     if (confirm('delete ?') === true) {
       const index = this.skillNames.indexOf(skillName, 0);

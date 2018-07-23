@@ -18,3 +18,7 @@
 .remove-skillset-button{
   margin-top: 15px;
 }
+
+inline-editor[name="customCenteredEditableText"] {
+  display: inline-block;
+}
