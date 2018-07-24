@@ -25,6 +25,7 @@ import { UserHeaderComponent } from './user-header.component';
 import { CVPageOneDirective } from '../cv-page-one.directive';
 import { CVPageTwoDirective } from '../cv-page-two.directive';
 import { CVPageThreeDirective } from '../cv-page-three.directive';
+import { CVPageFourDirective } from '../cv-page-four.directive';
 
 import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
 
@@ -101,7 +102,8 @@ describe('UserComponent', () => {
         UserEducationHeaderComponent,
         CVPageOneDirective,
         CVPageTwoDirective,
-        CVPageThreeDirective
+        CVPageThreeDirective,
+        CVPageFourDirective
       ],
       providers: [
         UserResolver,

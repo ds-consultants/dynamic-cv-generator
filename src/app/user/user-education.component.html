@@ -1,7 +1,7 @@
 <div class="row education-row">
   <div class="col-sm-4">
     <p [ngClass]="{'custom-left-column' : edit!=true}">
-      <inline-editor type="text" [(ngModel)]="school.place" (onSave)="saveSchool('place', $event)" size="30" name="customEditableText"
+      <inline-editor type="text" [(ngModel)]="school.namePlace" (onSave)="saveSchool('namePlace', $event)" size="20" name="customEditableText"
         [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
     </p>
     <p [ngClass]="{'custom-left-column' : edit!=true}">
@@ -18,7 +18,7 @@
     </p>
 
     <p class="school-place">
-      <inline-editor type="text" [(ngModel)]="school.namePlace" (onSave)="saveSchool('namePlace', $event)" size="20" name="customEditableText"
+      <inline-editor type="text" [(ngModel)]="school.place" (onSave)="saveSchool('place', $event)" size="30" name="customEditableText"
         [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
     </p>
   </div>

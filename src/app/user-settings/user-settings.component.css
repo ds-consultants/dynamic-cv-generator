@@ -18,3 +18,7 @@
 .remove-skillset-button{
   margin-top: 15px;
 }
+
+.inline-block {
+  display: inline-block;
+}

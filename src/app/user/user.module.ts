@@ -18,6 +18,7 @@ import { UserSettingsComponent } from '../user-settings/user-settings.component'
 import { CVPageOneDirective } from '../cv-page-one.directive';
 import { CVPageTwoDirective } from '../cv-page-two.directive';
 import { CVPageThreeDirective } from '../cv-page-three.directive';
+import { CVPageFourDirective } from '../cv-page-four.directive';
 import { UserHeaderComponent } from './user-header.component';
 import { UserEducationHeaderComponent } from './user-education-header.component';
 import { UserFooterComponent } from './user-footer.component';
@@ -46,6 +47,7 @@ import { ParametrizePipe } from '../core/parametrize.pipe';
         CVPageOneDirective,
         CVPageTwoDirective,
         CVPageThreeDirective,
+        CVPageFourDirective,
         UserHeaderComponent,
         UserEducationHeaderComponent,
         UserFooterComponent,
