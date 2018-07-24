@@ -29,6 +29,7 @@ import { UserFooterComponent } from './user-footer.component';
 import { CVPageOneDirective } from '../cv-page-one.directive';
 import { CVPageTwoDirective } from '../cv-page-two.directive';
 import { CVPageThreeDirective } from '../cv-page-three.directive';
+import { CVPageFourDirective } from '../cv-page-four.directive';
 import { of } from 'rxjs/observable/of';
 import { from } from 'rxjs/observable/from';
 import { concatMap, finalize, delay } from 'rxjs/operators';
@@ -45,18 +46,21 @@ export class UserComponent implements OnInit {
     @ViewChild(CVPageOneDirective) cvPageOne: CVPageOneDirective;
     @ViewChild(CVPageTwoDirective) cvPageTwo: CVPageTwoDirective;
     @ViewChild(CVPageThreeDirective) cvPageThree: CVPageThreeDirective;
+    @ViewChild(CVPageFourDirective) cvPageFour: CVPageFourDirective;
 
     @ViewChild('cvPageOneContainer') pageOneContainer: ElementRef;
     @ViewChild('cvPageTwoContainer') pageTwoContainer: ElementRef;
     @ViewChild('cvPageThreeContainer') pageThreeContainer: ElementRef;
+    @ViewChild('cvPageFourContainer') pageFourContainer: ElementRef;
 
     user: User;
     website = window.localStorage.getItem('dynamicCvWebsite') || 'www.ds-consultants.eu';
     email = window.localStorage.getItem('dynamicCvEmail') || 'info@ds-consultants.eu';
     _languages = [];
     _others = [];
-    currentPage: CVPageOneDirective | CVPageTwoDirective | CVPageThreeDirective;
+    currentPage: CVPageOneDirective | CVPageTwoDirective | CVPageThreeDirective | CVPageFourDirective;
     currentPageContainer: ElementRef;
+    showPageFour: Boolean = false;
     showPageThree: Boolean = false;
     showPageTwo: Boolean = false;
     pdf = new jsPDF('p', 'px');
@@ -93,7 +97,11 @@ export class UserComponent implements OnInit {
     }
 
     bumpCurrentPage() {
-        if (this.currentPage === this.cvPageTwo) {
+        if (this.currentPage === this.cvPageThree) {
+          this.currentPage = this.cvPageFour;
+          this.currentPageContainer = this.pageFourContainer;
+          this.showPageFour = true;
+        } else if (this.currentPage === this.cvPageTwo) {
             this.currentPage = this.cvPageThree;
             this.currentPageContainer = this.pageThreeContainer;
             this.showPageThree = true;
@@ -196,16 +204,18 @@ export class UserComponent implements OnInit {
             // UserSkillsetComponent
             from(skillsetNames)
             .pipe(
-              concatMap(res =>  of(res) ),
-              delay(200),
+              concatMap(res =>  of(res).delay(500) ),
               finalize(() => {
+                this.ensureLastComponentFitPage(true);
                 this.renderFooter();
                 this.contentLoading = false;
               })
             ).subscribe(val => {
               const name = val;
               this.renderSingleSkillRow(name, skillset[name]);
-              this.ensureLastComponentFitPage(true);
+              if (val !== skillsetNames[skillsetNames.length - 1]) {
+                this.ensureLastComponentFitPage(false);
+              }
             });
         }, 0);
     }
