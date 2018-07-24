@@ -203,7 +203,7 @@
       <div class="tags form-group col-12" *ngFor="let name of skillNames; let i = index">
         <h2 class="row card-title pricing-card-title text-center custom-card-title">
           <label class="col-12" for="skills">
-            <inline-editor type="text" [(ngModel)]="skillNames[i]" (onSave)="renameSkillset(name, $event)" size="40" name="customCenteredEditableText"
+            <inline-editor class="inline-block" type="text" [(ngModel)]="skillNames[i]" (onSave)="renameSkillset(name, $event)" size="40" name="customCenteredEditableText"
               [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
             <div class="row">
               <div class="col-12 text-center label-note">Accept each tag name with Enter</div>

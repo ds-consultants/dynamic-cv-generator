@@ -19,6 +19,6 @@
   margin-top: 15px;
 }
 
-inline-editor[name="customCenteredEditableText"] {
+.inline-block {
   display: inline-block;
 }
