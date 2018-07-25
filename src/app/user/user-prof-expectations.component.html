@@ -6,7 +6,7 @@
 </div>
 <div class="row">
   <div class="col-sm-12 proffesional-expecattions">
-    <p>
+      <p class="description">
       <inline-editor type="textarea" [(ngModel)]="proffesionalExpectations" (onSave)="savePersonalInfo('professionalExpectations', $event)"
         cols="70" rows="5" name="customEditableText" [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
     </p>
@@ -15,7 +15,7 @@
 <br>
 <div class="row">
   <div class="col-sm-12 proffesional-expecattions">
-    <p>
+  <p class="description">
       <inline-editor type="textarea" [(ngModel)]="personalNote" (onSave)="savePersonalInfo('personalNote', $event)" cols="70" rows="5"
         name="customEditableText" [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
     </p>
