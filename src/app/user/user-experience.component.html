@@ -25,7 +25,7 @@
       </app-project>
       <button id="main-project-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeMainProject(j)" *ngIf="editForm">Remove main project</button>
     </div>
-    <p *ngIf="experience.projects" class="working-on">
+    <p *ngIf="experience.projects && experience.projects.length" class="working-on">
       Working on projects for:
     </p>
     <br>
