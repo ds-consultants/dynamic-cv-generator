@@ -24,6 +24,8 @@ import { UserEducationHeaderComponent } from './user-education-header.component'
 import { UserFooterComponent } from './user-footer.component';
 import { InlineEditorModule } from '@fradev/ngx-inline-editor';
 import { TagInputModule } from 'ngx-chips';
+import { ParametrizePipe } from '../core/parametrize.pipe';
+
 @NgModule({
 
     imports: [
@@ -49,7 +51,8 @@ import { TagInputModule } from 'ngx-chips';
         UserHeaderComponent,
         UserEducationHeaderComponent,
         UserFooterComponent,
-        UserSkillsHeaderComponent
+        UserSkillsHeaderComponent,
+        ParametrizePipe
     ],
     providers: [
         UserResolver,
