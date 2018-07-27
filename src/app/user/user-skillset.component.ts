@@ -35,13 +35,15 @@ export class UserSkillsetComponent implements OnInit {
 
     splitSkills(skills): Array<any> {
         let splitedSkills;
-        if (skills.length >= 6) {
-            const half_length = Math.ceil(skills.length / 2);
 
-            const leftHalf = skills.splice(0, half_length);
-            splitedSkills = [leftHalf, skills];
+        const skillsCopy = skills.slice();
+        if (skills.length >= 6) {
+            const half_length = Math.ceil(skillsCopy.length / 2);
+
+            const leftHalf = skillsCopy.splice(0, half_length);
+            splitedSkills = [leftHalf, skillsCopy];
         } else {
-            splitedSkills = [skills];
+            splitedSkills = [skillsCopy];
         }
 
         return splitedSkills;

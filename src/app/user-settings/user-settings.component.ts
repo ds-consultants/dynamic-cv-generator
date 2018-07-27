@@ -222,7 +222,7 @@ export class UserSettingsComponent implements OnInit {
   }
 
   addProject() {
-    let pushProject = () => {
+    const pushProject = () => {
       this.experience.projects.push(
         {
           name: this.project.name,
@@ -232,13 +232,21 @@ export class UserSettingsComponent implements OnInit {
         }
       );
       this.emptyProject();
-    }
-    
-    if ( this.project.name == "" && confirm('Are you sure you want to add this Project? \n Project name is empty and there won\' be possibility to edit it later') === true ) {
+    };
+
+    const confirmationText = (variable) => {
+      return `Are you sure you want to add this Project? \n` +
+        `Project ${variable} is empty and there won\'` +
+        `be possibility to edit it later`;
+    };
+
+    if ( this.project.name === '' &&
+        confirm(confirmationText('name')) === true ) {
       pushProject();
-    } else if ( this.project.title == "" && confirm('Are you sure you want to add this Project? \n Project title is empty and there won\' be possibility to edit it later') === true ) {
+    } else if ( this.project.title === '' &&
+        confirm(confirmationText('title')) === true ) {
       pushProject();
-    } else if (this.project.name != "" && this.project.title != "") {
+    } else if (this.project.name !== '' && this.project.title !== '') {
       pushProject();
     }
   }
@@ -264,7 +272,7 @@ export class UserSettingsComponent implements OnInit {
     this.save(false);
   }
 
-  emptyExperience(){
+  emptyExperience() {
     this.experience = {
       company: '',
       position: '',
