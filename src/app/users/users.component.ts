@@ -87,7 +87,7 @@ export class UsersComponent implements OnInit {
 
       reader.onload = (e: any) => {
         const importedUserData = JSON.parse(e.target.result);
-        user = {...importedUserData, uid: user.uid, email: user.email};
+        user = {...importedUserData, uid: user.uid, email: user.email, superUser: user.superUser};
 
         this.auth.updateUserData(user).then((result) => {
           alert('User updated with imported data');
