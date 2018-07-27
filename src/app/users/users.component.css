@@ -1,3 +1,26 @@
 ul {
   list-style-type: none;
 }
+
+.user-row{
+  padding: 2px 5px;
+}
+
+.export-link, .password-reset-link{
+  display: none;
+  font-size: 10px;
+  line-height: 16px;
+  margin-left: 15px;
+}
+
+.user-row:hover .export-link, .user-row:hover .password-reset-link{
+  display: inline-block;
+}
+
+.user-row:hover{
+  background: #dcdcdc99;
+}
+
+.user-import-input{
+  display: none;
+}

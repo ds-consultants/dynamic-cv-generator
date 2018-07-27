@@ -7,6 +7,7 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 import { of } from 'rxjs/observable/of';
 import { User } from '../user';
 import { FormValidatorService } from '../core/form-validator.service';
+import { saveAs } from 'file-saver/FileSaver';
 
 type UserFields = 'email' | 'password';
 type FormErrors = {[u in UserFields]: string };
@@ -63,5 +64,45 @@ export class UsersComponent implements OnInit {
     if (confirm('Are you sure you want to send a reset password instruction email to: ' + email)) {
       this.auth.resetPassword(email);
     }
+  }
+
+  exportUserDataAsJson(user: User) {
+    const userClone = {...user};
+
+    const exportString = JSON.stringify(userClone, null, 2);
+
+    const timeNow = new Date();
+    const timestamp = timeNow.toLocaleString().replace(/[ ]/g, '').replace(/[\/|,|:]/g, '_');
+
+    const userName = userClone.email.replace(/@.*/g, '');
+
+    const blob = new Blob([exportString], {type: 'application/json;charset=utf-8'});
+    saveAs(blob, `${userName}.firebase.cv.${timestamp}.json`);
+  }
+
+  importUserDataJson(user, event) {
+    if (event.target.files && event.target.files[0] &&
+      event.target.files[0].name.search(/\.firebase\.cv\./) > 0) {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        const importedUserData = JSON.parse(e.target.result);
+        user = {...importedUserData, uid: user.uid, email: user.email};
+
+        this.auth.updateUserData(user).then((result) => {
+          alert('User updated with imported data');
+        }).catch((error) => {
+          console.log(error);
+        });
+      };
+
+      reader.readAsText(event.target.files[0]);
+    } else {
+      alert('File doesn\'t match');
+    }
+  }
+
+  triggerUserDataImport(uid) {
+    document.getElementById(`import-user-${uid}`).click();
   }
 }
