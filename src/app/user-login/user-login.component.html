@@ -28,12 +28,12 @@
       <div class="form-group">
         <p>
           You don't have account yet? Click
-          <a routerLink="/signup">here</a>
+          <a id="sign-up-here-link" routerLink="/signup">here</a>
           to register.
         </p>
       </div>
       <div class="form-group">
-        <a *ngIf="!passReset && validator.userForm.controls.email.valid" class="btn btn-*" (click)="resetPassword()">Reset Password for {{validator.userForm.value.email}}?</a>
+        <a id="reset-password-link" *ngIf="!passReset && validator.userForm.controls.email.valid" class="btn btn-*" (click)="resetPassword()">Reset Password for {{validator.userForm.value.email}}?</a>
         <p *ngIf="passReset" class="">Reset requested. Check your email instructions.</p>
       </div>
     </form>
