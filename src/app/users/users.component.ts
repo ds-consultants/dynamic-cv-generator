@@ -1,4 +1,4 @@
-import { switchMap } from 'rxjs/operators';
+import { switchMap, filter, map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../core/auth/auth.service';
@@ -8,6 +8,7 @@ import { of } from 'rxjs/observable/of';
 import { User } from '../user';
 import { FormValidatorService } from '../core/form-validator.service';
 import { saveAs } from 'file-saver/FileSaver';
+import { environment } from '../../environments/environment';
 
 type UserFields = 'email' | 'password';
 type FormErrors = {[u in UserFields]: string };
@@ -40,7 +41,8 @@ export class UsersComponent implements OnInit {
         } else {
           return of(null);
         }
-      })
+      }),
+      map(users => users.filter( (user) => user.email !== environment.backupEmail ))
     );
   }
 

@@ -5,12 +5,13 @@ import { UserLoginComponent } from './user-login/user-login.component';
 import { UsersComponent } from './users/users.component';
 import { AuthGuard } from './core/auth/auth.guard';
 import { UserSignUpComponent } from './user-sign-up/user-sign-up.component';
-import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { UsersDataBackupComponent } from './users-data-backup/users-data-backup.component';
 
 const routes: Routes = [
     { path: 'login', component: UserLoginComponent },
     { path: 'signup', component: UserSignUpComponent },
     { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+    { path: 'backup/:auth', component: UsersDataBackupComponent },
     {
         path: 'user',
         loadChildren: './user/user.module#UserModule'
@@ -22,7 +23,7 @@ const routes: Routes = [
     {
         path: '',
         redirectTo: '/user/settings',
-        pathMatch: 'full'
+        pathMatch: 'full',
     },
 ];
 
