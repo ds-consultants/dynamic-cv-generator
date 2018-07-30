@@ -52,6 +52,12 @@ Install `firebase-tools` with npm: `npm i -g firebase-tools`
 * Work with firebase library [Documentation](https://firebase.google.com/docs/firestore/quickstart)
 * Deploy functions with `firebase deploy --only functions`
 
+# Backup
+
+* Make sure that you have `backupAuthKey`, `backupEmail` and `backupPassword` set properly
+* `backupEmail` and `backupPassword` should point to the firebase account with the email `backup@example.com`. It should have special privilages to `read` all users data from database
+* You can trigger backup going to: `/backup/:backupAuthKey` (we're doing that with [cron jobs service](cron-job.org))
+
 # Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
