@@ -62,3 +62,7 @@
     transform: scale(1.0);
   }
 }
+
+.reposition-up, .reposition-down {
+  display: none;
+}

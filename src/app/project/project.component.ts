@@ -12,13 +12,13 @@ export class ProjectComponent {
     @Input() internalProject: Boolean = false;
     @Input() listIndex: number;
     @Input() maxListIndex: number;
+    @Input() editForm: Boolean = false;
     @Output() updateUser = new EventEmitter<any>();
     @Output() moveProjectUp = new EventEmitter<any>();
     @Output() moveProjectDown = new EventEmitter<any>();
 
     saveProject(key, newValue) {
         this.project[key] = newValue;
-        console.log(this.project);
         this.updateUser.emit(this.project);
     }
 

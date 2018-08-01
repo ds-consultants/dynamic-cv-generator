@@ -1,6 +1,6 @@
 <div class="row">
-    <a class="reposition-up" (click)="moveExperienceUp()" *ngIf="listIndex !== 0 && maxListIndex !== 0">&uarr;</a>
-    <a class="reposition-down" (click)="moveExperienceDown()"  *ngIf="maxListIndex !== listIndex">&darr;</a>
+    <a class="reposition-up" (click)="moveExperienceUp()" *ngIf="editForm && listIndex !== 0 && maxListIndex !== 0">&uarr;</a>
+    <a class="reposition-down" (click)="moveExperienceDown()"  *ngIf="editForm && maxListIndex !== listIndex">&darr;</a>
   <div class="col-sm-4">
     <p class="custom-left-column">
       <inline-editor type="text" [(ngModel)]="experience.company" (onSave)="saveExperience('company', $event)" size="20" name="customEditableText"
@@ -39,6 +39,7 @@
         class="ds-project"
         [listIndex]="k"
         [maxListIndex]="experience.projects.length - 1"
+        [editForm]="editForm"
         (updateUser)="saveExperience($event)"
         (moveProjectUp)="moveProjectUp($event)"
         (moveProjectDown)="moveProjectDown($event)"></app-project>
