@@ -9,7 +9,7 @@
         [saveOnBlur]="true" [hideButtons]="true" id="inline-experience-time-period"></inline-editor>
     </p>
     <p class="custom-left-column" *ngIf="editForm">
-      <button id="experience-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeExperience()">Remove experience</button>
+      <button type="button" id="experience-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeExperience()">Remove experience</button>
     </p>
   </div>
   <div class="col-sm-8 draw-line">
@@ -23,7 +23,7 @@
     <div *ngFor="let project of experience.mainProjects; let j=index">
       <app-project [project]="project" [ngClass]="{'main-project': experience.company == 'Dynamic Solutions'}" (updateUser)="saveExperience($event)">
       </app-project>
-      <button id="main-project-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeMainProject(j)" *ngIf="editForm">Remove main project</button>
+      <button type="button" id="main-project-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeMainProject(j)" *ngIf="editForm">Remove main project</button>
     </div>
     <p *ngIf="experience.projects && experience.projects.length" class="working-on">
       Working on projects for:
@@ -31,7 +31,7 @@
     <br>
     <div *ngFor="let project of experience.projects; let k=index">
       <app-project [project]="project" internalProject=[true] class="ds-project" (updateUser)="saveExperience($event)"></app-project>
-      <button id="project-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeProject(k)" *ngIf="editForm">Remove project</button>
+      <button type="button" id="project-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeProject(k)" *ngIf="editForm">Remove project</button>
     </div>
   </div>
   <div class="clearfix"></div>
