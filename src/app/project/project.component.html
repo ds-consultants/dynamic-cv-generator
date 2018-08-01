@@ -1,4 +1,6 @@
 <i *ngIf="internalProject" class="internal-project"></i>
+<a class="reposition-up" (click)="moveUp()" *ngIf="internalProject && listIndex !== 0 && maxListIndex !== 0">&uarr;</a>
+<a class="reposition-down" (click)="moveDown()"  *ngIf="internalProject && maxListIndex !== listIndex">&darr;</a>
 <p class="name position">
   <b>
     <inline-editor type="text" [(ngModel)]="project.name" (onSave)="saveProject('name', $event)" size="40" name="customEditableText"

@@ -16,3 +16,20 @@
 .technologies {
     position: relative;
 }
+
+.reposition-down, .reposition-up {
+  position: absolute;
+  cursor: pointer;
+  background: #fff;
+  display: block;
+}
+
+.reposition-up {
+  left: -6px;
+  margin-top: 27px;
+}
+
+.reposition-down {
+  left: -6px;
+  margin-top: 47px;
+}

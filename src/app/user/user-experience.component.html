@@ -1,4 +1,6 @@
 <div class="row">
+    <a class="reposition-up" (click)="moveExperienceUp()" *ngIf="listIndex !== 0 && maxListIndex !== 0">&uarr;</a>
+    <a class="reposition-down" (click)="moveExperienceDown()"  *ngIf="maxListIndex !== listIndex">&darr;</a>
   <div class="col-sm-4">
     <p class="custom-left-column">
       <inline-editor type="text" [(ngModel)]="experience.company" (onSave)="saveExperience('company', $event)" size="20" name="customEditableText"
@@ -21,7 +23,9 @@
       </b>
     </p>
     <div *ngFor="let project of experience.mainProjects; let j=index">
-      <app-project [project]="project" [ngClass]="{'main-project': experience.company == 'Dynamic Solutions'}" (updateUser)="saveExperience($event)">
+      <app-project [project]="project"
+        [ngClass]="{'main-project': experience.company == 'Dynamic Solutions'}"
+        (updateUser)="saveExperience($event)">
       </app-project>
       <button id="main-project-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeMainProject(j)" *ngIf="editForm">Remove main project</button>
     </div>
@@ -30,7 +34,14 @@
     </p>
     <br>
     <div *ngFor="let project of experience.projects; let k=index">
-      <app-project [project]="project" internalProject=[true] class="ds-project" (updateUser)="saveExperience($event)"></app-project>
+      <app-project [project]="project"
+        internalProject=[true]
+        class="ds-project"
+        [listIndex]="k"
+        [maxListIndex]="experience.projects.length - 1"
+        (updateUser)="saveExperience($event)"
+        (moveProjectUp)="moveProjectUp($event)"
+        (moveProjectDown)="moveProjectDown($event)"></app-project>
       <button id="project-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeProject(k)" *ngIf="editForm">Remove project</button>
     </div>
   </div>

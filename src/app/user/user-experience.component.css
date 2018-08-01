@@ -1,0 +1,17 @@
+.reposition-up, .reposition-down {
+  position: absolute;
+  cursor: pointer;
+  background: #fff;
+  display: block;
+  z-index: 2;
+}
+
+.reposition-up {
+  left: 50px;
+  margin-top: 20px;
+}
+
+.reposition-down {
+  left: 50px;
+  margin-top: 40px;
+}

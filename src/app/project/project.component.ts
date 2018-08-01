@@ -10,12 +10,25 @@ import { Project } from './project';
 export class ProjectComponent {
     @Input() project: Project;
     @Input() internalProject: Boolean = false;
+    @Input() listIndex: number;
+    @Input() maxListIndex: number;
     @Output() updateUser = new EventEmitter<any>();
+    @Output() moveProjectUp = new EventEmitter<any>();
+    @Output() moveProjectDown = new EventEmitter<any>();
 
     saveProject(key, newValue) {
         this.project[key] = newValue;
         console.log(this.project);
         this.updateUser.emit(this.project);
     }
+
+    moveUp() {
+      this.moveProjectUp.emit(this.listIndex);
+    }
+
+    moveDown() {
+      this.moveProjectDown.emit(this.listIndex);
+    }
+
     constructor() { }
 }

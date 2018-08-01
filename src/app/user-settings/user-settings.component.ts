@@ -271,4 +271,37 @@ export class UserSettingsComponent implements OnInit {
     this.checkNewHireExperienceButtonState();
     this.save(false);
   }
+
+  repositionProject(event) {
+    const array = this.user.experience[event.experienceKey][event.key];
+    const temp_array = array.slice();
+    const i = event.index;
+
+    if (event.down && event.index + 1 < temp_array.length) {
+      array[i + 1] = temp_array[i];
+      array[i] = temp_array[i + 1];
+    } else if (event.up && event.index - 1 >= 0) {
+      array[i - 1] = temp_array[i];
+      array[i] = temp_array[i - 1];
+    }
+
+    this.save(false);
+  }
+
+  repositionExperience(event) {
+    const array = this.user.experience;
+    const temp_array = array.slice();
+    const i = event.index;
+
+    if (event.down && event.index + 1 < temp_array.length) {
+      array[i + 1] = temp_array[i];
+      array[i] = temp_array[i + 1];
+    } else if (event.up && event.index - 1 >= 0) {
+      array[i - 1] = temp_array[i];
+      array[i] = temp_array[i - 1];
+    }
+
+    this.save(false);
+  }
+
 }
