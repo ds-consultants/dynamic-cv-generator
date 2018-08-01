@@ -1,7 +1,7 @@
 <div class="row">
-    <a class="reposition-up" (click)="moveExperienceUp()" *ngIf="editForm && listIndex !== 0 && maxListIndex !== 0">&uarr;</a>
-    <a class="reposition-down" (click)="moveExperienceDown()"  *ngIf="editForm && maxListIndex !== listIndex">&darr;</a>
-  <div class="col-sm-4">
+  <div class="col-sm-4 experience-row">
+      <a class="reposition-up" (click)="moveExperienceUp()" *ngIf="editForm && listIndex !== 0 && maxListIndex !== 0">&uarr;</a>
+      <a class="reposition-down" (click)="moveExperienceDown()"  *ngIf="editForm && maxListIndex !== listIndex">&darr;</a>
     <p class="custom-left-column">
       <inline-editor type="text" [(ngModel)]="experience.company" (onSave)="saveExperience('company', $event)" size="20" name="customEditableText"
         [saveOnBlur]="true" [hideButtons]="true"></inline-editor>

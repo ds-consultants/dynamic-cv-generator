@@ -9,10 +9,10 @@ import { Project } from './project';
 })
 export class ProjectComponent {
     @Input() project: Project;
-    @Input() internalProject: Boolean = false;
+    @Input() internalProject: boolean | false;
     @Input() listIndex: number;
     @Input() maxListIndex: number;
-    @Input() editForm: Boolean = false;
+    @Input() editForm: boolean | false;
     @Output() updateUser = new EventEmitter<any>();
     @Output() moveProjectUp = new EventEmitter<any>();
     @Output() moveProjectDown = new EventEmitter<any>();

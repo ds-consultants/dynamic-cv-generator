@@ -27,7 +27,13 @@
           <label for="education">Education</label>
       </h1>
       <div *ngFor="let school of user.education;let i=index">
-        <app-user-education [school]="school" [edit]="true" [id]="i" (delete)="deleteEducation($event)"></app-user-education>
+        <app-user-education [school]="school"
+          [edit]="true"
+          [editForm]="true"
+          [listIndex]="i"
+          [maxListIndex]="user.education.length - 1"
+          (delete)="deleteEducation($event)"
+          (repositionEducation)="repositionEducation($event)"></app-user-education>
       </div>
 
       <ng-template [ngIf]="showEducationForm">

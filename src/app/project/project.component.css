@@ -21,7 +21,7 @@
   position: absolute;
   cursor: pointer;
   background: #fff;
-  display: block;
+  display: none;
 }
 
 .reposition-up {
@@ -32,4 +32,14 @@
 .reposition-down {
   left: -6px;
   margin-top: 47px;
+}
+
+.project-row:hover .reposition-up,
+.project-row:hover .reposition-down {
+  display: block;
+}
+
+.project-row {
+  margin-left: -30px;
+  padding-left: 30px;
 }

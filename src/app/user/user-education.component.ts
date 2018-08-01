@@ -3,16 +3,19 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 @Component({
     selector: 'app-user-education',
     templateUrl: './user-education.component.html',
-    styles: ['.btnremove { float: right; }']
+    styleUrls: ['./user-education.component.css']
 })
 export class UserEducationComponent {
 
     @Input() school: any;
     @Input() lastRow = false;
     @Input() edit: boolean;
-    @Input() id: number;
+    @Input() listIndex: number;
+    @Input() maxListIndex: number;
+    @Input() editForm: boolean | false;
     @Output() delete: EventEmitter<any> = new EventEmitter();
     @Output() updateUser = new EventEmitter<any>();
+    @Output() repositionEducation = new EventEmitter<any>();
 
     constructor() { }
 
@@ -22,6 +25,20 @@ export class UserEducationComponent {
 
     removeElement() {
         // add remove action
-        this.delete.emit(this.id);
+        this.delete.emit(this.listIndex);
+    }
+
+    moveEducationDown() {
+      this.repositionEducation.emit({
+        index: this.listIndex,
+        down: true
+      });
+    }
+
+    moveEducationUp() {
+      this.repositionEducation.emit({
+        index: this.listIndex,
+        up: true
+      });
     }
 }

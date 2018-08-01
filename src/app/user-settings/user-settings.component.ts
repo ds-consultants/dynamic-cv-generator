@@ -274,34 +274,39 @@ export class UserSettingsComponent implements OnInit {
 
   repositionProject(event) {
     const array = this.user.experience[event.experienceKey][event.key];
-    const temp_array = array.slice();
-    const i = event.index;
 
-    if (event.down && event.index + 1 < temp_array.length) {
-      array[i + 1] = temp_array[i];
-      array[i] = temp_array[i + 1];
-    } else if (event.up && event.index - 1 >= 0) {
-      array[i - 1] = temp_array[i];
-      array[i] = temp_array[i - 1];
-    }
+    this.repositionElementInArray(array, event.index, event.up, event.down);
 
     this.save(false);
   }
 
   repositionExperience(event) {
     const array = this.user.experience;
-    const temp_array = array.slice();
-    const i = event.index;
 
-    if (event.down && event.index + 1 < temp_array.length) {
+    this.repositionElementInArray(array, event.index, event.up, event.down);
+
+    this.save(false);
+  }
+
+  repositionEducation(event) {
+    const array = this.user.education;
+
+    this.repositionElementInArray(array, event.index, event.up, event.down);
+
+    this.save(false);
+  }
+
+  repositionElementInArray(array, elementPosition, up, down) {
+    const temp_array = array.slice();
+    const i = elementPosition;
+
+    if (down && i + 1 < temp_array.length) {
       array[i + 1] = temp_array[i];
       array[i] = temp_array[i + 1];
-    } else if (event.up && event.index - 1 >= 0) {
+    } else if (up && i - 1 >= 0) {
       array[i - 1] = temp_array[i];
       array[i] = temp_array[i - 1];
     }
-
-    this.save(false);
   }
 
 }
