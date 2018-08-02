@@ -2,13 +2,24 @@
   <h2>Please select one of the users: </h2>
   <ul>
     <div *ngFor="let user of users | async; let i = index">
-      <li id="user-{{i}}">
-        <a routerLink="/user/{{user.uid}}/settings">
-          {{user.name}} - {{user.email}} 
+      <li id="user-{{i}}" class="user-row">
+
+        <a routerLink="/user/{{user.uid}}/settings" class="setting-link">
+          {{user.name}} - {{user.email}}
         </a>
-        <span class="pull-right">
-        (<a [routerLink]="" (click)="resetPassword(user.email)">send password reset email</a>)
+        <span class="export-link">
+          (
+            <a [routerLink]="" (click)="triggerUserDataImport(user.uid)">import</a>
+            <input id="import-user-{{user.uid}}" class="user-import-input" type="file"
+              (change)="importUserDataJson(user, $event)">
+            /
+            <a [routerLink]="" (click)="exportUserDataAsJson(user)">export</a>
+            )
         </span>
+        <span class="password-reset-link">
+          (<a [routerLink]="" (click)="resetPassword(user.email)">send password reset email</a>)
+        </span>
+
       </li>
     </div>
   </ul>

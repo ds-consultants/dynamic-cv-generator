@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 import { environment } from '../environments/environment';
 import { UsersComponent } from './users/users.component';
+import { UsersDataBackupComponent } from './users-data-backup/users-data-backup.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { UserLoginComponent } from './user-login/user-login.component';
@@ -25,6 +27,7 @@ import { UserResolver } from './user/user-resolver.module';
     declarations: [
         AppComponent,
         UsersComponent,
+        UsersDataBackupComponent,
         UserLoginComponent,
         UserSignUpComponent,
         HeaderComponent,
@@ -37,6 +40,7 @@ import { UserResolver } from './user/user-resolver.module';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule,
         AngularFirestoreModule,
+        AngularFireStorageModule,
         AppRoutingModule,
         FormsModule,
         ReactiveFormsModule

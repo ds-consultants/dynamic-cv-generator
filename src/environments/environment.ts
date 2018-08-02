@@ -12,5 +12,8 @@ export const environment = {
         projectId: '',
         storageBucket: '',
         messagingSenderId: ''
-    }
+    },
+    backupAuthKey: '',
+    backupEmail: 'backup@example.com',
+    backupPassword: ''
 };
