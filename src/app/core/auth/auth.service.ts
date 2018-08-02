@@ -63,8 +63,8 @@ export class AuthService {
                 return true;
               })
               .catch((error) => {
-                this.handleError(error)
-                return false
+                this.handleError(error);
+                return false;
               });
       }
 

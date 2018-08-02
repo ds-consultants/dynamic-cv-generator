@@ -4,14 +4,14 @@
       <a class="reposition-down" (click)="moveExperienceDown()"  *ngIf="editForm && maxListIndex !== listIndex">&darr;</a>
     <p class="custom-left-column">
       <inline-editor type="text" [(ngModel)]="experience.company" (onSave)="saveExperience('company', $event)" size="20" name="customEditableText"
-        [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
+        [saveOnBlur]="true" [hideButtons]="true" id="inline-experience-company-name"></inline-editor>
     </p>
     <p class="custom-left-column">
       <inline-editor type="text" [(ngModel)]="experience.time" (onSave)="saveExperience('time', $event)" size="20" name="customEditableText"
-        [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
+        [saveOnBlur]="true" [hideButtons]="true" id="inline-experience-time-period"></inline-editor>
     </p>
     <p class="custom-left-column" *ngIf="editForm">
-      <button id="experience-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeExperience()">Remove experience</button>
+      <button type="button" id="experience-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeExperience()">Remove experience</button>
     </p>
   </div>
   <div class="col-sm-8 draw-line">
@@ -19,7 +19,7 @@
     <p class="position">
       <b>
         <inline-editor type="text" [(ngModel)]="experience.position" (onSave)="saveExperience('position', $event)" size="40" name="customEditableText"
-          [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
+          [saveOnBlur]="true" [hideButtons]="true" id="inline-experience-professional-title"></inline-editor>
       </b>
     </p>
     <div *ngFor="let project of experience.mainProjects; let j=index">
@@ -27,13 +27,14 @@
         [ngClass]="{'main-project': experience.company == 'Dynamic Solutions'}"
         (updateUser)="saveExperience($event)">
       </app-project>
-      <button id="main-project-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeMainProject(j)" *ngIf="editForm">Remove main project</button>
+      <button type="button" id="main-project-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeMainProject(j)" *ngIf="editForm">Remove main project</button>
     </div>
-    <p *ngIf="experience.projects" class="working-on">
+    <p *ngIf="experience.projects && experience.projects.length" class="working-on">
       Working on projects for:
     </p>
     <br>
     <div *ngFor="let project of experience.projects; let k=index">
+
       <app-project [project]="project"
         internalProject=[true]
         class="ds-project"
@@ -43,7 +44,8 @@
         (updateUser)="saveExperience($event)"
         (moveProjectUp)="moveProjectUp($event)"
         (moveProjectDown)="moveProjectDown($event)"></app-project>
-      <button id="project-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeProject(k)" *ngIf="editForm">Remove project</button>
+      <button type="button" id="project-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeProject(k)" *ngIf="editForm">Remove project</button>
+
     </div>
   </div>
   <div class="clearfix"></div>

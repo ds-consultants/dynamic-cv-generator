@@ -74,7 +74,7 @@ export class UserSettingsComponent implements OnInit {
 
 
   checkNewHireExperienceButtonState(): void {
-    this.showNewHireExperienceButton = this.user.experience.find(x => x.company.includes('Dynamic Solutions')) || true;
+    this.showNewHireExperienceButton = this.user.experience.some(x => x.company.includes('Dynamic Solutions'));
   }
 
   prepareSkills(skill): Array<any> {
@@ -110,7 +110,6 @@ export class UserSettingsComponent implements OnInit {
   }
 
   deleteEducation(e) {
-    // alert('test' + e);
     if (confirm('delete ?') === true) {
       this.user.education.splice(e, 1);
       this.save(false);
@@ -126,11 +125,8 @@ export class UserSettingsComponent implements OnInit {
         time: this.education.time
       }
     );
-    this.education.name = '';
-    this.education.time = '';
-    this.education.place = '';
-    this.education.namePlace = '';
     this.showEducationForm = false;
+    this.emptyEducation();
     this.save(false);
   }
 
@@ -145,6 +141,11 @@ export class UserSettingsComponent implements OnInit {
       }
     );
     this.showExperienceForm = (this.showExperienceForm === true) ? false : true;
+
+    this.emptyExperience();
+    this.emptyProject();
+    this.emptyMainProject();
+
     this.save(false);
   }
 
@@ -152,7 +153,7 @@ export class UserSettingsComponent implements OnInit {
     const currentDate = new Date();
     const currentDateMonthString = currentDate.toLocaleString('en-us', { month: 'long' });
 
-    this.user.experience.push(
+    this.user.experience.unshift(
       {
         company: 'Dynamic Solutions',
         position: this.user.title,
@@ -217,48 +218,47 @@ export class UserSettingsComponent implements OnInit {
         technologies: this.prepareSkills(this.mainProject.technologies)
       }
     );
-    this.mainProject.desc = '';
-    this.mainProject.technologies = '';
+    this.emptyMainProject();
   }
 
   addProject() {
-    this.experience.projects.push(
-      {
-        name: this.project.name,
-        title: this.project.title,
-        desc: this.project.desc,
-        technologies: this.prepareSkills(this.project.technologies)
-      }
-    );
-    this.project.desc = '';
-    this.project.technologies = '';
-    this.project.name = '';
-    this.project.title = '';
+    const pushProject = () => {
+      this.experience.projects.push(
+        {
+          name: this.project.name,
+          title: this.project.title,
+          desc: this.project.desc,
+          technologies: this.prepareSkills(this.project.technologies)
+        }
+      );
+      this.emptyProject();
+    };
+
+    const confirmationText = (variable) => {
+      return `Are you sure you want to add this Project? \n` +
+        `Project ${variable} is empty and there won\'` +
+        `be possibility to edit it later`;
+    };
+
+    if ( this.project.name === '' &&
+        confirm(confirmationText('name')) === true ) {
+      pushProject();
+    } else if ( this.project.title === '' &&
+        confirm(confirmationText('title')) === true ) {
+      pushProject();
+    } else if (this.project.name !== '' && this.project.title !== '') {
+      pushProject();
+    }
   }
 
   deleteNewExperienceProject(event) {
-    console.log(event);
     this.experience[event.key].splice(event.index, 1);
   }
 
   deleteNewExperience(event) {
-    this.experience = {
-      company: '',
-      position: '',
-      projects: [],
-      time: '',
-      mainProjects: []
-    };
-    this.project = {
-      name: '',
-      title: '',
-      desc: '',
-      technologies: ''
-    };
-    this.mainProject = {
-      desc: '',
-      technologies: ''
-    };
+    this.emptyExperience();
+    this.emptyProject();
+    this.emptyMainProject();
   }
 
   deleteExperienceProject(event) {
@@ -270,6 +270,41 @@ export class UserSettingsComponent implements OnInit {
     this.user.experience.splice(event.experienceKey, 1);
     this.checkNewHireExperienceButtonState();
     this.save(false);
+  }
+
+  emptyExperience() {
+    this.experience = {
+      company: '',
+      position: '',
+      projects: [],
+      time: '',
+      mainProjects: []
+    };
+  }
+
+  emptyProject() {
+    this.project = {
+      name: '',
+      title: '',
+      desc: '',
+      technologies: ''
+    };
+  }
+
+  emptyMainProject() {
+    this.mainProject = {
+      desc: '',
+      technologies: ''
+    };
+  }
+
+  emptyEducation() {
+    this.education = {
+      place: '',
+      time: '',
+      name: '',
+      namePlace: ''
+    };
   }
 
   repositionProject(event) {
