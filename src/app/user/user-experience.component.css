@@ -1,0 +1,23 @@
+.reposition-up, .reposition-down {
+  position: absolute;
+  cursor: pointer;
+  background: #fff;
+  display: block;
+  z-index: 2;
+  display: none;
+}
+
+.reposition-up {
+  left: 60px;
+  margin-top: 20px;
+}
+
+.reposition-down {
+  left: 60px;
+  margin-top: 40px;
+}
+
+.experience-row:hover .reposition-up,
+.experience-row:hover .reposition-down {
+  display: block;
+}

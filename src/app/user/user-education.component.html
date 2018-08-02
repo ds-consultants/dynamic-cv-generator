@@ -1,4 +1,6 @@
 <div class="row education-row">
+    <a class="reposition-up" (click)="moveEducationUp()" *ngIf="editForm && listIndex !== 0 && maxListIndex !== 0">&uarr;</a>
+    <a class="reposition-down" (click)="moveEducationDown()"  *ngIf="editForm && maxListIndex !== listIndex">&darr;</a>
   <div class="col-sm-4">
     <p [ngClass]="{'custom-left-column' : edit!=true}">
       <inline-editor type="text" [(ngModel)]="school.namePlace" (onSave)="saveSchool('namePlace', $event)" size="20" name="customEditableText"

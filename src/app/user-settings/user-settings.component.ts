@@ -306,4 +306,42 @@ export class UserSettingsComponent implements OnInit {
       namePlace: ''
     };
   }
+
+  repositionProject(event) {
+    const array = this.user.experience[event.experienceKey][event.key];
+
+    this.repositionElementInArray(array, event.index, event.up, event.down);
+
+    this.save(false);
+  }
+
+  repositionExperience(event) {
+    const array = this.user.experience;
+
+    this.repositionElementInArray(array, event.index, event.up, event.down);
+
+    this.save(false);
+  }
+
+  repositionEducation(event) {
+    const array = this.user.education;
+
+    this.repositionElementInArray(array, event.index, event.up, event.down);
+
+    this.save(false);
+  }
+
+  repositionElementInArray(array, elementPosition, up, down) {
+    const temp_array = array.slice();
+    const i = elementPosition;
+
+    if (down && i + 1 < temp_array.length) {
+      array[i + 1] = temp_array[i];
+      array[i] = temp_array[i + 1];
+    } else if (up && i - 1 >= 0) {
+      array[i - 1] = temp_array[i];
+      array[i] = temp_array[i - 1];
+    }
+  }
+
 }

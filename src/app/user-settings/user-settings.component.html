@@ -27,7 +27,13 @@
           <label for="education">Education</label>
       </h1>
       <div *ngFor="let school of user.education;let i=index">
-        <app-user-education [school]="school" [edit]="true" [id]="i" (delete)="deleteEducation($event)"></app-user-education>
+        <app-user-education [school]="school"
+          [edit]="true"
+          [editForm]="true"
+          [listIndex]="i"
+          [maxListIndex]="user.education.length - 1"
+          (delete)="deleteEducation($event)"
+          (repositionEducation)="repositionEducation($event)"></app-user-education>
       </div>
 
       <ng-template [ngIf]="showEducationForm">
@@ -83,10 +89,16 @@
         <label for="experience">Experience</label>
       </h1>
       <div *ngFor="let experience of user.experience; let i=index">
-        <app-user-experience [experience]="experience" [lastExperience]="false" [id]="i" [editForm]="true"
+        <app-user-experience [experience]="experience"
+          [lastExperience]="false"
+          [listIndex]="i"
+          [maxListIndex]="user.experience.length - 1"
+          [editForm]="true"
           (editUpdateUser)="updateUser($event)"
           (deleteExperienceProject)="deleteExperienceProject($event)"
-          (deleteExperience)="deleteExperience($event)"></app-user-experience>
+          (deleteExperience)="deleteExperience($event)"
+          (repositionProject)="repositionProject($event)"
+          (repositionExperience)="repositionExperience($event)"></app-user-experience>
       </div>
 
       <ng-template [ngIf]="showExperienceForm">
