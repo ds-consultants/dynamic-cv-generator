@@ -18,8 +18,8 @@ import { By } from '@angular/platform-browser';
 import { UserSettingsComponent } from '../user-settings/user-settings.component';
 import { InlineEditorModule, InlineEditorComponent } from '@fradev/ngx-inline-editor';
 import { TagInputModule } from 'ngx-chips';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { FirebaseApp } from 'angularfire2';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { FirebaseApp } from '@angular/fire';
 import { UserHeaderComponent } from './user-header.component';
 
 import { CVPageOneDirective } from '../cv-page-one.directive';

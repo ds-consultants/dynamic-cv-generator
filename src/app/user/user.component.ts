@@ -204,7 +204,7 @@ export class UserComponent implements OnInit {
             // UserSkillsetComponent
             from(skillsetNames)
             .pipe(
-              concatMap(res =>  of(res).delay(500) ),
+              concatMap(res =>  of(res).pipe(delay(500))),
               finalize(() => {
                 this.ensureLastComponentFitPage(true);
                 this.renderFooter();

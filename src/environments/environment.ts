@@ -6,12 +6,13 @@
 export const environment = {
     production: false,
     firebase: {
-        apiKey: '',
-        authDomain: '',
-        databaseURL: '',
-        projectId: '',
-        storageBucket: '',
-        messagingSenderId: ''
+      apiKey: 'AIzaSyBCYJggFBKLhloTN7LLfz5ko5ATU4NUKXw',
+      authDomain: 'dynamic-cv-generator.firebaseapp.com',
+      databaseURL: 'https://dynamic-cv-generator.firebaseio.com',
+      projectId: 'dynamic-cv-generator',
+      storageBucket: 'dynamic-cv-generator.appspot.com',
+      messagingSenderId: '101626907882',
+      timestampsInSnapshots: true
     },
     backupAuthKey: '',
     backupEmail: 'backup@example.com',
