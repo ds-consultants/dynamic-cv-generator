@@ -3,14 +3,16 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import * as firebase from 'firebase/app';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { NotifyService } from '../notify.service';
 
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { User } from '../../user';
+
+import { of } from 'rxjs';
 
 @Injectable()
 export class AuthService {
@@ -24,24 +26,25 @@ export class AuthService {
         public notify: NotifyService) {
 
         this.afs.firestore.settings({ timestampsInSnapshots: true });
-        this.user = this.afAuth.authState
-            .switchMap((user) => {
-                if (user) {
-                    this.userUid = user.uid;
-                    return this.afs.doc<User>(`users/${this.userUid}`).valueChanges();
-                } else {
-                    return Observable.of(null);
-                }
-            });
+        this.user = this.afAuth.authState.pipe(
+          switchMap((user) => {
+              if (user) {
+                  this.userUid = user.uid;
+                  return this.afs.doc<User>(`users/${this.userUid}`).valueChanges();
+              } else {
+                  return of(null);
+              }
+          })
+        );
     }
 
     //// Email/Password Auth ////
     emailSignUp(email: string, password: string) {
         return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-            .then((user) => {
-                this.userUid = user.uid;
+            .then((userCredentials) => {
+                this.userUid = userCredentials.user.uid;
 
-                return user; // if using firestore
+                return userCredentials.user; // if using firestore
             })
             .catch((error) => this.handleError(error));
     }
