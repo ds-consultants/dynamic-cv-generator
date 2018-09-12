@@ -251,6 +251,19 @@ export class UserSettingsComponent implements OnInit {
     }
   }
 
+  addExperienceProject(experience) {
+      experience.projects.push(
+      {
+        name: 'Project name',
+        title: 'role name',
+        desc: 'Project description',
+        technologies: this.prepareSkills(['tachnology name'])
+      }
+    );
+
+    this.save(false);
+  }
+
   deleteNewExperienceProject(event) {
     this.experience[event.key].splice(event.index, 1);
   }
