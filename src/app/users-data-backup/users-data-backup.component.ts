@@ -2,10 +2,10 @@ import { switchMap } from 'rxjs/operators';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../core/auth/auth.service';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from '../user';
-import { AngularFireStorage } from 'angularfire2/storage';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
 
