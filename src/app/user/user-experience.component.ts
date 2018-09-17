@@ -18,6 +18,7 @@ export class UserExperienceComponent {
     @Output() deleteExperience = new EventEmitter<any>();
     @Output() repositionProject = new EventEmitter<any>();
     @Output() repositionExperience = new EventEmitter<any>();
+    @Output() addExperienceProject = new EventEmitter<any>();
 
     saveExperience(key, newValue) {
         if (this.editForm) {
@@ -34,6 +35,10 @@ export class UserExperienceComponent {
 
     removeMainProject(i) {
         this.deleteProject('mainProjects', i);
+    }
+
+    addProject(experience) {
+      this.addExperienceProject.emit(experience);
     }
 
     moveProjectDown(i) {
