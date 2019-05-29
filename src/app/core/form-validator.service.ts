@@ -39,7 +39,7 @@ export class FormValidatorService {
                 Validators.email,
             ]],
             'password': ['', [
-                Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])(.*)$'),
+                // Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])(.*)$'),
                 Validators.minLength(6),
                 Validators.maxLength(25),
             ]]

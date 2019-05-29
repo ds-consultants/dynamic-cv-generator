@@ -34,6 +34,7 @@ import { of } from 'rxjs/observable/of';
 import { from } from 'rxjs/observable/from';
 import { concatMap, finalize, delay } from 'rxjs/operators';
 import { AuthService } from '../core/auth/auth.service';
+import { AppComponent } from '../app.component';
 
 const pageHeight = 1123;
 
@@ -90,9 +91,10 @@ export class UserComponent implements OnInit {
         }
 
         this.auth.updateUserData(this.user).then((result) => {
-            console.log('User saved');
+            AppComponent.showSavingIndicator();
         }).catch((error) => {
-            console.log(error);
+            console.error(error);
+            AppComponent.showError('Something goes wrong. User data are not saved. Please open that page in another tab to check which data are not saved properly.');
         });
     }
 

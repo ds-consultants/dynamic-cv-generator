@@ -25,7 +25,6 @@ export class AuthService {
         private router: Router,
         public notify: NotifyService) {
 
-        this.afs.firestore.settings({ timestampsInSnapshots: true });
         this.user = this.afAuth.authState.pipe(
           switchMap((user) => {
               if (user) {
@@ -61,7 +60,8 @@ export class AuthService {
           const secondaryApp = firebase.apps[1] || firebase.initializeApp(environment.firebase, 'Secondary');
 
           return secondaryApp.auth().createUserWithEmailAndPassword(email, password)
-              .then(() => {
+              .then(userResponse => {
+                console.log(userResponse)
                 secondaryApp.auth().signOut();
                 return true;
               })

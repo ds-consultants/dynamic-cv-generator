@@ -9,6 +9,7 @@ import { User } from '../user';
 import { FormValidatorService } from '../core/form-validator.service';
 import { saveAs } from 'file-saver/FileSaver';
 import { environment } from '../../environments/environment';
+import { AppComponent } from '../app.component';
 
 type UserFields = 'email' | 'password';
 type FormErrors = {[u in UserFields]: string };
@@ -32,8 +33,6 @@ export class UsersComponent implements OnInit {
     private afs: AngularFirestore,
     private validator: FormValidatorService
   ) {
-    this.afs.firestore.settings({ timestampsInSnapshots: true });
-
     this.users = this.afAuth.authState.pipe(
       switchMap((user) => {
         if (user) {
@@ -57,9 +56,12 @@ export class UsersComponent implements OnInit {
       this.validator.userForm.value['password']
     ).then((userCreated) => {
       if (userCreated) {
+        AppComponent.showSuccess('User created succesfully');
         this.validator.userForm.reset();
       }
-    });
+    }).catch(() => {
+      AppComponent.showError('Something goes wrong.');
+    })
   }
 
   resetPassword(email: string) {

@@ -5,11 +5,12 @@ import { AuthService } from '../core/auth/auth.service';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { TagModel } from 'ngx-chips/core/accessor';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-user-settings',
   templateUrl: './user-settings.component.html',
-  styleUrls: ['./user-settings.component.css']
+  styleUrls: ['./user-settings.component.scss']
 })
 export class UserSettingsComponent implements OnInit {
   education = {
@@ -55,6 +56,7 @@ export class UserSettingsComponent implements OnInit {
     'QA Consultant'
   ];
 
+
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
@@ -97,11 +99,13 @@ export class UserSettingsComponent implements OnInit {
       this.user.skillset[name].second = this.prepareSkills(this.user.skillset[name].second);
     });
     this.auth.updateUserData(this.user).then((result) => {
+      AppComponent.showSavingIndicator();
       if (redirect) {
         this.router.navigate(['/user/dashboard']);
       }
     }).catch((error) => {
-      console.log(error);
+      console.error(error);
+      AppComponent.showError('Something goes wrong. User data are not saved. Please open that page in another tab to check which data are not saved properly.');
     });
   }
 

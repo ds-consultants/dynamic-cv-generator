@@ -27,7 +27,6 @@ export class UsersDataBackupComponent {
     this.backup = 'Starting Backup';
 
     this.auth.emailLogin(environment.backupEmail, environment.backupPassword).then(() => {
-      this.afs.firestore.settings({ timestampsInSnapshots: true });
 
       this.users = this.afAuth.authState.pipe(
         switchMap(() => {
