@@ -217,14 +217,15 @@
       <h1 class="card-title pricing-card-title text-center custom-card-title">
         <label>Skillset</label>
       </h1>
-      <div id="skillset-{{name | parametrize}}-section tags form-group col-12" class="tags form-group col-12" *ngFor="let name of skillNames; let i = index">
-        <h2 class="row card-title pricing-card-title text-center custom-card-title">
+      <div id="skillset-{{name | parametrize}}-section tags form-group col-12" class="tags form-group col-12" *ngFor="let name of skillsetNames; let i = index">
+        <h2 class="row card-title pricing-card-title text-center custom-card-title skillset-name">
+          <a class="reposition-up" (click)="repositionSkillsetGroup({index: i, up: true, skillsetName: name})" *ngIf="i !== 0 && user.skillset[name].position !== 0">&uarr;</a>
+          <a class="reposition-down" (click)="repositionSkillsetGroup({index: i, down: true, skillsetName: name})"  *ngIf="skillsetNames.length !== (i+1)">&darr;</a>
           <label class="col-12" for="skills">
-            <inline-editor class="inline-block" type="text" [(ngModel)]="skillNames[i]" (onSave)="renameSkillset(name, $event)" size="40" name="customCenteredEditableText"
+            <inline-editor class="inline-block" type="text" [(ngModel)]="skillsetNames[i]" (onSave)="renameSkillset(name, $event)" size="40" name="customCenteredEditableText"
               [saveOnBlur]="true" [hideButtons]="true"></inline-editor>
             <div class="row">
               <div class="col-12 text-center label-note">Accept each new tag name with Enter. Use drag-n-drop to reposition tags.</div>
-              <div class="col-12 text-center label-note"></div>
             </div>
           </label>
 
