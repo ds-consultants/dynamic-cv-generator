@@ -33,19 +33,19 @@
       Working on projects for:
     </p>
     <br>
-    <div *ngFor="let project of experience.projects; let k=index">
+    <div cdkDropList (cdkDropListDropped)="moveProject($event)">
+      <div *ngFor="let project of experience.projects; let k=index" cdkDrag>
+  
+        <app-project [project]="project"
+          internalProject=[true]
+          class="ds-project"
+          [listIndex]="k"
+          [maxListIndex]="experience.projects.length - 1"
+          [editForm]="editForm"
+          (updateUser)="saveExperience($event)"></app-project>
+        <button type="button" id="project-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeProject(k)" *ngIf="editForm">Remove project</button>
 
-      <app-project [project]="project"
-        internalProject=[true]
-        class="ds-project"
-        [listIndex]="k"
-        [maxListIndex]="experience.projects.length - 1"
-        [editForm]="editForm"
-        (updateUser)="saveExperience($event)"
-        (moveProjectUp)="moveProjectUp($event)"
-        (moveProjectDown)="moveProjectDown($event)"></app-project>
-      <button type="button" id="project-remove-button" class="btn btn-outline-danger btn-sm" (click)="removeProject(k)" *ngIf="editForm">Remove project</button>
-
+      </div>
     </div>
     <button type="button" id="project-add-button" class="btn btn-outline-success btn-sm" (click)="addProject(experience)" *ngIf="editForm">Add another project</button>
   </div>

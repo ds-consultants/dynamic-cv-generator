@@ -22,13 +22,5 @@ export class ProjectComponent {
         this.updateUser.emit(this.project);
     }
 
-    moveUp() {
-      this.moveProjectUp.emit(this.listIndex);
-    }
-
-    moveDown() {
-      this.moveProjectDown.emit(this.listIndex);
-    }
-
     constructor() { }
 }

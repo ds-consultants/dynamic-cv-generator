@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
     selector: 'app-user-experience',
@@ -70,6 +71,15 @@ export class UserExperienceComponent {
       this.repositionExperience.emit({
         index: this.listIndex,
         up: true
+      });
+    }
+
+    moveProject(event: CdkDragDrop<string[]>) {
+      this.repositionProject.emit({
+        experienceKey: this.listIndex,
+        key: 'projects',
+        previousIndex: event.previousIndex,
+        currentIndex: event.currentIndex
       });
     }
 

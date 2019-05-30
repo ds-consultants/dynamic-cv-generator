@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { TagModel } from 'ngx-chips/core/accessor';
 import { AppComponent } from '../app.component';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-user-settings',
@@ -326,7 +327,7 @@ export class UserSettingsComponent implements OnInit {
   repositionProject(event) {
     const array = this.user.experience[event.experienceKey][event.key];
 
-    this.repositionElementInArray(array, event.index, event.up, event.down);
+    moveItemInArray(array, event.previousIndex, event.currentIndex);
 
     this.save(false);
   }
