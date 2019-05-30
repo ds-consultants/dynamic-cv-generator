@@ -7,12 +7,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { NotifyService } from '../notify.service';
 
-import { Observable } from 'rxjs';
+import { Observable ,  of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { User } from '../../user';
-
-import { of } from 'rxjs';
 
 @Injectable()
 export class AuthService {

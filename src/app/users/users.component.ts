@@ -1,10 +1,9 @@
 import { switchMap, filter, map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable ,  of } from 'rxjs';
 import { AuthService } from '../core/auth/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { of } from 'rxjs/observable/of';
 import { User } from '../user';
 import { FormValidatorService } from '../core/form-validator.service';
 import { saveAs } from 'file-saver/FileSaver';

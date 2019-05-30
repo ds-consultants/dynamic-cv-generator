@@ -1,13 +1,12 @@
-import { catchError } from 'rxjs/operators/catchError';
+
+import {throwError as observableThrowError,  Observable } from 'rxjs';
+import { catchError ,  map, take, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from './auth.service';
 import { NotifyService } from '../notify.service';
-
-import { Observable } from 'rxjs';
-import { map, take, tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -30,7 +29,7 @@ export class AuthGuard implements CanActivate {
                     this.router.navigate(['/login']);
                 }
             }),
-            catchError((e: any) => Observable.throw(console.log(e)))
+            catchError((e: any) => observableThrowError(console.log(e)))
         );
     }
 }
