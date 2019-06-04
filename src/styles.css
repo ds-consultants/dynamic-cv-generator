@@ -290,7 +290,7 @@ h3 {
 
 @page {
     size: A4;
-    margin: 0 -20px;
+    margin: 0px -20px;
 }
 
 @media print {
@@ -299,6 +299,9 @@ h3 {
     }
     .a4::after, .a4::before {
         display: none;
+    }
+    .skillset-container {
+        padding-right: 120px;
     }
 }
 
@@ -339,4 +342,13 @@ tag {
 
 .custom-block-button {
     margin-top: 16px;
+}
+
+.custom-container {
+    padding-top: 60px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
 }

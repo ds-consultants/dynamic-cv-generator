@@ -148,23 +148,23 @@ export class UserComponent implements OnInit {
     renderEducation(education) {
         setTimeout(() => {
             let currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
-            if (pageHeight - currentContentHeight - 248 < 0) {
+            if (pageHeight - currentContentHeight - 20 < 0) {
                 this.bumpCurrentPage();
             }
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserEducationHeaderComponent);
             const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
 
             education.forEach((school, index) => {
-                currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
-                if (pageHeight - currentContentHeight - 60 < 0) {
-                    this.bumpCurrentPage();
-                }
                 const factory = this.componentFactoryResolver.resolveComponentFactory(UserEducationComponent);
                 const ref = this.currentPage.viewContainerRef.createComponent(factory);
                 (<UserEducationComponent>ref.instance).school = school;
                 (<UserEducationComponent>ref.instance).updateUser.subscribe(data => this.saveCurrentUser(data));
                 if ((education.length - 1) === index) {
                     (<UserEducationComponent>ref.instance).lastRow = true;
+                }
+                currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
+                if (pageHeight - currentContentHeight - 60 < 0) {
+                    this.bumpCurrentPage();
                 }
             });
 
@@ -214,7 +214,11 @@ export class UserComponent implements OnInit {
             ).subscribe(val => {
               const name = val;
               this.renderSingleSkillRow(name, skillset[name]);
+
               if (val !== skillsetNames[skillsetNames.length - 1]) {
+                if (pageHeight - this.currentPageContainer.nativeElement.clientHeight - 280 - 60 < 0) {
+                    this.bumpCurrentPage();
+                }
                 this.ensureLastComponentFitPage(false);
               }
             });
@@ -245,6 +249,11 @@ export class UserComponent implements OnInit {
               this.bumpCurrentPage();
               this.currentPage.viewContainerRef.insert(detachedView);
             };
+
+            const currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
+            if (pageHeight - currentContentHeight - 60 < 0) {
+                this.bumpCurrentPage();
+            }
 
             if (fitFooterComponent) {
               if (pageHeight - this.currentPageContainer.nativeElement.clientHeight + 92 < 0) {

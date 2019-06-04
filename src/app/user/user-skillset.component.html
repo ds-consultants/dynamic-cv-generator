@@ -1,25 +1,15 @@
-<div class="container no-top-padding">
-  <div class="justify-content-center page-top">
-    <div class="col-sm-12">
-      <div class="row">
-        <div class="col-sm-3">
-          {{name | titlecase}}
-        </div>
-        <div class="col-sm-9">
-          <div class="row">
-            <ul class="col-sm-4 no-bullet" *ngFor="let s of mainSkills">
-              <li class="main-skill" *ngFor="let name of s">
-                {{name}}
-              </li>
-            </ul>
-            <ul class="col-sm-4 no-bullet" *ngFor="let s of secondSkills">
-              <li class="second-skill" *ngFor="let name of s">
-                {{name}}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="no-top-padding">
+  <div class="justify-content-center page-top skillset-grid">
+    <div class="skillset-title">{{name | titlecase}}</div>
+    <ul class="no-bullet" *ngFor="let s of mainSkills">
+      <li class="main-skill" *ngFor="let name of s">
+        {{name}}
+      </li>
+    </ul>
+    <ul class="no-bullet" *ngFor="let s of secondSkills">
+      <li class="second-skill" *ngFor="let name of s">
+        {{name}}
+      </li>
+    </ul>
   </div>
 </div>
