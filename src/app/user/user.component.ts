@@ -30,10 +30,10 @@ import { CVPageOneDirective } from '../cv-page-one.directive';
 import { CVPageTwoDirective } from '../cv-page-two.directive';
 import { CVPageThreeDirective } from '../cv-page-three.directive';
 import { CVPageFourDirective } from '../cv-page-four.directive';
-import { of } from 'rxjs/observable/of';
-import { from } from 'rxjs/observable/from';
+import { of ,  from } from 'rxjs';
 import { concatMap, finalize, delay } from 'rxjs/operators';
 import { AuthService } from '../core/auth/auth.service';
+import { AppComponent } from '../app.component';
 
 const pageHeight = 1123;
 
@@ -90,9 +90,10 @@ export class UserComponent implements OnInit {
         }
 
         this.auth.updateUserData(this.user).then((result) => {
-            console.log('User saved');
+            AppComponent.showSavingIndicator();
         }).catch((error) => {
-            console.log(error);
+            console.error(error);
+            AppComponent.showError('Something goes wrong. User data are not saved. Please open that page in another tab to check which data are not saved properly.');
         });
     }
 
@@ -147,23 +148,23 @@ export class UserComponent implements OnInit {
     renderEducation(education) {
         setTimeout(() => {
             let currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
-            if (pageHeight - currentContentHeight - 248 < 0) {
+            if (pageHeight - currentContentHeight - 20 < 0) {
                 this.bumpCurrentPage();
             }
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserEducationHeaderComponent);
             const componentRef = this.currentPage.viewContainerRef.createComponent(componentFactory);
 
             education.forEach((school, index) => {
-                currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
-                if (pageHeight - currentContentHeight - 60 < 0) {
-                    this.bumpCurrentPage();
-                }
                 const factory = this.componentFactoryResolver.resolveComponentFactory(UserEducationComponent);
                 const ref = this.currentPage.viewContainerRef.createComponent(factory);
                 (<UserEducationComponent>ref.instance).school = school;
                 (<UserEducationComponent>ref.instance).updateUser.subscribe(data => this.saveCurrentUser(data));
                 if ((education.length - 1) === index) {
                     (<UserEducationComponent>ref.instance).lastRow = true;
+                }
+                currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
+                if (pageHeight - currentContentHeight - 60 < 0) {
+                    this.bumpCurrentPage();
                 }
             });
 
@@ -213,7 +214,11 @@ export class UserComponent implements OnInit {
             ).subscribe(val => {
               const name = val;
               this.renderSingleSkillRow(name, skillset[name]);
+
               if (val !== skillsetNames[skillsetNames.length - 1]) {
+                if (pageHeight - this.currentPageContainer.nativeElement.clientHeight - 280 - 60 < 0) {
+                    this.bumpCurrentPage();
+                }
                 this.ensureLastComponentFitPage(false);
               }
             });
@@ -244,6 +249,11 @@ export class UserComponent implements OnInit {
               this.bumpCurrentPage();
               this.currentPage.viewContainerRef.insert(detachedView);
             };
+
+            const currentContentHeight = this.currentPageContainer.nativeElement.clientHeight;
+            if (pageHeight - currentContentHeight - 60 < 0) {
+                this.bumpCurrentPage();
+            }
 
             if (fitFooterComponent) {
               if (pageHeight - this.currentPageContainer.nativeElement.clientHeight + 92 < 0) {

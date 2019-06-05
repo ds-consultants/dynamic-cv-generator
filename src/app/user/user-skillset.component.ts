@@ -22,6 +22,12 @@ import { Component, Input, OnInit } from '@angular/core';
             background-size: 20px 20px;
             margin: 0 0 7px 5px;
             padding-left: 27px;
+        }
+        .skillset-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-column-gap: 15px;
+            padding-left: 30px;
         }`]
 })
 export class UserSkillsetComponent implements OnInit {

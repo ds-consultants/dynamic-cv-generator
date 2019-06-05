@@ -11,8 +11,7 @@ export const environment = {
       databaseURL: '',
       projectId: '',
       storageBucket: '',
-      messagingSenderId: '',
-      timestampsInSnapshots: true
+      messagingSenderId: ''
     },
     backupAuthKey: '',
     backupEmail: 'backup@example.com',

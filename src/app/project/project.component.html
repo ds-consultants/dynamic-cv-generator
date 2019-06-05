@@ -1,15 +1,11 @@
 <div class="project-row">
   <i *ngIf="internalProject && project.name" class="internal-project"></i>
-  <a class="reposition-up" (click)="moveUp()" *ngIf="editForm && internalProject && listIndex !== 0 && maxListIndex !== 0">&uarr;</a>
-  <a class="reposition-down" (click)="moveDown()"  *ngIf="editForm && internalProject && maxListIndex !== listIndex">&darr;</a>
-  <p class="name position">
-    <b>
-      <inline-editor type="text" [(ngModel)]="project.name" (onSave)="saveProject('name', $event)" size="40" name="customEditableText"
+  <p class="position">
+      <inline-editor class="name" type="text" [(ngModel)]="project.name" (onSave)="saveProject('name', $event)" size="40" name="customEditableText"
         *ngIf="project.name" [saveOnBlur]="true" [hideButtons]="true" id="inline-project-name"></inline-editor>
-    </b>
     <span *ngIf="internalProject && project.title">
       as
-      <inline-editor type="text" [(ngModel)]="project.title" (onSave)="saveProject('title', $event)" size="40" name="customEditableText"
+      <inline-editor class="title" type="text" [(ngModel)]="project.title" (onSave)="saveProject('title', $event)" size="40" name="customEditableText"
         *ngIf="internalProject" [saveOnBlur]="true" [hideButtons]="true" id="inline-project-professional-title"></inline-editor>
     </span>
   </p>

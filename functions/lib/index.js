@@ -4,6 +4,8 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 admin.initializeApp();
 exports.initUserInCloudDb = functions.auth.user().onCreate((user) => {
+    console.log('INIT USER IN DB');
+    console.log(user);
     const userId = user.uid;
     const db = admin.firestore();
     const data = {

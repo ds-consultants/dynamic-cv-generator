@@ -3,10 +3,18 @@
     background-size: contain;
     display: block;
     height: 20px;
-    left: -15px;
+    left: 0px;
     margin: 2px 5px;
     position: absolute;
     width: 20px;
+}
+
+.internal-project:hover {
+  cursor: grab;
+}
+
+.name {
+  color: #333333;
 }
 
 .working-on {
@@ -40,6 +48,7 @@
 }
 
 .project-row {
+  position: relative;
   margin-left: -30px;
   padding-left: 30px;
 }

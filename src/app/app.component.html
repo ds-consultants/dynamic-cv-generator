@@ -3,3 +3,17 @@
   <div class="noprint top-space"></div>
   <router-outlet></router-outlet>
 </div>
+
+<div class="bar warning" *ngIf="errorText" [@showHideToast]="errorText">
+    {{errorText}}
+</div>
+<div class="bar info" *ngIf="infoText" [@showHideToast]="infoText">
+    {{infoText}}
+</div>
+<div class="bar success" *ngIf="successText" [@showHideToast]="successText">
+    {{successText}}
+</div>
+<div class="saving-spinner" *ngIf="isSaving">
+  <i class="fa fa-spinner fa-pulse fa-fw"></i>
+  <span>Saving</span>
+</div>

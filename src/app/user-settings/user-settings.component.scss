@@ -1,0 +1,48 @@
+.skillset-name-label {
+    line-height: 30px;
+}
+
+.label-note{
+  position: absolute;
+  font-size: 10px;
+  margin-top: -5px;
+  margin-left: 1px;
+  color: #aaa;
+  text-transform: initial;
+}
+
+.card{
+  margin-top: 10px;
+}
+
+.remove-skillset-button{
+  margin-top: 15px;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.reposition-up, .reposition-down {
+  display: none;
+  position: absolute;
+  cursor: pointer;
+  background: #fff;
+  z-index: 2;
+  font-size: 16px;
+}
+
+.reposition-up {
+  left: -10px;
+  margin-top: -15px;
+}
+
+.reposition-down {
+  left: -10px;
+  margin-top: 25px;
+}
+
+.skillset-name:hover .reposition-up,
+.skillset-name:hover .reposition-down {
+  display: block;
+}

@@ -5,11 +5,13 @@ import { AuthService } from '../core/auth/auth.service';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { TagModel } from 'ngx-chips/core/accessor';
+import { AppComponent } from '../app.component';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-user-settings',
   templateUrl: './user-settings.component.html',
-  styleUrls: ['./user-settings.component.css']
+  styleUrls: ['./user-settings.component.scss']
 })
 export class UserSettingsComponent implements OnInit {
   education = {
@@ -40,7 +42,6 @@ export class UserSettingsComponent implements OnInit {
   showEducationForm = false;
   showExperienceForm = false;
   showNewHireExperienceButton = true;
-  skillNames = [];
   newSkillset = '';
   showSkillsetForm = false;
   user: User;
@@ -55,6 +56,7 @@ export class UserSettingsComponent implements OnInit {
     'QA Consultant'
   ];
 
+
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
@@ -65,7 +67,12 @@ export class UserSettingsComponent implements OnInit {
     this.route.data.subscribe(
       (data: { user: User }) => {
         this.user = data.user;
-        this.skillNames = Object.keys(this.user.skillset);
+        Object.keys(this.user.skillset).forEach((key, index) => {
+          if (this.user.skillset[key].position === undefined) {
+            this.user.skillset[key].position = index;
+            this.save(false);
+          }
+        })
       }
     );
 
@@ -92,16 +99,18 @@ export class UserSettingsComponent implements OnInit {
   }
 
   save(redirect: boolean) {
-    this.skillNames.forEach(name => {
+    this.skillsetNames.forEach(name => {
       this.user.skillset[name].main = this.prepareSkills(this.user.skillset[name].main);
       this.user.skillset[name].second = this.prepareSkills(this.user.skillset[name].second);
     });
     this.auth.updateUserData(this.user).then((result) => {
+      AppComponent.showSavingIndicator();
       if (redirect) {
         this.router.navigate(['/user/dashboard']);
       }
     }).catch((error) => {
-      console.log(error);
+      console.error(error);
+      AppComponent.showError('Something goes wrong. User data are not saved. Please open that page in another tab to check which data are not saved properly.');
     });
   }
 
@@ -183,18 +192,13 @@ export class UserSettingsComponent implements OnInit {
 
   removeSkillset(skillName) {
     if (confirm('delete ?') === true) {
-      const index = this.skillNames.indexOf(skillName, 0);
-      if (index > -1) {
-        this.skillNames.splice(index, 1);
-        delete this.user.skillset[skillName];
-      }
+      delete this.user.skillset[skillName];
       this.save(false);
     }
   }
 
   addNewSkillset() {
     this.toggleSkillsetForm();
-    this.skillNames.push(this.newSkillset);
     this.user.skillset[this.newSkillset] = { main: [], second: [] };
     this.save(false);
   }
@@ -323,7 +327,7 @@ export class UserSettingsComponent implements OnInit {
   repositionProject(event) {
     const array = this.user.experience[event.experienceKey][event.key];
 
-    this.repositionElementInArray(array, event.index, event.up, event.down);
+    moveItemInArray(array, event.previousIndex, event.currentIndex);
 
     this.save(false);
   }
@@ -344,7 +348,24 @@ export class UserSettingsComponent implements OnInit {
     this.save(false);
   }
 
+  repositionSkillsetGroup({index, up, down}) {
+    const array = this.user.skillset;
+    const key = this.skillsetNames[index];
+    let keyToReplace;
+    if (down) {
+      keyToReplace = this.skillsetNames[index + 1];
+      this.user.skillset[key].position = index + 1;
+    } else if (up) {
+      keyToReplace = this.skillsetNames[index - 1];
+      this.user.skillset[key].position = index - 1;
+    }
+    this.user.skillset[keyToReplace].position = index;
+
+    this.save(false);
+  }
+
   repositionElementInArray(array, elementPosition, up, down) {
+
     const temp_array = array.slice();
     const i = elementPosition;
 
@@ -355,6 +376,10 @@ export class UserSettingsComponent implements OnInit {
       array[i - 1] = temp_array[i];
       array[i] = temp_array[i - 1];
     }
+  }
+
+  get skillsetNames() {
+    return Object.keys(this.user.skillset).sort((a, b) => this.user.skillset[a].position - this.user.skillset[b].position);
   }
 
 }

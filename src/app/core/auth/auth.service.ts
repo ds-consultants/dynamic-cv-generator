@@ -7,12 +7,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { NotifyService } from '../notify.service';
 
-import { Observable } from 'rxjs';
+import { Observable ,  of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { User } from '../../user';
-
-import { of } from 'rxjs';
 
 @Injectable()
 export class AuthService {
@@ -25,7 +23,6 @@ export class AuthService {
         private router: Router,
         public notify: NotifyService) {
 
-        this.afs.firestore.settings({ timestampsInSnapshots: true });
         this.user = this.afAuth.authState.pipe(
           switchMap((user) => {
               if (user) {
@@ -61,7 +58,8 @@ export class AuthService {
           const secondaryApp = firebase.apps[1] || firebase.initializeApp(environment.firebase, 'Secondary');
 
           return secondaryApp.auth().createUserWithEmailAndPassword(email, password)
-              .then(() => {
+              .then(userResponse => {
+                console.log(userResponse)
                 secondaryApp.auth().signOut();
                 return true;
               })

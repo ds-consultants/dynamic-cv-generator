@@ -24,7 +24,7 @@ export class UserHeaderComponent {
         { name: 'Junior AEM Developer', image: this.imgUrlAem },
         { name: 'AEM Developer', image: this.imgUrlAem },
         { name: 'Senior AEM Developer', image: this.imgUrlAem },
-        { name: 'QA Consultant', image: this.imgUrlAnalyst },
+        { name: 'QA Consultant', image: this.imgUrlTester },
     ];
 
     titleOptions = this.titles.map(title => {
